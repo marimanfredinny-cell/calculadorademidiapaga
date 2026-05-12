@@ -376,17 +376,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="card" style="margin-bottom:2px">
     <div class="card-label">Perfil de investimento</div>
     <div class="perfil-row">
-      <div class="perfil-btn" id="perfil-conservador" onclick="setPerfil('conservador')">
-        <span class="perfil-nome">Conservador</span>
-        <span class="perfil-desc">Menor risco<br>CPL de mercado</span>
+      <div class="perfil-btn" id="perfil-iniciando" onclick="setPerfil('iniciando')">
+        <span class="perfil-nome">Iniciando</span>
+        <span class="perfil-desc">Campanhas novas<br>CPL ainda alto</span>
       </div>
-      <div class="perfil-btn active" id="perfil-moderado" onclick="setPerfil('moderado')">
-        <span class="perfil-nome">Moderado</span>
+      <div class="perfil-btn active" id="perfil-crescimento" onclick="setPerfil('crescimento')">
+        <span class="perfil-nome">Em crescimento</span>
         <span class="perfil-desc">Benchmark<br>do mercado</span>
       </div>
-      <div class="perfil-btn" id="perfil-agressivo" onclick="setPerfil('agressivo')">
-        <span class="perfil-nome">Agressivo</span>
-        <span class="perfil-desc">Maior volume<br>CPL otimizado</span>
+      <div class="perfil-btn" id="perfil-otimizado" onclick="setPerfil('otimizado')">
+        <span class="perfil-nome">Otimizado</span>
+        <span class="perfil-desc">Gestão experiente<br>CPL reduzido</span>
       </div>
     </div>
   </div>
@@ -500,17 +500,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
   const PERFIS = {
-    conservador: { cplMeta: 90,  cplGoogle: 150, conv: 0.02, pctMeta: 40 },
-    moderado:    { cplMeta: 45,  cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
-    agressivo:   { cplMeta: 25,  cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
+    iniciando:    { cplMeta: 90,  cplGoogle: 150, conv: 0.02, pctMeta: 40 },
+    crescimento:  { cplMeta: 45,  cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
+    otimizado:    { cplMeta: 25,  cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
   };
 
-  let perfilAtual = 'moderado';
+  let perfilAtual = 'crescimento';
   let platAtual   = 'ambos';
 
   function setPerfil(p) {
     perfilAtual = p;
-    ['conservador','moderado','agressivo'].forEach(id => {
+    ['iniciando','crescimento','otimizado'].forEach(id => {
       document.getElementById('perfil-' + id).classList.toggle('active', id === p);
     });
     update();
