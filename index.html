@@ -19,8 +19,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --espresso: #1E1A16;
     --espresso-soft: #2C2620;
     --branco: #FDFAF6;
-    --creme: #F5F0E8;
-    --areia: #E3D5BE;
     --taupe: #C4B49A;
     --ouro: #A8895A;
     --ouro-claro: #C4A46E;
@@ -44,30 +42,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .wrap { max-width: 960px; margin: 0 auto; }
 
   /* Header */
-  .header { margin-bottom: 56px; }
+  .header { margin-bottom: 52px; }
   .header-eyebrow {
     font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--ouro); margin-bottom: 16px; font-weight: 300;
   }
   .header h1 {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 38px;
-    font-weight: 400;
-    color: var(--branco);
-    line-height: 1.2;
-    margin-bottom: 24px;
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 38px; font-weight: 400;
+    color: var(--branco); line-height: 1.2; margin-bottom: 24px;
   }
   .header h1 em { color: var(--ouro-claro); font-style: italic; }
   .header-divider {
     width: 60px; height: 1px;
-    background: var(--ouro); opacity: 0.4;
-    margin-bottom: 20px;
+    background: var(--ouro); opacity: 0.4; margin-bottom: 20px;
   }
-  .header p {
-    font-size: 15px; color: var(--taupe);
-    max-width: 580px; line-height: 1.75; font-weight: 300;
-  }
+  .header p { font-size: 15px; color: var(--taupe); max-width: 580px; line-height: 1.75; font-weight: 300; }
 
   /* Grid */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
@@ -77,33 +67,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background: rgba(168,137,90,0.08);
     border: 1px solid rgba(168,137,90,0.22);
     backdrop-filter: blur(8px);
-    border-radius: 2px;
-    padding: 28px;
+    border-radius: 2px; padding: 28px;
   }
   .card-label {
     font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--ouro); margin-bottom: 20px; font-weight: 300;
   }
 
-  /* Platform headers */
-  .platform-header { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
-  .platform-dot { width: 6px; height: 6px; border-radius: 50%; }
-  .platform-name {
-    font-family: 'Lora', serif; font-size: 13px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-  }
-
   /* Fields */
   .field { margin-bottom: 24px; }
   .field:last-child { margin-bottom: 0; }
-  .field-header {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 10px;
-  }
+  .field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
   .field-name { font-size: 12px; color: var(--taupe); font-weight: 300; letter-spacing: 0.02em; }
-  .field-value {
-    font-family: 'Lora', serif; font-size: 15px; font-weight: 400; color: var(--ouro-claro);
-  }
+  .field-value { font-family: 'Lora', serif; font-size: 15px; font-weight: 400; color: var(--ouro-claro); }
 
   input[type="range"] {
     width: 100%; height: 1px; -webkit-appearance: none; appearance: none;
@@ -115,8 +91,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border: 1px solid var(--espresso); transition: transform 0.1s;
   }
   input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
-  input[type="range"].meta::-webkit-slider-thumb { background: var(--meta); }
-  input[type="range"].google::-webkit-slider-thumb { background: var(--google); }
+
+  /* Perfil selector */
+  .perfil-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+  .perfil-btn {
+    padding: 16px 12px; border-radius: 2px; cursor: pointer;
+    border: 1px solid rgba(168,137,90,0.18);
+    background: rgba(168,137,90,0.04);
+    color: var(--taupe); text-align: center; transition: all 0.15s;
+    font-family: 'Poppins', sans-serif; font-weight: 300;
+  }
+  .perfil-btn:hover { border-color: rgba(168,137,90,0.35); color: var(--branco); }
+  .perfil-btn.active {
+    background: rgba(168,137,90,0.14);
+    border-color: rgba(168,137,90,0.5);
+    color: var(--ouro-claro);
+  }
+  .perfil-btn .perfil-nome {
+    font-family: 'Lora', serif; font-size: 14px; font-style: italic;
+    font-weight: 400; margin-bottom: 6px; display: block;
+  }
+  .perfil-btn .perfil-desc {
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    opacity: 0.7; line-height: 1.5;
+  }
+
+  /* Plataforma toggle */
+  .plat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+  .plat-btn {
+    padding: 12px; border-radius: 2px; cursor: pointer;
+    border: 1px solid rgba(253,250,246,0.1);
+    background: rgba(253,250,246,0.04);
+    color: var(--taupe); text-align: center; transition: all 0.15s;
+    font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 300;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .plat-btn:hover { border-color: rgba(253,250,246,0.2); color: var(--branco); }
+  .plat-btn.active-meta { background: rgba(74,144,217,0.1); border-color: rgba(74,144,217,0.35); color: var(--meta); }
+  .plat-btn.active-google { background: rgba(224,90,58,0.1); border-color: rgba(224,90,58,0.35); color: var(--google); }
+  .plat-btn.active-ambos { background: rgba(168,137,90,0.1); border-color: rgba(168,137,90,0.35); color: var(--ouro-claro); }
+
+  /* Benchmark info */
+  .benchmark-info {
+    padding: 14px 20px;
+    background: rgba(253,250,246,0.04);
+    border: 1px solid rgba(253,250,246,0.08);
+    border-radius: 2px;
+    display: flex; gap: 32px; flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .bm-item { font-size: 11px; color: var(--taupe); font-weight: 300; }
+  .bm-item span { color: var(--ouro-claro); font-family: 'Lora', serif; font-size: 13px; margin-right: 4px; }
 
   /* Results */
   .result-main {
@@ -125,10 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     backdrop-filter: blur(8px);
     border-radius: 2px; padding: 32px;
   }
-  .result-number {
-    font-family: 'Lora', serif; font-weight: 400; line-height: 1;
-    color: var(--ouro-claro);
-  }
+  .result-number { font-family: 'Lora', serif; font-weight: 400; line-height: 1; color: var(--ouro-claro); }
   .result-number.xl { font-size: 44px; font-style: italic; }
   .result-number.lg { font-size: 28px; }
   .result-number.md { font-size: 22px; }
@@ -150,17 +172,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     letter-spacing: 0.1em; text-transform: uppercase;
   }
   .roi-bar-track { height: 1px; background: rgba(196,180,154,0.2); overflow: hidden; }
-  .roi-bar-fill {
-    height: 100%; background: var(--ouro);
-    transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-  }
+  .roi-bar-fill { height: 100%; background: var(--ouro); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
   /* Breakdown */
   .breakdown { margin-top: 24px; }
   .breakdown-row {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 0; border-bottom: 1px solid rgba(196,180,154,0.1);
-    font-size: 13px;
+    padding: 12px 0; border-bottom: 1px solid rgba(196,180,154,0.1); font-size: 13px;
   }
   .breakdown-row:last-child { border-bottom: none; }
   .breakdown-label { color: var(--taupe); font-weight: 300; }
@@ -178,15 +196,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .verdict-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 
   /* Footer note */
-  .footer-note {
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(168,137,90,0.2);
-  }
-  .footer-note p {
-    font-size: 14px; color: var(--taupe);
-    line-height: 1.8; font-weight: 300; margin-bottom: 6px;
-  }
+  .footer-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(168,137,90,0.2); }
+  .footer-note p { font-size: 14px; color: var(--taupe); line-height: 1.8; font-weight: 300; margin-bottom: 6px; }
   .footer-note p.destaque { color: var(--ouro-claro); }
 
   /* CTA */
@@ -199,20 +210,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: opacity 0.15s; letter-spacing: 0.02em;
   }
   .cta-btn:hover { opacity: 0.88; }
-  .cta-sub {
-    margin-top: 12px; font-size: 10px; color: var(--ouro);
-    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300;
-  }
+  .cta-sub { margin-top: 12px; font-size: 10px; color: var(--ouro); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300; }
 
-  /* Footer */
-  .footer {
-    margin-top: 48px; font-size: 10px;
-    color: rgba(168,137,90,0.3);
-    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300;
-  }
+  .footer { margin-top: 48px; font-size: 10px; color: rgba(168,137,90,0.3); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300; }
 
   @media (max-width: 640px) {
     .grid-2 { grid-template-columns: 1fr; }
+    .perfil-row { grid-template-columns: 1fr; }
+    .plat-row { grid-template-columns: 1fr 1fr 1fr; }
     .header h1 { font-size: 26px; }
   }
 </style>
@@ -232,9 +237,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>A calculadora faz um benchmark do mercado imobiliário, considera sua faixa de investimento e entrega a sugestão de investimento mínimo. Vale lembrar que esses valores não são exatos. Por isso a reunião é gratuita. Se quiser entender como funciona para você, é só clicar no link no fim da página.</p>
   </div>
 
-  <!-- Parâmetros -->
+  <!-- Parâmetros do negócio -->
   <div class="card" style="margin-bottom:2px">
-    <div class="card-label">Parâmetros do negócio</div>
+    <div class="card-label">Sobre o seu negócio</div>
     <div class="grid-2">
       <div class="field">
         <div class="field-header">
@@ -250,78 +255,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <input type="range" id="comissao" min="3" max="8" step="0.5" value="6" oninput="update()">
       </div>
-      <div class="field">
+      <div class="field" style="grid-column:1/-1">
         <div class="field-header">
           <span class="field-name">Meta de vendas por mês</span>
           <span class="field-value" id="val-vendas">1 venda</span>
         </div>
         <input type="range" id="vendas" min="1" max="6" step="1" value="1" oninput="update()">
       </div>
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">Taxa de conversão lead → venda</span>
-          <span class="field-value" id="val-conv">3%</span>
-        </div>
-        <input type="range" id="conv" min="1" max="10" step="0.5" value="3" oninput="update()">
+    </div>
+  </div>
+
+  <!-- Perfil de investimento -->
+  <div class="card" style="margin-bottom:2px">
+    <div class="card-label">Perfil de investimento</div>
+    <div class="perfil-row">
+      <div class="perfil-btn" id="perfil-conservador" onclick="setPerfil('conservador')">
+        <span class="perfil-nome">Conservador</span>
+        <span class="perfil-desc">Menor risco<br>CPL de mercado</span>
+      </div>
+      <div class="perfil-btn active" id="perfil-moderado" onclick="setPerfil('moderado')">
+        <span class="perfil-nome">Moderado</span>
+        <span class="perfil-desc">Benchmark<br>do mercado</span>
+      </div>
+      <div class="perfil-btn" id="perfil-agressivo" onclick="setPerfil('agressivo')">
+        <span class="perfil-nome">Agressivo</span>
+        <span class="perfil-desc">Maior volume<br>CPL otimizado</span>
       </div>
     </div>
   </div>
 
-  <!-- Plataformas -->
-  <div class="grid-2">
-    <div class="card">
-      <div class="platform-header">
-        <div class="platform-dot" style="background:var(--meta)"></div>
-        <span class="platform-name" style="color:var(--meta)">Meta Ads</span>
-      </div>
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">CPL estimado (custo por lead)</span>
-          <span class="field-value result-meta" id="val-cpl-meta">R$ 45</span>
-        </div>
-        <input type="range" class="meta" id="cpl-meta" min="15" max="150" step="5" value="45" oninput="update()">
-        <div style="display:flex;justify-content:space-between;margin-top:8px">
-          <span style="font-size:10px;color:var(--taupe);opacity:0.55;letter-spacing:0.08em">R$ 15 — ótimo</span>
-          <span style="font-size:10px;color:var(--taupe);opacity:0.55;letter-spacing:0.08em">R$ 150 — alto</span>
-        </div>
-      </div>
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">% do orçamento alocado</span>
-          <span class="field-value result-meta" id="val-pct-meta">60%</span>
-        </div>
-        <input type="range" class="meta" id="pct-meta" min="10" max="90" step="5" value="60" oninput="syncPct('meta'); update()">
-      </div>
+  <!-- Plataforma -->
+  <div class="card" style="margin-bottom:2px">
+    <div class="card-label">Onde investir</div>
+    <div class="plat-row">
+      <div class="plat-btn" id="plat-meta" onclick="setPlat('meta')">Meta Ads</div>
+      <div class="plat-btn active-ambos" id="plat-ambos" onclick="setPlat('ambos')">Ambos</div>
+      <div class="plat-btn" id="plat-google" onclick="setPlat('google')">Google Ads</div>
     </div>
+  </div>
 
-    <div class="card">
-      <div class="platform-header">
-        <div class="platform-dot" style="background:var(--google)"></div>
-        <span class="platform-name" style="color:var(--google)">Google Ads</span>
-      </div>
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">CPL estimado (custo por lead)</span>
-          <span class="field-value result-google" id="val-cpl-google">R$ 70</span>
-        </div>
-        <input type="range" class="google" id="cpl-google" min="20" max="200" step="5" value="70" oninput="update()">
-        <div style="display:flex;justify-content:space-between;margin-top:8px">
-          <span style="font-size:10px;color:var(--taupe);opacity:0.55;letter-spacing:0.08em">R$ 20 — ótimo</span>
-          <span style="font-size:10px;color:var(--taupe);opacity:0.55;letter-spacing:0.08em">R$ 200 — alto</span>
-        </div>
-      </div>
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">% do orçamento alocado</span>
-          <span class="field-value result-google" id="val-pct-google">40%</span>
-        </div>
-        <input type="range" class="google" id="pct-google" min="10" max="90" step="5" value="40" oninput="syncPct('google'); update()">
-      </div>
-    </div>
+  <!-- Benchmarks aplicados -->
+  <div class="benchmark-info" id="benchmark-info">
+    <div class="bm-item"><span id="bm-cpl-meta">R$ 45</span> CPL Meta Ads</div>
+    <div class="bm-item"><span id="bm-cpl-google">R$ 70</span> CPL Google Ads</div>
+    <div class="bm-item"><span id="bm-conv">3%</span> Taxa de conversão</div>
+    <div class="bm-item"><span id="bm-split">60% Meta / 40% Google</span></div>
   </div>
 
   <!-- Resultados -->
-  <div class="grid-2" style="margin-top:2px">
+  <div class="grid-2" style="margin-top:0">
     <div class="result-main">
       <div class="card-label">Investimento mínimo recomendado</div>
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
@@ -367,10 +349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="roi-bar-wrap">
-        <div class="roi-bar-header">
-          <span>Investimento</span>
-          <span>Retorno</span>
-        </div>
+        <div class="roi-bar-header"><span>Investimento</span><span>Retorno</span></div>
         <div class="roi-bar-track">
           <div class="roi-bar-fill" id="roi-bar" style="width:0%"></div>
         </div>
@@ -408,50 +387,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
+  const PERFIS = {
+    conservador: { cplMeta: 90,  cplGoogle: 150, conv: 0.02, pctMeta: 40 },
+    moderado:    { cplMeta: 45,  cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
+    agressivo:   { cplMeta: 25,  cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
+  };
+
+  let perfilAtual = 'moderado';
+  let platAtual   = 'ambos';
+
+  function setPerfil(p) {
+    perfilAtual = p;
+    ['conservador','moderado','agressivo'].forEach(id => {
+      document.getElementById('perfil-' + id).classList.toggle('active', id === p);
+    });
+    update();
+  }
+
+  function setPlat(p) {
+    platAtual = p;
+    document.getElementById('plat-meta').className   = 'plat-btn' + (p === 'meta'   ? ' active-meta'   : '');
+    document.getElementById('plat-ambos').className  = 'plat-btn' + (p === 'ambos'  ? ' active-ambos'  : '');
+    document.getElementById('plat-google').className = 'plat-btn' + (p === 'google' ? ' active-google' : '');
+    update();
+  }
+
   function fmtFull(v) {
     return 'R$ ' + Math.round(v).toLocaleString('pt-BR');
   }
 
-  function syncPct(changed) {
-    const metaEl = document.getElementById('pct-meta');
-    const googleEl = document.getElementById('pct-google');
-    if (changed === 'meta') {
-      googleEl.value = 100 - parseInt(metaEl.value);
-    } else {
-      metaEl.value = 100 - parseInt(googleEl.value);
-    }
-    document.getElementById('val-pct-meta').textContent = metaEl.value + '%';
-    document.getElementById('val-pct-google').textContent = googleEl.value + '%';
-  }
-
   function update() {
-    const ticket    = parseInt(document.getElementById('ticket').value);
-    const comissao  = parseFloat(document.getElementById('comissao').value) / 100;
-    const vendas    = parseInt(document.getElementById('vendas').value);
-    const conv      = parseFloat(document.getElementById('conv').value) / 100;
-    const cplMeta   = parseInt(document.getElementById('cpl-meta').value);
-    const cplGoogle = parseInt(document.getElementById('cpl-google').value);
-    const pctMeta   = parseInt(document.getElementById('pct-meta').value) / 100;
-    const pctGoogle = 1 - pctMeta;
+    const ticket   = parseInt(document.getElementById('ticket').value);
+    const comissao = parseFloat(document.getElementById('comissao').value) / 100;
+    const vendas   = parseInt(document.getElementById('vendas').value);
+    const p        = PERFIS[perfilAtual];
 
-    document.getElementById('val-ticket').textContent    = fmtFull(ticket);
-    document.getElementById('val-comissao').textContent  = (comissao * 100) + '%';
-    document.getElementById('val-vendas').textContent    = vendas + (vendas === 1 ? ' venda' : ' vendas');
-    document.getElementById('val-conv').textContent      = (conv * 100) + '%';
-    document.getElementById('val-cpl-meta').textContent  = 'R$ ' + cplMeta;
-    document.getElementById('val-cpl-google').textContent = 'R$ ' + cplGoogle;
-    document.getElementById('val-pct-meta').textContent  = Math.round(pctMeta * 100) + '%';
-    document.getElementById('val-pct-google').textContent = Math.round(pctGoogle * 100) + '%';
+    let pctMeta, pctGoogle;
+    if (platAtual === 'meta')   { pctMeta = 100; pctGoogle = 0; }
+    else if (platAtual === 'google') { pctMeta = 0; pctGoogle = 100; }
+    else { pctMeta = p.pctMeta; pctGoogle = 100 - p.pctMeta; }
 
-    const leadsTotal  = Math.ceil(vendas / conv);
-    const leadsMeta   = Math.ceil(leadsTotal * pctMeta);
-    const leadsGoogle = leadsTotal - leadsMeta;
-    const investMeta   = leadsMeta * cplMeta;
-    const investGoogle = leadsGoogle * cplGoogle;
+    // Labels
+    document.getElementById('val-ticket').textContent   = fmtFull(ticket);
+    document.getElementById('val-comissao').textContent = (comissao * 100) + '%';
+    document.getElementById('val-vendas').textContent   = vendas + (vendas === 1 ? ' venda' : ' vendas');
+
+    // Benchmark info
+    document.getElementById('bm-cpl-meta').textContent   = platAtual === 'google' ? '—' : 'R$ ' + p.cplMeta;
+    document.getElementById('bm-cpl-google').textContent = platAtual === 'meta'   ? '—' : 'R$ ' + p.cplGoogle;
+    document.getElementById('bm-conv').textContent       = (p.conv * 100) + '%';
+    if (platAtual === 'ambos')        document.getElementById('bm-split').textContent = pctMeta + '% Meta / ' + pctGoogle + '% Google';
+    else if (platAtual === 'meta')    document.getElementById('bm-split').textContent = '100% Meta Ads';
+    else                              document.getElementById('bm-split').textContent = '100% Google Ads';
+
+    // Cálculos
+    const leadsTotal  = Math.ceil(vendas / p.conv);
+    const leadsMeta   = platAtual === 'google' ? 0 : Math.ceil(leadsTotal * pctMeta / 100);
+    const leadsGoogle = platAtual === 'meta'   ? 0 : leadsTotal - leadsMeta;
+    const investMeta   = leadsMeta   * p.cplMeta;
+    const investGoogle = leadsGoogle * p.cplGoogle;
     const investTotal  = investMeta + investGoogle;
-    const receita = ticket * comissao * vendas;
-    const roi = investTotal > 0 ? (receita / investTotal) : 0;
-    const roiBarPct = Math.min(100, (roi / 20) * 100);
+    const receita      = ticket * comissao * vendas;
+    const roi          = investTotal > 0 ? receita / investTotal : 0;
 
     document.getElementById('res-total').textContent        = fmtFull(investTotal);
     document.getElementById('res-meta').textContent         = fmtFull(investMeta);
@@ -461,7 +458,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('res-leads-meta').textContent   = leadsMeta;
     document.getElementById('res-leads-google').textContent = leadsGoogle;
     document.getElementById('res-roi').textContent          = roi.toFixed(1) + 'x';
-    document.getElementById('roi-bar').style.width          = roiBarPct + '%';
+    document.getElementById('roi-bar').style.width          = Math.min(100, (roi / 20) * 100) + '%';
 
     const verdictBox  = document.getElementById('verdict-box');
     const verdictText = document.getElementById('verdict-text');
@@ -476,10 +473,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       verdictText.textContent = `Boa relação. ${fmtFull(investTotal)}/mês de investimento para ${fmtFull(receita)} de retorno esperado. ROI de ${roi.toFixed(1)}x — números saudáveis para o mercado imobiliário de alto padrão.`;
     } else if (pct <= 30) {
       verdictBox.classList.add('warn');
-      verdictText.textContent = `Atenção. O investimento representa ${pct.toFixed(0)}% da receita esperada. Considere reduzir o CPL alvo ou aumentar a taxa de conversão antes de escalar orçamento.`;
+      verdictText.textContent = `Atenção. O investimento representa ${pct.toFixed(0)}% da receita esperada. Considere revisar a meta de vendas ou conversar com um especialista antes de escalar o orçamento.`;
     } else {
       verdictBox.classList.add('bad');
-      verdictText.textContent = `Risco alto. Com esses parâmetros, o custo de aquisição compromete ${pct.toFixed(0)}% da receita. Revise o CPL, a taxa de conversão ou a meta de vendas.`;
+      verdictText.textContent = `Risco alto. Com esses parâmetros, o custo de aquisição compromete ${pct.toFixed(0)}% da receita. Recomendamos agendar uma conversa para entender o cenário mais adequado para o seu negócio.`;
     }
   }
 
