@@ -470,10 +470,6 @@ src="https://www.facebook.com/tr?id=1348713502744731&ev=PageView&noscript=1"/></
   }
 
   // ── Meta Conversions API ────────────────────────────────────────────────
-  const CAPI_PIXEL   = '1348713502744731';
-  const CAPI_TOKEN   = 'EAAK5W7MhStoBOyX72a47ZBziFvZCETmSqz456gfyp3O2kmQZClPNVvf62mwSb8v7WIwYaUsS7jsZAhIV1O5cGhboTTcznr1bLB2r4cGdSapms7SDFQJxFoAw3dRKIwqlwKnWTv4fyu4zqt1QZBVAM92di2dWSJNTD1teMwyQLDZCTkMFkj8ZAypFroZAmndumsAc3wZDZD';
-  const CAPI_URL     = `https://graph.facebook.com/v19.0/${CAPI_PIXEL}/events?access_token=${CAPI_TOKEN}`;
-
   function capiEvent(eventName, customData) {
     const payload = {
       data: [{
@@ -485,7 +481,7 @@ src="https://www.facebook.com/tr?id=1348713502744731&ev=PageView&noscript=1"/></
         custom_data: customData || {}
       }]
     };
-    fetch(CAPI_URL, {
+    fetch('/api/capi', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
