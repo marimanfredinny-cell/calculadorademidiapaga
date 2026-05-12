@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de Investimento — Concept Rio</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel: 1348713502744731 -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1348713502744731');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1348713502744731&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -454,6 +468,51 @@
       verdictText.textContent = `Risco alto. Com esses parâmetros, o custo de aquisição compromete ${pctDoRetorno.toFixed(0)}% da receita. Revise o CPL, a taxa de conversão ou a meta de vendas.`;
     }
   }
+
+  // ── Meta Conversions API ────────────────────────────────────────────────
+  const CAPI_PIXEL   = '1348713502744731';
+  const CAPI_TOKEN   = 'EAAK5W7MhStoBOyX72a47ZBziFvZCETmSqz456gfyp3O2kmQZClPNVvf62mwSb8v7WIwYaUsS7jsZAhIV1O5cGhboTTcznr1bLB2r4cGdSapms7SDFQJxFoAw3dRKIwqlwKnWTv4fyu4zqt1QZBVAM92di2dWSJNTD1teMwyQLDZCTkMFkj8ZAypFroZAmndumsAc3wZDZD';
+  const CAPI_URL     = `https://graph.facebook.com/v19.0/${CAPI_PIXEL}/events?access_token=${CAPI_TOKEN}`;
+
+  function capiEvent(eventName, customData) {
+    const payload = {
+      data: [{
+        event_name: eventName,
+        event_time: Math.floor(Date.now() / 1000),
+        event_source_url: window.location.href,
+        action_source: 'website',
+        user_data: { client_user_agent: navigator.userAgent },
+        custom_data: customData || {}
+      }]
+    };
+    fetch(CAPI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+  }
+
+  // PageView via CAPI (complementa o pixel)
+  capiEvent('PageView');
+
+  // Dispara ViewContent quando o usuário interage com a calculadora
+  let capiThrottle;
+  function capiCalculatorInteraction() {
+    clearTimeout(capiThrottle);
+    capiThrottle = setTimeout(function() {
+      const investTotal = parseInt(
+        document.getElementById('res-total').textContent
+          .replace(/\D/g,'')
+      ) || 0;
+      fbq('track', 'ViewContent', { content_name: 'Calculadora Midia Paga', value: investTotal, currency: 'BRL' });
+      capiEvent('ViewContent', { content_name: 'Calculadora Midia Paga', value: investTotal, currency: 'BRL' });
+    }, 1500);
+  }
+
+  document.querySelectorAll('input[type="range"]').forEach(function(el) {
+    el.addEventListener('input', capiCalculatorInteraction);
+  });
+  // ── Fim Conversions API ──────────────────────────────────────────────────
 
   update();
 </script>
