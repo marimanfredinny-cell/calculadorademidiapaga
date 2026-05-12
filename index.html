@@ -222,7 +222,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* Perfil */
-  .perfil-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+  .perfil-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .perfil-btn {
     padding: 20px 16px; border-radius: 2px; cursor: pointer;
     border: 1px solid rgba(168,137,90,0.16);
@@ -389,13 +389,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="card">
     <div class="card-label">Perfil de investimento</div>
     <div class="perfil-row">
-      <div class="perfil-btn" id="perfil-iniciando" onclick="setPerfil('iniciando')">
-        <span class="perfil-nome">Iniciando</span>
-        <span class="perfil-desc">Campanhas novas<br>CPL ainda alto</span>
-      </div>
       <div class="perfil-btn active" id="perfil-crescimento" onclick="setPerfil('crescimento')">
-        <span class="perfil-nome">Em crescimento</span>
-        <span class="perfil-desc">Benchmark<br>do mercado</span>
+        <span class="perfil-nome">Benchmark do mercado</span>
+        <span class="perfil-desc">Referência atual<br>do setor imobiliário</span>
       </div>
       <div class="perfil-btn" id="perfil-otimizado" onclick="setPerfil('otimizado')">
         <span class="perfil-nome">Otimizado</span>
@@ -426,11 +422,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="grid-2">
     <div class="result-main">
       <div class="card-label">Investimento mínimo recomendado</div>
-      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
         <span class="result-number xl" id="res-total">R$ 0</span>
         <span style="font-size:11px;color:var(--taupe);letter-spacing:0.1em;text-transform:uppercase">/mês</span>
       </div>
-      <div class="result-label">total em tráfego pago</div>
+      <div class="result-label" style="margin-bottom:10px">nas plataformas de anúncios</div>
+      <div style="background:rgba(168,137,90,0.07);border:1px solid rgba(168,137,90,0.2);border-radius:2px;padding:10px 12px;margin-bottom:4px">
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
+          <span class="result-number md" id="res-total-imposto" style="color:var(--espresso)">R$ 0</span>
+          <span style="font-size:11px;color:var(--taupe);letter-spacing:0.1em;text-transform:uppercase">/mês</span>
+        </div>
+        <div class="result-label">total saindo do seu caixa <span style="color:var(--ouro);font-weight:400">(+30% de impostos)</span></div>
+      </div>
+      <div style="font-size:10px;color:var(--taupe);line-height:1.6;margin-bottom:12px;opacity:0.8">Pagamentos a Meta e Google são considerados câmbio internacional e têm incidência de 30% de IOF sobre o valor investido nas plataformas.</div>
       <div class="divider"></div>
       <div class="grid-2" style="gap:16px">
         <div>
@@ -512,7 +516,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
   const PERFIS = {
-    iniciando:   { cplMeta: 90, cplGoogle: 150, conv: 0.02, pctMeta: 40 },
     crescimento: { cplMeta: 45, cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
     otimizado:   { cplMeta: 25, cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
   };
@@ -522,7 +525,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function setPerfil(p) {
     perfilAtual = p;
-    ['iniciando','crescimento','otimizado'].forEach(id => {
+    ['crescimento','otimizado'].forEach(id => {
       document.getElementById('perfil-' + id).classList.toggle('active', id === p);
     });
     update();
@@ -568,10 +571,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const investMeta   = leadsMeta   * p.cplMeta;
     const investGoogle = leadsGoogle * p.cplGoogle;
     const investTotal  = investMeta + investGoogle;
+    const investComImposto = Math.round(investTotal * 1.30);
     const receita      = ticket * comissao * vendas;
     const roi          = investTotal > 0 ? receita / investTotal : 0;
 
     document.getElementById('res-total').textContent        = fmtFull(investTotal);
+    document.getElementById('res-total-imposto').textContent = fmtFull(investComImposto);
     document.getElementById('res-meta').textContent         = fmtFull(investMeta);
     document.getElementById('res-google').textContent       = fmtFull(investGoogle);
     document.getElementById('res-receita').textContent      = fmtFull(receita);
