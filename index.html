@@ -19,7 +19,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --creme: #F5F0E8;
     --areia: #E3D5BE;
     --espresso: #1E1A16;
-    --espresso-soft: #2C2620;
     --taupe: #8A7560;
     --ouro: #A8895A;
     --ouro-claro: #C4A46E;
@@ -30,7 +29,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --green: #3AA86A;
   }
 
-  /* Animated background */
   body {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
@@ -43,204 +41,230 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     overflow-x: hidden;
   }
 
-  /* Orbs de luz animados */
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 0;
-    animation: fadeInOrb 2s ease forwards;
-  }
-  @keyframes fadeInOrb {
-    to { opacity: 1; }
-  }
-  .orb-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(196,164,110,0.28) 0%, transparent 70%);
-    top: -100px; left: -100px;
-    animation: fadeInOrb 2s ease forwards, float1 18s ease-in-out infinite;
-  }
-  .orb-2 {
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(138,154,132,0.2) 0%, transparent 70%);
-    top: 30%; right: -80px;
-    animation: fadeInOrb 2.5s ease forwards, float2 22s ease-in-out infinite;
-  }
-  .orb-3 {
-    width: 350px; height: 350px;
-    background: radial-gradient(circle, rgba(217,184,168,0.25) 0%, transparent 70%);
-    bottom: 10%; left: 20%;
-    animation: fadeInOrb 3s ease forwards, float3 26s ease-in-out infinite;
-  }
-  .orb-4 {
-    width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(168,137,90,0.18) 0%, transparent 70%);
-    top: 55%; left: 55%;
-    animation: fadeInOrb 2s ease forwards, float4 20s ease-in-out infinite;
-  }
-
-  @keyframes float1 {
-    0%,100% { transform: translate(0, 0) scale(1); }
-    25%      { transform: translate(60px, 40px) scale(1.08); }
-    50%      { transform: translate(20px, 80px) scale(0.95); }
-    75%      { transform: translate(-30px, 30px) scale(1.05); }
-  }
-  @keyframes float2 {
-    0%,100% { transform: translate(0, 0) scale(1); }
-    33%      { transform: translate(-50px, 60px) scale(1.1); }
-    66%      { transform: translate(30px, -40px) scale(0.92); }
-  }
-  @keyframes float3 {
-    0%,100% { transform: translate(0, 0) scale(1); }
-    40%      { transform: translate(70px, -50px) scale(1.06); }
-    70%      { transform: translate(-40px, -20px) scale(0.96); }
-  }
-  @keyframes float4 {
-    0%,100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(-60px, 40px) scale(1.12); }
-  }
-
-  /* Shimmer de fundo */
-  body::before {
-    content: '';
+  /* ── Luzes ultra-realistas ── */
+  .scene {
     position: fixed;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(227,213,190,0.5) 0%,
-      rgba(245,240,232,0.8) 40%,
-      rgba(196,164,110,0.12) 70%,
-      rgba(245,240,232,0.9) 100%
-    );
-    background-size: 400% 400%;
-    animation: shimmer 12s ease-in-out infinite;
     pointer-events: none;
     z-index: 0;
-  }
-  @keyframes shimmer {
-    0%,100% { background-position: 0% 50%; }
-    50%      { background-position: 100% 50%; }
+    overflow: hidden;
   }
 
-  .wrap { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
-
-  /* Assinatura da criadora */
-  .assinatura {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 40px;
+  /* Luz principal — ouro quente grande, pulsa e deriva */
+  .light {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
   }
+
+  .light-1 {
+    width: 900px; height: 900px;
+    background: radial-gradient(circle at 40% 40%,
+      rgba(196,164,110,0.45) 0%,
+      rgba(196,164,110,0.15) 35%,
+      transparent 70%);
+    top: -200px; left: -200px;
+    filter: blur(60px);
+    animation: drift1 20s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
+               pulse1 8s ease-in-out infinite;
+  }
+  .light-2 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle at 60% 50%,
+      rgba(138,154,132,0.3) 0%,
+      rgba(138,154,132,0.08) 40%,
+      transparent 70%);
+    top: 20%; right: -150px;
+    filter: blur(70px);
+    animation: drift2 26s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
+               pulse2 11s ease-in-out infinite;
+  }
+  .light-3 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(217,184,168,0.35) 0%,
+      rgba(217,184,168,0.1) 45%,
+      transparent 70%);
+    bottom: 5%; left: 15%;
+    filter: blur(55px);
+    animation: drift3 22s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
+               pulse3 9s ease-in-out infinite;
+  }
+  .light-4 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(168,137,90,0.25) 0%,
+      rgba(168,137,90,0.06) 50%,
+      transparent 70%);
+    top: 50%; left: 50%;
+    filter: blur(65px);
+    animation: drift4 30s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
+               pulse1 13s ease-in-out infinite reverse;
+  }
+  /* Luz de acento pequena e intensa — foco dourado */
+  .light-5 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(196,164,110,0.5) 0%,
+      rgba(196,164,110,0.2) 30%,
+      transparent 65%);
+    top: 10%; left: 40%;
+    filter: blur(40px);
+    animation: drift5 16s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
+               pulse2 6s ease-in-out infinite;
+  }
+
+  @keyframes drift1 {
+    0%   { transform: translate(0px,   0px)   scale(1); }
+    20%  { transform: translate(80px,  60px)  scale(1.06); }
+    40%  { transform: translate(40px,  120px) scale(0.96); }
+    60%  { transform: translate(-40px, 80px)  scale(1.04); }
+    80%  { transform: translate(20px,  -40px) scale(0.98); }
+    100% { transform: translate(0px,   0px)   scale(1); }
+  }
+  @keyframes drift2 {
+    0%   { transform: translate(0px,    0px)   scale(1); }
+    25%  { transform: translate(-70px,  80px)  scale(1.08); }
+    50%  { transform: translate(-120px, 30px)  scale(0.94); }
+    75%  { transform: translate(-50px, -60px)  scale(1.05); }
+    100% { transform: translate(0px,    0px)   scale(1); }
+  }
+  @keyframes drift3 {
+    0%   { transform: translate(0px,   0px)   scale(1); }
+    30%  { transform: translate(90px, -70px)  scale(1.07); }
+    60%  { transform: translate(50px,  50px)  scale(0.95); }
+    100% { transform: translate(0px,   0px)   scale(1); }
+  }
+  @keyframes drift4 {
+    0%   { transform: translate(0px,    0px)   scale(1); }
+    33%  { transform: translate(-80px,  60px)  scale(1.1); }
+    66%  { transform: translate(60px,  -80px)  scale(0.92); }
+    100% { transform: translate(0px,    0px)   scale(1); }
+  }
+  @keyframes drift5 {
+    0%   { transform: translate(0px,   0px)  scale(1); }
+    25%  { transform: translate(60px,  40px) scale(1.15); }
+    50%  { transform: translate(-30px, 70px) scale(0.9); }
+    75%  { transform: translate(-60px,-20px) scale(1.08); }
+    100% { transform: translate(0px,   0px)  scale(1); }
+  }
+  @keyframes pulse1 {
+    0%,100% { opacity: 1; }
+    50%     { opacity: 0.7; }
+  }
+  @keyframes pulse2 {
+    0%,100% { opacity: 0.85; }
+    50%     { opacity: 1; }
+  }
+  @keyframes pulse3 {
+    0%,100% { opacity: 0.9; }
+    40%     { opacity: 0.6; }
+    70%     { opacity: 1; }
+  }
+
+  /* Véu suave por cima para unificar */
+  .scene::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(245,240,232,0.18);
+  }
+
+  /* ── Layout ── */
+  .wrap { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* Assinatura */
+  .assinatura { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
   .assinatura-linha { width: 32px; height: 1px; background: var(--ouro); opacity: 0.5; }
-  .assinatura-texto {
-    font-family: 'Lora', serif; font-style: italic;
-    font-size: 13px; color: var(--ouro); font-weight: 400; letter-spacing: 0.04em;
-  }
+  .assinatura-texto { font-family: 'Lora', serif; font-style: italic; font-size: 13px; color: var(--ouro); font-weight: 400; letter-spacing: 0.04em; }
 
   /* Header */
   .header { margin-bottom: 48px; }
-  .header-eyebrow {
-    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--taupe); margin-bottom: 16px; font-weight: 300;
-  }
-  .header h1 {
-    font-family: 'Lora', serif; font-style: italic;
-    font-size: 38px; font-weight: 400;
-    color: var(--espresso); line-height: 1.2; margin-bottom: 24px;
-  }
+  .header-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); margin-bottom: 16px; font-weight: 300; }
+  .header h1 { font-family: 'Lora', serif; font-style: italic; font-size: 38px; font-weight: 400; color: var(--espresso); line-height: 1.2; margin-bottom: 24px; }
   .header h1 em { color: var(--ouro); font-style: italic; }
-  .header-divider {
-    width: 60px; height: 1px;
-    background: var(--ouro); opacity: 0.45; margin-bottom: 20px;
-  }
+  .header-divider { width: 60px; height: 1px; background: var(--ouro); opacity: 0.45; margin-bottom: 20px; }
   .header p { font-size: 15px; color: var(--taupe); max-width: 580px; line-height: 1.75; font-weight: 300; }
-
-  /* Grid */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
 
   /* Cards */
   .card {
-    background: rgba(255,253,248,0.7);
-    border: 1px solid rgba(168,137,90,0.18);
-    backdrop-filter: blur(12px);
-    border-radius: 2px; padding: 28px;
+    background: rgba(255,253,248,0.72);
+    border: 1px solid rgba(168,137,90,0.16);
+    backdrop-filter: blur(14px);
+    border-radius: 2px;
+    padding: 28px 32px;
+    margin-bottom: 2px;
   }
-  .card-label {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ouro); margin-bottom: 20px; font-weight: 300;
-  }
+  .card-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ouro); margin-bottom: 24px; font-weight: 300; }
 
-  /* Fields */
-  .field { margin-bottom: 24px; }
-  .field:last-child { margin-bottom: 0; }
-  .field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-  .field-name { font-size: 12px; color: var(--taupe); font-weight: 300; letter-spacing: 0.02em; }
-  .field-value { font-family: 'Lora', serif; font-size: 15px; font-weight: 400; color: var(--ouro); }
+  /* Fields — cada um em linha própria */
+  .field { padding: 16px 0; border-bottom: 1px solid rgba(168,137,90,0.1); }
+  .field:last-child { border-bottom: none; padding-bottom: 0; }
+  .field:first-child { padding-top: 0; }
+  .field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .field-name { font-size: 13px; color: var(--taupe); font-weight: 300; }
+  .field-value { font-family: 'Lora', serif; font-size: 16px; font-weight: 400; color: var(--ouro); }
 
   input[type="range"] {
-    width: 100%; height: 1px; -webkit-appearance: none; appearance: none;
-    background: rgba(168,137,90,0.25); border-radius: 0; outline: none; cursor: pointer;
+    width: 100%; height: 2px; -webkit-appearance: none; appearance: none;
+    background: rgba(168,137,90,0.2); border-radius: 0; outline: none; cursor: pointer;
   }
   input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+    -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
     background: var(--ouro); cursor: pointer;
-    border: 2px solid var(--creme); transition: transform 0.1s;
-    box-shadow: 0 0 0 3px rgba(168,137,90,0.15);
+    border: 2px solid var(--creme);
+    box-shadow: 0 0 0 3px rgba(168,137,90,0.2);
+    transition: transform 0.12s, box-shadow 0.12s;
   }
-  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 5px rgba(168,137,90,0.15);
+  }
 
-  /* Perfil selector */
+  /* Perfil */
   .perfil-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
   .perfil-btn {
-    padding: 16px 12px; border-radius: 2px; cursor: pointer;
-    border: 1px solid rgba(168,137,90,0.2);
+    padding: 20px 16px; border-radius: 2px; cursor: pointer;
+    border: 1px solid rgba(168,137,90,0.16);
     background: rgba(255,253,248,0.5);
     color: var(--taupe); text-align: center; transition: all 0.2s;
-    font-family: 'Poppins', sans-serif; font-weight: 300;
   }
-  .perfil-btn:hover { background: rgba(168,137,90,0.08); border-color: rgba(168,137,90,0.4); color: var(--espresso); }
-  .perfil-btn.active {
-    background: rgba(168,137,90,0.1);
-    border-color: rgba(168,137,90,0.5);
-    color: var(--ouro);
-  }
-  .perfil-btn .perfil-nome {
-    font-family: 'Lora', serif; font-size: 14px; font-style: italic;
-    font-weight: 400; margin-bottom: 6px; display: block;
-  }
-  .perfil-btn .perfil-desc { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; line-height: 1.5; }
+  .perfil-btn:hover { background: rgba(168,137,90,0.07); border-color: rgba(168,137,90,0.35); color: var(--espresso); }
+  .perfil-btn.active { background: rgba(168,137,90,0.1); border-color: rgba(168,137,90,0.45); color: var(--ouro); }
+  .perfil-btn .perfil-nome { font-family: 'Lora', serif; font-size: 15px; font-style: italic; font-weight: 400; margin-bottom: 6px; display: block; }
+  .perfil-btn .perfil-desc { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.65; line-height: 1.6; }
 
-  /* Plataforma toggle */
+  /* Plataforma */
   .plat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
   .plat-btn {
-    padding: 12px; border-radius: 2px; cursor: pointer;
+    padding: 14px; border-radius: 2px; cursor: pointer;
     border: 1px solid rgba(44,38,32,0.1);
     background: rgba(255,253,248,0.5);
     color: var(--taupe); text-align: center; transition: all 0.2s;
-    font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 300;
-    letter-spacing: 0.06em; text-transform: uppercase;
+    font-size: 12px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase;
   }
   .plat-btn:hover { border-color: rgba(44,38,32,0.2); color: var(--espresso); }
-  .plat-btn.active-meta   { background: rgba(58,123,213,0.08); border-color: rgba(58,123,213,0.35); color: var(--meta); }
-  .plat-btn.active-google { background: rgba(200,75,42,0.08);  border-color: rgba(200,75,42,0.35);  color: var(--google); }
-  .plat-btn.active-ambos  { background: rgba(168,137,90,0.1);  border-color: rgba(168,137,90,0.4);  color: var(--ouro); }
+  .plat-btn.active-meta   { background: rgba(58,123,213,0.08);  border-color: rgba(58,123,213,0.3);  color: var(--meta); }
+  .plat-btn.active-google { background: rgba(200,75,42,0.08);   border-color: rgba(200,75,42,0.3);   color: var(--google); }
+  .plat-btn.active-ambos  { background: rgba(168,137,90,0.1);   border-color: rgba(168,137,90,0.4);  color: var(--ouro); }
 
-  /* Benchmark info */
+  /* Benchmark */
   .benchmark-info {
     padding: 14px 20px;
-    background: rgba(227,213,190,0.4);
-    border: 1px solid rgba(168,137,90,0.15);
+    background: rgba(227,213,190,0.35);
+    border: 1px solid rgba(168,137,90,0.12);
     border-radius: 2px;
     display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 2px;
   }
   .bm-item { font-size: 11px; color: var(--taupe); font-weight: 300; }
   .bm-item span { color: var(--ouro); font-family: 'Lora', serif; font-size: 13px; margin-right: 4px; }
 
-  /* Results */
+  /* Resultados */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .result-main {
     background: rgba(168,137,90,0.1);
-    border: 1px solid rgba(168,137,90,0.3);
-    backdrop-filter: blur(12px);
+    border: 1px solid rgba(168,137,90,0.28);
+    backdrop-filter: blur(14px);
     border-radius: 2px; padding: 32px;
   }
   .result-number { font-family: 'Lora', serif; font-weight: 400; line-height: 1; color: var(--ouro); }
@@ -251,7 +275,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .result-meta   { color: var(--meta)   !important; }
   .result-google { color: var(--google) !important; }
   .result-green  { color: var(--green)  !important; }
-
   .divider { height: 1px; background: var(--ouro); opacity: 0.2; margin: 24px 0; }
 
   .roi-bar-wrap { margin-top: 20px; }
@@ -260,7 +283,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .roi-bar-fill { height: 100%; background: var(--ouro); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
   .breakdown { margin-top: 24px; }
-  .breakdown-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(168,137,90,0.12); font-size: 13px; }
+  .breakdown-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(168,137,90,0.1); font-size: 13px; }
   .breakdown-row:last-child { border-bottom: none; }
   .breakdown-label { color: var(--taupe); font-weight: 300; }
   .breakdown-value { font-family: 'Lora', serif; font-weight: 400; font-size: 14px; }
@@ -270,20 +293,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .verdict.good { background: rgba(107,130,101,0.08); border: 1px solid rgba(107,130,101,0.2); color: var(--sage); }
   .verdict.warn { background: rgba(168,137,90,0.08); border: 1px solid rgba(168,137,90,0.25); color: var(--ouro); }
   .verdict.bad  { background: rgba(196,144,128,0.08); border: 1px solid rgba(196,144,128,0.2); color: var(--blush); }
-  .verdict-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .verdict-icon { flex-shrink: 0; }
 
   /* Footer note */
   .footer-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(168,137,90,0.2); }
   .footer-note p { font-size: 14px; color: var(--taupe); line-height: 1.8; font-weight: 300; margin-bottom: 6px; }
   .footer-note p.destaque { color: var(--ouro); }
 
-  /* CTA */
-  .cta-wrap { margin-top: 32px; }
+  /* CTA centralizado */
+  .cta-wrap { margin-top: 32px; text-align: center; }
   .cta-btn {
-    display: inline-flex; align-items: center; gap: 12px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
     background: #25D366; color: #fff;
     font-family: 'Lora', serif; font-size: 15px; font-weight: 400;
-    text-decoration: none; border-radius: 2px; padding: 16px 32px;
+    text-decoration: none; border-radius: 2px; padding: 18px 40px;
     transition: opacity 0.15s; letter-spacing: 0.02em;
   }
   .cta-btn:hover { opacity: 0.88; }
@@ -291,23 +314,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Rodapé criadora */
   .rodape-criadora {
-    margin-top: 56px;
-    padding-top: 24px;
+    margin-top: 56px; padding-top: 24px;
     border-top: 1px solid rgba(168,137,90,0.15);
     display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   }
-  .criadora-nome {
-    font-family: 'Lora', serif; font-style: italic;
-    font-size: 14px; color: var(--ouro); font-weight: 400;
-  }
-  .criadora-cargo {
-    font-size: 10px; color: var(--taupe); letter-spacing: 0.12em;
-    text-transform: uppercase; font-weight: 300; margin-top: 3px;
-  }
-  .footer-dir {
-    font-size: 10px; color: rgba(168,137,90,0.4);
-    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300;
-  }
+  .criadora-nome { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: var(--ouro); font-weight: 400; }
+  .criadora-cargo { font-size: 10px; color: var(--taupe); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300; margin-top: 3px; }
+  .footer-dir { font-size: 10px; color: rgba(168,137,90,0.35); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300; }
 
   @media (max-width: 640px) {
     .grid-2 { grid-template-columns: 1fr; }
@@ -323,15 +336,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- Orbs animados -->
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="orb orb-4"></div>
+<!-- Luzes ultra-realistas -->
+<div class="scene">
+  <div class="light light-1"></div>
+  <div class="light light-2"></div>
+  <div class="light light-3"></div>
+  <div class="light light-4"></div>
+  <div class="light light-5"></div>
+</div>
 
 <div class="wrap">
 
-  <!-- Assinatura da criadora (topo) -->
   <div class="assinatura">
     <div class="assinatura-linha"></div>
     <span class="assinatura-texto">Mariana Manfredinny | Marketing Digital</span>
@@ -344,36 +359,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>A calculadora faz um benchmark do mercado imobiliário, considera sua faixa de investimento e entrega a sugestão de investimento mínimo. Vale lembrar que esses valores não são exatos. Por isso a reunião é gratuita. Se quiser entender como funciona para você, é só clicar no link no fim da página.</p>
   </div>
 
-  <!-- Parâmetros do negócio -->
-  <div class="card" style="margin-bottom:2px">
+  <!-- Parâmetros -->
+  <div class="card">
     <div class="card-label">Sobre o seu negócio</div>
-    <div class="grid-2">
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">Ticket médio do imóvel</span>
-          <span class="field-value" id="val-ticket">R$ 1.500.000</span>
-        </div>
-        <input type="range" id="ticket" min="300000" max="5000000" step="100000" value="1500000" oninput="update()">
+    <div class="field">
+      <div class="field-header">
+        <span class="field-name">Ticket médio do imóvel</span>
+        <span class="field-value" id="val-ticket">R$ 1.500.000</span>
       </div>
-      <div class="field">
-        <div class="field-header">
-          <span class="field-name">Comissão da imobiliária</span>
-          <span class="field-value" id="val-comissao">6%</span>
-        </div>
-        <input type="range" id="comissao" min="3" max="8" step="0.5" value="6" oninput="update()">
+      <input type="range" id="ticket" min="300000" max="5000000" step="100000" value="1500000" oninput="update()">
+    </div>
+    <div class="field">
+      <div class="field-header">
+        <span class="field-name">Comissão da imobiliária</span>
+        <span class="field-value" id="val-comissao">6%</span>
       </div>
-      <div class="field" style="grid-column:1/-1">
-        <div class="field-header">
-          <span class="field-name">Meta de vendas por mês</span>
-          <span class="field-value" id="val-vendas">1 venda</span>
-        </div>
-        <input type="range" id="vendas" min="1" max="6" step="1" value="1" oninput="update()">
+      <input type="range" id="comissao" min="3" max="8" step="0.5" value="6" oninput="update()">
+    </div>
+    <div class="field">
+      <div class="field-header">
+        <span class="field-name">Meta de vendas por mês</span>
+        <span class="field-value" id="val-vendas">1 venda</span>
       </div>
+      <input type="range" id="vendas" min="1" max="6" step="1" value="1" oninput="update()">
     </div>
   </div>
 
-  <!-- Perfil de investimento -->
-  <div class="card" style="margin-bottom:2px">
+  <!-- Perfil -->
+  <div class="card">
     <div class="card-label">Perfil de investimento</div>
     <div class="perfil-row">
       <div class="perfil-btn" id="perfil-iniciando" onclick="setPerfil('iniciando')">
@@ -392,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- Plataforma -->
-  <div class="card" style="margin-bottom:2px">
+  <div class="card">
     <div class="card-label">Onde investir</div>
     <div class="plat-row">
       <div class="plat-btn" id="plat-meta" onclick="setPlat('meta')">Meta Ads</div>
@@ -401,7 +414,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- Benchmarks aplicados -->
+  <!-- Benchmarks -->
   <div class="benchmark-info">
     <div class="bm-item"><span id="bm-cpl-meta">R$ 45</span> CPL Meta Ads</div>
     <div class="bm-item"><span id="bm-cpl-google">R$ 70</span> CPL Google Ads</div>
@@ -419,7 +432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="result-label">total em tráfego pago</div>
       <div class="divider"></div>
-      <div class="grid-2" style="margin-bottom:0;gap:16px">
+      <div class="grid-2" style="gap:16px">
         <div>
           <div class="result-number md result-meta" id="res-meta">R$ 0</div>
           <div class="result-label">Meta Ads</div>
@@ -431,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" style="margin-bottom:0">
       <div class="card-label">Projeção de retorno</div>
       <div style="margin-bottom:20px">
         <div class="result-number lg result-green" id="res-receita">R$ 0</div>
@@ -470,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span id="verdict-text"></span>
   </div>
 
-  <!-- Footer note + CTA -->
+  <!-- Footer note + CTA centralizado -->
   <div class="footer-note">
     <p>Esses valores são estimativas baseadas em benchmarks do mercado imobiliário. Cada negócio tem suas particularidades.</p>
     <p class="destaque">A reunião é gratuita. Se quiser entender como funciona especificamente para você, é só clicar abaixo.</p>
@@ -487,7 +500,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- Rodapé com nome da criadora -->
   <div class="rodape-criadora">
     <div>
       <div class="criadora-nome">Mariana Manfredinny</div>
@@ -500,9 +512,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
   const PERFIS = {
-    iniciando:    { cplMeta: 90,  cplGoogle: 150, conv: 0.02, pctMeta: 40 },
-    crescimento:  { cplMeta: 45,  cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
-    otimizado:    { cplMeta: 25,  cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
+    iniciando:   { cplMeta: 90, cplGoogle: 150, conv: 0.02, pctMeta: 40 },
+    crescimento: { cplMeta: 45, cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
+    otimizado:   { cplMeta: 25, cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
   };
 
   let perfilAtual = 'crescimento';
