@@ -222,7 +222,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* Perfil */
-  .perfil-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+  .perfil-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .perfil-btn {
     padding: 20px 16px; border-radius: 2px; cursor: pointer;
     border: 1px solid rgba(168,137,90,0.16);
@@ -389,13 +389,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="card">
     <div class="card-label">Perfil de investimento</div>
     <div class="perfil-row">
-      <div class="perfil-btn" id="perfil-iniciando" onclick="setPerfil('iniciando')">
-        <span class="perfil-nome">Iniciando</span>
-        <span class="perfil-desc">Campanhas novas<br>CPL ainda alto</span>
-      </div>
       <div class="perfil-btn active" id="perfil-crescimento" onclick="setPerfil('crescimento')">
-        <span class="perfil-nome">Em crescimento</span>
-        <span class="perfil-desc">Benchmark<br>do mercado</span>
+        <span class="perfil-nome">Benchmark do mercado</span>
+        <span class="perfil-desc">Referência atual<br>do setor imobiliário</span>
       </div>
       <div class="perfil-btn" id="perfil-otimizado" onclick="setPerfil('otimizado')">
         <span class="perfil-nome">Otimizado</span>
@@ -512,7 +508,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
   const PERFIS = {
-    iniciando:   { cplMeta: 90, cplGoogle: 150, conv: 0.02, pctMeta: 40 },
     crescimento: { cplMeta: 45, cplGoogle: 70,  conv: 0.03, pctMeta: 60 },
     otimizado:   { cplMeta: 25, cplGoogle: 50,  conv: 0.05, pctMeta: 70 },
   };
@@ -522,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function setPerfil(p) {
     perfilAtual = p;
-    ['iniciando','crescimento','otimizado'].forEach(id => {
+    ['crescimento','otimizado'].forEach(id => {
       document.getElementById('perfil-' + id).classList.toggle('active', id === p);
     });
     update();
