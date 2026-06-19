@@ -476,11 +476,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="field">
         <div class="field-header">
-          <span class="field-name">Taxa de conversão (lead → cliente)</span>
+          <span class="field-name">Conversão: lead qualificado → cliente</span>
           <span class="field-value" id="val-conv">8%</span>
         </div>
-        <input type="range" class="accent-thumb" id="conv" min="1" max="30" step="1" value="8" oninput="update()">
-        <div class="field-ref" id="conv-ref">↗ Média do mercado para Saúde: 8%</div>
+        <input type="range" class="accent-thumb" id="conv" min="5" max="60" step="1" value="22" oninput="update()">
+        <div class="field-ref" id="conv-ref">↗ Média do mercado para Saúde: 22% (de quem pede contato)</div>
       </div>
     </div>
   </div>
@@ -656,18 +656,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
 
 <script>
-  // Benchmarks de CPL (custo por lead, R$) baseados em:
-  // WordStream 2025 (global), fontes brasileiras (Leadster, Juridigital, SistemaPacto)
-  // e paridade de mercado BR: CPCs ~70% menores que EUA, CPL ≈ USD em R$.
-  // conv = taxa de conversão lead→cliente média do segmento no Brasil (%).
+  // CPL (R$): WordStream 2025 + fontes BR (Leadster, Juridigital, SistemaPacto).
+  // conv = % de leads qualificados (quem preencheu formulário) que viram clientes.
+  // Fontes: SistemaPacto BR (fitness 30-50%), ChiliPiper (form→reunião 30-66%),
+  // First Page Sage (legal CAC $915, consulting CAC $656), US gym avg CAC $118.
   const BENCHMARKS = {
-    saude:       { meta: {min:25, med:60,  alto:130}, google: {min:45, med:100, alto:200}, conv: 10, label: 'Saúde' },
-    fitness:     { meta: {min:10, med:30,  alto:70},  google: {min:18, med:42,  alto:90},  conv: 15, label: 'Fitness' },
-    juridico:    { meta: {min:40, med:85,  alto:170}, google: {min:80, med:160, alto:300}, conv: 7,  label: 'Jurídico' },
-    projetos:    { meta: {min:28, med:62,  alto:125}, google: {min:48, med:105, alto:195}, conv: 8,  label: 'Projetos' },
-    criativo:    { meta: {min:15, med:35,  alto:75},  google: {min:22, med:52,  alto:105}, conv: 9,  label: 'Criativo' },
-    consultoria: { meta: {min:42, med:90,  alto:175}, google: {min:75, med:160, alto:300}, conv: 6,  label: 'Consultoria' },
-    outro:       { meta: {min:35, med:80,  alto:160}, google: {min:60, med:130, alto:250}, conv: 7,  label: 'Sua área' },
+    saude:       { meta: {min:25, med:60,  alto:130}, google: {min:45, med:100, alto:200}, conv: 22, label: 'Saúde' },
+    fitness:     { meta: {min:10, med:30,  alto:70},  google: {min:18, med:42,  alto:90},  conv: 35, label: 'Fitness' },
+    juridico:    { meta: {min:40, med:85,  alto:170}, google: {min:80, med:160, alto:300}, conv: 18, label: 'Jurídico' },
+    projetos:    { meta: {min:28, med:62,  alto:125}, google: {min:48, med:105, alto:195}, conv: 20, label: 'Projetos' },
+    criativo:    { meta: {min:15, med:35,  alto:75},  google: {min:22, med:52,  alto:105}, conv: 25, label: 'Criativo' },
+    consultoria: { meta: {min:42, med:90,  alto:175}, google: {min:75, med:160, alto:300}, conv: 15, label: 'Consultoria' },
+    outro:       { meta: {min:35, med:80,  alto:160}, google: {min:60, med:130, alto:250}, conv: 18, label: 'Sua área' },
   };
 
   let segmento = 'saude';
@@ -683,7 +683,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     else outroWrap.classList.remove('visible');
     const bm = BENCHMARKS[s];
     document.getElementById('conv-ref').textContent =
-      '↗ Média do mercado para ' + bm.label + ': ' + bm.conv + '%';
+      '↗ Média do mercado para ' + bm.label + ': ' + bm.conv + '% (de quem pede contato)';
+    document.getElementById('conv').value = bm.conv;
     update();
   }
 
@@ -694,7 +695,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('seg-outro').classList.add('active');
     segmento = 'outro';
     document.getElementById('conv-ref').textContent =
-      '↗ Média do mercado para ' + texto + ': ' + BENCHMARKS['outro'].conv + '%';
+      '↗ Média do mercado para ' + texto + ': ' + BENCHMARKS['outro'].conv + '% (de quem pede contato)';
     update();
   }
 
