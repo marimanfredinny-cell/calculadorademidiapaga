@@ -117,7 +117,7 @@ body {
 /* ── Segmentos ── */
 .seg-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 6px;
 }
 .seg-btn {
@@ -303,29 +303,74 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .tax-note p { font-size: 13px; color: var(--text-dim); line-height: 1.75; font-weight: 400; }
 .tax-note p + p { margin-top: 8px; }
 
-/* CTA */
-.cta-wrap { margin-top: 48px; text-align: center; padding-top: 40px; border-top: 1px solid var(--border); }
-.cta-sup { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; font-weight: 400; }
+/* CTA inline (removido — agora é floating) */
+.cta-sup { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; font-weight: 400; text-align: center; }
 .cta-sup strong { color: var(--accent); font-weight: 500; }
-.cta-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+
+/* WhatsApp flutuante */
+.whatsapp-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 1000;
+  display: flex; align-items: center; gap: 10px;
   background: #25D366; color: #fff;
-  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700;
-  text-decoration: none; border-radius: 100px; padding: 18px 44px;
-  transition: opacity 0.15s; letter-spacing: 0.01em;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700;
+  text-decoration: none; border-radius: 100px; padding: 14px 22px;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.cta-btn:hover { opacity: 0.88; }
-.cta-sub { margin-top: 12px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+.whatsapp-float:hover { transform: scale(1.05); box-shadow: 0 6px 32px rgba(37,211,102,0.55); }
+.whatsapp-float span { white-space: nowrap; }
+
+/* Card autora */
+.autora-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 28px;
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 6px;
+}
+.autora-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, #C8A96E 0%, #8A6840 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+  color: #0A0A0A; flex-shrink: 0;
+}
+.autora-info { flex: 1; }
+.autora-criada { font-size: 10px; color: var(--text-dim); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+.autora-nome { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+.autora-cargo { font-size: 12px; color: var(--text-dim); font-weight: 400; margin-top: 2px; }
+.autora-ig {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
+  font-size: 12px; color: var(--accent); font-weight: 500;
+  text-decoration: none; transition: opacity 0.15s;
+}
+.autora-ig:hover { opacity: 0.7; }
+
+/* Outro campo */
+.outro-input-wrap { margin-top: 12px; display: none; }
+.outro-input-wrap.visible { display: flex; gap: 8px; align-items: stretch; }
+.outro-input {
+  flex: 1; padding: 14px 18px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 400; outline: none; transition: border-color 0.2s;
+}
+.outro-input::placeholder { color: var(--text-dim); }
+.outro-input:focus { border-color: rgba(200,169,110,0.4); }
+.outro-confirm {
+  padding: 14px 20px; background: rgba(200,169,110,0.12);
+  border: 1px solid rgba(200,169,110,0.3); border-radius: 8px;
+  color: var(--accent); font-size: 13px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.outro-confirm:hover { background: rgba(200,169,110,0.2); }
 
 /* Rodapé */
 .footer {
-  margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;
+  margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
+  text-align: center; padding-bottom: 80px;
 }
-.footer-disclaimer { font-size: 12px; color: var(--text-dim); line-height: 1.7; font-weight: 400; max-width: 520px; }
-.footer-criadora { text-align: right; }
-.footer-nome { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
-.footer-cargo { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; font-weight: 400; }
+.footer-disclaimer { font-size: 12px; color: var(--text-dim); line-height: 1.7; font-weight: 400; }
 
 /* Sem resultado (aviso) */
 .no-plat {
@@ -337,14 +382,15 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 /* ── Responsivo ── */
 @media (max-width: 720px) {
   .header h1 { font-size: 32px; }
-  .seg-grid { grid-template-columns: repeat(3, 1fr); }
+  .seg-grid { grid-template-columns: repeat(2, 1fr); }
   .results-grid { grid-template-columns: 1fr; }
   .metrics-row { grid-template-columns: 1fr; }
   .plat-grid { grid-template-columns: 1fr; }
-  .footer { flex-direction: column; }
-  .footer-criadora { text-align: left; }
+  .autora-card { flex-direction: column; }
   .section-card { padding: 24px 20px; }
   .result-big { font-size: 32px; }
+  .whatsapp-float span { display: none; }
+  .whatsapp-float { padding: 16px; border-radius: 50%; }
 }
 @media (max-width: 480px) {
   body { padding: 32px 16px 64px; }
@@ -392,6 +438,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="seg-nome">Saúde</div>
           <div class="seg-desc">Médico, psicólogo, nutricionista, dentista</div>
         </div>
+        <div class="seg-btn" id="seg-fitness" onclick="setSegmento('fitness')">
+          <div class="seg-icon">🏋️</div>
+          <div class="seg-nome">Fitness</div>
+          <div class="seg-desc">Personal trainer, yoga, pilates</div>
+        </div>
         <div class="seg-btn" id="seg-juridico" onclick="setSegmento('juridico')">
           <div class="seg-icon">⚖️</div>
           <div class="seg-nome">Jurídico</div>
@@ -401,6 +452,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="seg-icon">📐</div>
           <div class="seg-nome">Projetos</div>
           <div class="seg-desc">Arquiteto, engenheiro, designer</div>
+        </div>
+        <div class="seg-btn" id="seg-criativo" onclick="setSegmento('criativo')">
+          <div class="seg-icon">📷</div>
+          <div class="seg-nome">Criativo</div>
+          <div class="seg-desc">Fotógrafo, videomaker, social media</div>
         </div>
         <div class="seg-btn" id="seg-consultoria" onclick="setSegmento('consultoria')">
           <div class="seg-icon">💼</div>
@@ -414,7 +470,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="outro-input-wrap" id="outro-input-wrap">
-        <input class="outro-input" type="text" placeholder="Descreva sua área de atuação..." id="outro-texto">
+        <input class="outro-input" type="text" placeholder="Descreva sua área (ex: terapeuta, DJ, personal stylist...)" id="outro-texto" onkeydown="if(event.key==='Enter')confirmarOutro()">
+        <button class="outro-confirm" onclick="confirmarOutro()">Confirmar →</button>
       </div>
     </div>
   </div>
@@ -431,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="field-name">Ticket médio do serviço</span>
           <span class="field-value" id="val-ticket">R$ 2.000</span>
         </div>
-        <input type="range" class="accent-thumb" id="ticket" min="300" max="10000" step="100" value="2000" oninput="update()">
+        <input type="range" class="accent-thumb" id="ticket" min="50" max="10000" step="50" value="500" oninput="update()">
       </div>
       <div class="field">
         <div class="field-header">
@@ -582,20 +639,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 
-  <!-- CTA -->
-  <div class="cta-wrap">
-    <p class="cta-sup">
-      Esses números são uma referência. Para entender <strong>o que funciona especificamente para o seu negócio</strong>, agende uma conversa gratuita.
-    </p>
-    <a id="btn-whatsapp"
-       href="https://wa.me/5532999644209?text=Ol%C3%A1%2C+vim+pela+Calculadora+de+Investimento+em+M%C3%ADdia+Paga+e+quero+agendar+a+reuni%C3%A3o+gratuita."
-       target="_blank" rel="noopener"
-       onclick="trackLead(event)"
-       class="cta-btn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Marcar reunião gratuita
-    </a>
-    <div class="cta-sub">Resposta em até 1 hora útil</div>
+  <!-- Card autora -->
+  <div class="autora-card">
+    <div class="autora-avatar">M</div>
+    <div class="autora-info">
+      <div class="autora-criada">Ferramenta criada por</div>
+      <div class="autora-nome">Mariana Manfredinny</div>
+      <div class="autora-cargo">Diretora de Marketing Fracionada · Especialista em Tráfego Pago</div>
+      <a class="autora-ig" href="https://instagram.com/marimanfredinny" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @marimanfredinny
+      </a>
+    </div>
+    <div style="font-size:13px;color:var(--text-dim);text-align:right;line-height:1.6">
+      Quer entender o que funciona<br>para o seu negócio?<br>
+      <strong style="color:var(--accent)">Reunião gratuita ↓</strong>
+    </div>
   </div>
 
   <!-- Rodapé -->
@@ -603,21 +662,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="footer-disclaimer">
       Valores estimados com base em benchmarks do mercado brasileiro. Os resultados reais variam conforme segmentação, criativo e maturidade da conta.
     </p>
-    <div class="footer-criadora">
-      <div class="footer-nome">Mariana Manfredinny</div>
-      <div class="footer-cargo">Diretora de Marketing Fracionada</div>
-    </div>
   </div>
+
 
 </div>
 
+<!-- WhatsApp flutuante -->
+<a id="btn-whatsapp"
+   href="https://wa.me/5532999644209?text=Ol%C3%A1%2C+vim+pela+Calculadora+de+Investimento+em+M%C3%ADdia+Paga+e+quero+agendar+a+reuni%C3%A3o+gratuita."
+   target="_blank" rel="noopener"
+   onclick="trackLead(event)"
+   class="whatsapp-float">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Marcar reunião gratuita</span>
+</a>
+
 <script>
   const BENCHMARKS = {
-    saude:       { meta: {min:25,  med:55,  alto:120}, google: {min:40,  med:90,  alto:180}, conv: 8,  label: 'Saúde' },
-    juridico:    { meta: {min:35,  med:75,  alto:150}, google: {min:60,  med:130, alto:250}, conv: 5,  label: 'Jurídico' },
-    projetos:    { meta: {min:30,  med:65,  alto:130}, google: {min:50,  med:110, alto:200}, conv: 6,  label: 'Projetos' },
-    consultoria: { meta: {min:40,  med:85,  alto:160}, google: {min:70,  med:150, alto:280}, conv: 4,  label: 'Consultoria' },
-    outro:       { meta: {min:40,  med:85,  alto:160}, google: {min:70,  med:150, alto:280}, conv: 5,  label: 'Sua área' },
+    saude:       { meta: {min:25, med:55,  alto:120}, google: {min:40, med:90,  alto:180}, conv: 8,  label: 'Saúde' },
+    fitness:     { meta: {min:15, med:35,  alto:80},  google: {min:20, med:45,  alto:100}, conv: 10, label: 'Fitness' },
+    juridico:    { meta: {min:35, med:75,  alto:150}, google: {min:60, med:130, alto:250}, conv: 5,  label: 'Jurídico' },
+    projetos:    { meta: {min:30, med:65,  alto:130}, google: {min:50, med:110, alto:200}, conv: 6,  label: 'Projetos' },
+    criativo:    { meta: {min:20, med:45,  alto:90},  google: {min:30, med:65,  alto:130}, conv: 7,  label: 'Criativo' },
+    consultoria: { meta: {min:40, med:85,  alto:160}, google: {min:70, med:150, alto:280}, conv: 4,  label: 'Consultoria' },
+    outro:       { meta: {min:40, med:85,  alto:160}, google: {min:70, med:150, alto:280}, conv: 5,  label: 'Sua área' },
   };
 
   let segmento = 'saude';
@@ -634,6 +702,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const bm = BENCHMARKS[s];
     document.getElementById('conv-ref').textContent =
       '↗ Média do mercado para ' + bm.label + ': ' + bm.conv + '%';
+    update();
+  }
+
+  function confirmarOutro() {
+    const texto = document.getElementById('outro-texto').value.trim();
+    if (!texto) return;
+    document.querySelectorAll('.seg-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('seg-outro').classList.add('active');
+    const bm = BENCHMARKS['outro'];
+    document.getElementById('conv-ref').textContent =
+      '↗ Média do mercado para ' + (texto || 'Sua área') + ': ' + bm.conv + '%';
+    segmento = 'outro';
     update();
   }
 
@@ -746,6 +826,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   // Init
+  document.getElementById('val-ticket').textContent = fmt(500);
   setSegmento('saude');
   setPlat('ambos');
   update();
