@@ -328,11 +328,10 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   margin-bottom: 6px;
 }
 .autora-avatar {
-  width: 52px; height: 52px; border-radius: 50%;
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 2px solid rgba(200,169,110,0.4);
+  object-fit: cover; flex-shrink: 0;
   background: linear-gradient(135deg, #C8A96E 0%, #8A6840 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
-  color: #0A0A0A; flex-shrink: 0;
 }
 .autora-info { flex: 1; }
 .autora-criada { font-size: 10px; color: var(--text-dim); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
@@ -414,8 +413,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 
   <div class="assinatura">
+    <img src="DSC08746%20-%20Copia.JPG" alt="Mariana Manfredinny" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(200,169,110,0.5);flex-shrink:0;">
     <div class="assinatura-line"></div>
-    <span class="assinatura-texto">Mariana Manfredinny | Marketing Digital</span>
+    <span class="assinatura-texto">Ferramenta criada por Mariana Manfredinny | Gestora de Marketing Digital</span>
   </div>
 
   <div class="header">
@@ -488,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="field-name">Ticket médio do serviço</span>
           <span class="field-value" id="val-ticket">R$ 2.000</span>
         </div>
-        <input type="range" class="accent-thumb" id="ticket" min="50" max="10000" step="50" value="500" oninput="update()">
+        <input type="range" class="accent-thumb" id="ticket" min="500" max="15000" step="100" value="2000" oninput="update()">
       </div>
       <div class="field">
         <div class="field-header">
@@ -641,7 +641,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Card autora -->
   <div class="autora-card">
-    <div class="autora-avatar">M</div>
+    <img class="autora-avatar" src="DSC08746%20-%20Copia.JPG" alt="Mariana Manfredinny">
     <div class="autora-info">
       <div class="autora-criada">Ferramenta criada por</div>
       <div class="autora-nome">Mariana Manfredinny</div>
@@ -807,10 +807,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       verdictText.textContent = `Ótima relação custo-retorno. Com ${fmt(medTotal)}/mês de investimento médio, a receita esperada é de ${fmt(receita)} — um ROI de ${roiMed.toFixed(1)}x. Cada real investido pode retornar ${roiMed.toFixed(1)} em receita.`;
     } else if (roiMed >= 3) {
       verdictBox.classList.add('warn');
-      verdictText.textContent = `ROI moderado de ${roiMed.toFixed(1)}x. Os números funcionam, mas há espaço para melhorar — tente aumentar o ticket médio ou a taxa de conversão para elevar o retorno sobre o investimento.`;
+      verdictText.textContent = `ROI moderado de ${roiMed.toFixed(1)}x. Os números funcionam, mas há espaço para melhorar — tente aumentar o ticket médio ou a taxa de conversão para elevar o retorno.`;
+    } else if (roiMed >= 1) {
+      verdictBox.classList.add('bad');
+      verdictText.textContent = `ROI de ${roiMed.toFixed(1)}x ainda positivo, mas apertado. Com ticket de ${fmt(ticket)} e CPL médio do seu segmento, a margem é baixa. Aumentar o ticket médio ou melhorar a conversão é o caminho antes de escalar o investimento.`;
     } else {
       verdictBox.classList.add('bad');
-      verdictText.textContent = `Atenção: ROI de ${roiMed.toFixed(1)}x está abaixo do ideal. Recomendamos revisar o ticket médio ou a meta de clientes antes de escalar o investimento em mídia.`;
+      verdictText.textContent = `O ticket médio de ${fmt(ticket)} é baixo em relação ao custo de aquisição de leads neste segmento. Para que o ROI faça sentido, o ticket precisaria estar acima de ${fmt(medTotal / clientes)}. Aumente o ticket ou reveja o segmento.`;
     }
   }
 
@@ -826,7 +829,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   // Init
-  document.getElementById('val-ticket').textContent = fmt(500);
+  document.getElementById('val-ticket').textContent = fmt(2000);
   setSegmento('saude');
   setPlat('ambos');
   update();
