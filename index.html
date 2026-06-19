@@ -10,341 +10,347 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora Inteligente de Investimento em Tráfego Pago — Mariana Manfredinny</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Calculadora de Investimento em Mídia Paga — Mariana Manfredinny</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:       #111111;
-    --surface:  #1C1C1E;
-    --surface2: #2C2C2E;
-    --border:   rgba(255,255,255,0.07);
-    --text:     #F5F5F5;
-    --text2:    #8E8E93;
-    --ouro:     #A8895A;
-    --ouro-claro: #C4A46E;
-    --sage:     #6B8265;
-    --blush:    #C49080;
-    --meta:     #3A7BD5;
-    --google:   #C84B2A;
-    --green:    #34C759;
-    /* aliases para não quebrar referências antigas */
-    --creme:    #F5F5F5;
-    --taupe:    #8E8E93;
-    --espresso: #111111;
-  }
+:root {
+  --bg:       #0A0A0A;
+  --surface:  #111111;
+  --surface2: #1A1A1A;
+  --border:   rgba(255,255,255,0.07);
+  --text:     #F0EDE8;
+  --text-dim: rgba(240,237,232,0.45);
+  --accent:   #C8A96E;
+  --meta:     #4A90D9;
+  --google:   #E05A3A;
+  --green:    #4ADE80;
+  --red:      #FF453A;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 56px 24px 72px;
-    -webkit-font-smoothing: antialiased;
-    position: relative;
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  /* ── Luzes ultra-realistas ── */
-  .scene {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
+/* ── Luzes de fundo ── */
+.scene { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.light { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
+.light-1 {
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%);
+  top: -200px; left: -100px; filter: blur(80px);
+  animation: drift1 25s ease-in-out infinite;
+}
+.light-2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(74,144,217,0.08) 0%, transparent 70%);
+  top: 30%; right: -100px; filter: blur(90px);
+  animation: drift2 30s ease-in-out infinite;
+}
+.light-3 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(200,169,110,0.07) 0%, transparent 70%);
+  bottom: 10%; left: 20%; filter: blur(70px);
+  animation: drift3 20s ease-in-out infinite;
+}
+@keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,80px)} }
+@keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-80px,60px)} }
+@keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-60px)} }
 
-  /* Luz principal — ouro quente grande, pulsa e deriva */
-  .light {
-    position: absolute;
-    border-radius: 50%;
-    mix-blend-mode: screen;
-  }
+/* ── Layout ── */
+.wrap { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
 
-  .light-1 {
-    width: 900px; height: 900px;
-    background: radial-gradient(circle at 40% 40%,
-      rgba(196,164,110,0.45) 0%,
-      rgba(196,164,110,0.15) 35%,
-      transparent 70%);
-    top: -200px; left: -200px;
-    filter: blur(60px);
-    animation: drift1 20s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
-               pulse1 8s ease-in-out infinite;
-  }
-  .light-2 {
-    width: 700px; height: 700px;
-    background: radial-gradient(circle at 60% 50%,
-      rgba(138,154,132,0.3) 0%,
-      rgba(138,154,132,0.08) 40%,
-      transparent 70%);
-    top: 20%; right: -150px;
-    filter: blur(70px);
-    animation: drift2 26s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
-               pulse2 11s ease-in-out infinite;
-  }
-  .light-3 {
-    width: 600px; height: 600px;
-    background: radial-gradient(circle at 50% 50%,
-      rgba(217,184,168,0.35) 0%,
-      rgba(217,184,168,0.1) 45%,
-      transparent 70%);
-    bottom: 5%; left: 15%;
-    filter: blur(55px);
-    animation: drift3 22s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
-               pulse3 9s ease-in-out infinite;
-  }
-  .light-4 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle at 50% 50%,
-      rgba(168,137,90,0.25) 0%,
-      rgba(168,137,90,0.06) 50%,
-      transparent 70%);
-    top: 50%; left: 50%;
-    filter: blur(65px);
-    animation: drift4 30s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
-               pulse1 13s ease-in-out infinite reverse;
-  }
-  /* Luz de acento pequena e intensa — foco dourado */
-  .light-5 {
-    width: 300px; height: 300px;
-    background: radial-gradient(circle at 50% 50%,
-      rgba(196,164,110,0.5) 0%,
-      rgba(196,164,110,0.2) 30%,
-      transparent 65%);
-    top: 10%; left: 40%;
-    filter: blur(40px);
-    animation: drift5 16s cubic-bezier(0.45,0.05,0.55,0.95) infinite,
-               pulse2 6s ease-in-out infinite;
-  }
+/* ── Assinatura ── */
+.assinatura {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 48px;
+}
+.assinatura-line { width: 28px; height: 1px; background: var(--accent); opacity: 0.6; }
+.assinatura-texto {
+  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+}
 
-  @keyframes drift1 {
-    0%   { transform: translate(0px,   0px)   scale(1); }
-    20%  { transform: translate(80px,  60px)  scale(1.06); }
-    40%  { transform: translate(40px,  120px) scale(0.96); }
-    60%  { transform: translate(-40px, 80px)  scale(1.04); }
-    80%  { transform: translate(20px,  -40px) scale(0.98); }
-    100% { transform: translate(0px,   0px)   scale(1); }
-  }
-  @keyframes drift2 {
-    0%   { transform: translate(0px,    0px)   scale(1); }
-    25%  { transform: translate(-70px,  80px)  scale(1.08); }
-    50%  { transform: translate(-120px, 30px)  scale(0.94); }
-    75%  { transform: translate(-50px, -60px)  scale(1.05); }
-    100% { transform: translate(0px,    0px)   scale(1); }
-  }
-  @keyframes drift3 {
-    0%   { transform: translate(0px,   0px)   scale(1); }
-    30%  { transform: translate(90px, -70px)  scale(1.07); }
-    60%  { transform: translate(50px,  50px)  scale(0.95); }
-    100% { transform: translate(0px,   0px)   scale(1); }
-  }
-  @keyframes drift4 {
-    0%   { transform: translate(0px,    0px)   scale(1); }
-    33%  { transform: translate(-80px,  60px)  scale(1.1); }
-    66%  { transform: translate(60px,  -80px)  scale(0.92); }
-    100% { transform: translate(0px,    0px)   scale(1); }
-  }
-  @keyframes drift5 {
-    0%   { transform: translate(0px,   0px)  scale(1); }
-    25%  { transform: translate(60px,  40px) scale(1.15); }
-    50%  { transform: translate(-30px, 70px) scale(0.9); }
-    75%  { transform: translate(-60px,-20px) scale(1.08); }
-    100% { transform: translate(0px,   0px)  scale(1); }
-  }
-  @keyframes pulse1 {
-    0%,100% { opacity: 1; }
-    50%     { opacity: 0.7; }
-  }
-  @keyframes pulse2 {
-    0%,100% { opacity: 0.85; }
-    50%     { opacity: 1; }
-  }
-  @keyframes pulse3 {
-    0%,100% { opacity: 0.9; }
-    40%     { opacity: 0.6; }
-    70%     { opacity: 1; }
-  }
+/* ── Header ── */
+.header { margin-bottom: 56px; }
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 16px; font-weight: 500;
+}
+.header h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 48px; line-height: 1.05; letter-spacing: -0.03em;
+  color: var(--text); margin-bottom: 20px;
+}
+.header h1 em { color: var(--accent); font-style: normal; }
+.header-rule { width: 48px; height: 1px; background: var(--accent); opacity: 0.4; margin-bottom: 18px; }
+.header p { font-size: 15px; color: var(--text-dim); max-width: 560px; line-height: 1.75; font-weight: 400; }
 
-  /* Véu suave por cima para unificar */
-  .scene::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(10,8,6,0.25);
-  }
+/* ── Seções ── */
+.section { margin-bottom: 6px; }
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 36px;
+}
+.step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+.step-num {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.16em;
+  background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.18);
+  padding: 4px 10px; border-radius: 100px;
+}
+.step-title {
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+  color: var(--text); letter-spacing: 0.04em; text-transform: uppercase;
+}
 
-  /* ── Layout ── */
-  .wrap { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+/* ── Segmentos ── */
+.seg-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.seg-btn {
+  padding: 20px 12px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  text-align: center; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.seg-btn:hover { border-color: rgba(200,169,110,0.3); background: rgba(200,169,110,0.05); }
+.seg-btn.active {
+  border-color: rgba(200,169,110,0.5);
+  background: rgba(200,169,110,0.08);
+}
+.seg-icon {
+  font-size: 22px; line-height: 1;
+}
+.seg-nome {
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  color: var(--text); letter-spacing: 0.02em;
+}
+.seg-desc {
+  font-size: 10px; color: var(--text-dim); line-height: 1.5; font-weight: 400;
+}
+.seg-btn.active .seg-nome { color: var(--accent); }
 
-  /* Assinatura */
-  .assinatura { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
-  .assinatura-linha { width: 32px; height: 1px; background: var(--ouro); opacity: 0.5; }
-  .assinatura-texto { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--ouro); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+.outro-input-wrap { margin-top: 12px; display: none; }
+.outro-input-wrap.visible { display: block; }
+.outro-input {
+  width: 100%; padding: 14px 18px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 400; outline: none; transition: border-color 0.2s;
+}
+.outro-input::placeholder { color: var(--text-dim); }
+.outro-input:focus { border-color: rgba(200,169,110,0.4); }
 
-  /* Header */
-  .header { margin-bottom: 48px; }
-  .header-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; font-weight: 500; }
-  .header h1 { font-family: 'Inter', sans-serif; font-style: normal; font-size: 42px; font-weight: 800; color: var(--text); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
-  .header h1 em { color: var(--ouro); font-style: normal; }
-  .header-divider { width: 60px; height: 1px; background: var(--ouro); opacity: 0.45; margin-bottom: 20px; }
-  .header p { font-size: 15px; color: var(--text2); max-width: 580px; line-height: 1.75; font-weight: 400; }
+/* ── Sliders ── */
+.field { padding: 18px 0; border-bottom: 1px solid var(--border); }
+.field:last-child { border-bottom: none; padding-bottom: 0; }
+.field:first-child { padding-top: 0; }
+.field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.field-name { font-size: 14px; color: var(--text-dim); font-weight: 400; }
+.field-value {
+  font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.02em;
+}
+.field-ref { font-size: 11px; color: var(--accent); margin-top: 8px; font-weight: 400; opacity: 0.8; }
 
-  /* Window chrome (macOS style) */
-  .win-bar {
-    display: flex; align-items: center; gap: 6px;
-    padding-bottom: 20px; margin-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .win-dot { width: 11px; height: 11px; border-radius: 50%; }
-  .win-dot-r { background: #FF5F57; }
-  .win-dot-y { background: #FFBD2E; }
-  .win-dot-g { background: #28C840; }
-  .win-title { flex: 1; text-align: center; font-size: 11px; color: var(--text2); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+input[type="range"] {
+  width: 100%; height: 2px; -webkit-appearance: none; appearance: none;
+  background: rgba(255,255,255,0.1); border-radius: 2px; outline: none; cursor: pointer;
+}
+input[type="range"].accent-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(200,169,110,0.2);
+  transition: transform 0.12s;
+}
+input[type="range"].meta-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--meta); cursor: pointer;
+  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(74,144,217,0.2);
+  transition: transform 0.12s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 
-  /* Cards */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 28px 32px;
-    margin-bottom: 2px;
-  }
-  .card-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ouro); margin-bottom: 24px; font-weight: 600; }
+/* ── Plataformas ── */
+.plat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 20px; }
+.plat-btn {
+  padding: 16px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface2);
+  text-align: center; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.plat-btn:hover { border-color: rgba(255,255,255,0.15); }
+.plat-btn.active-meta   { border-color: rgba(74,144,217,0.5);  background: rgba(74,144,217,0.08); }
+.plat-btn.active-google { border-color: rgba(224,90,58,0.5);   background: rgba(224,90,58,0.08); }
+.plat-btn.active-ambos  { border-color: rgba(200,169,110,0.5); background: rgba(200,169,110,0.08); }
+.plat-name {
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+  color: var(--text); letter-spacing: 0.02em;
+}
+.plat-desc { font-size: 10px; color: var(--text-dim); font-weight: 400; }
+.active-meta  .plat-name { color: var(--meta); }
+.active-google .plat-name { color: var(--google); }
+.active-ambos .plat-name { color: var(--accent); }
 
-  /* Fields — cada um em linha própria */
-  .field { padding: 16px 0; border-bottom: 1px solid var(--border); }
-  .field:last-child { border-bottom: none; padding-bottom: 0; }
-  .field:first-child { padding-top: 0; }
-  .field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-  .field-name { font-size: 13px; color: var(--text2); font-weight: 400; }
-  .field-value { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+.split-wrap { display: none; }
+.split-wrap.visible { display: block; }
+.split-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.split-label { font-size: 12px; color: var(--text-dim); font-weight: 400; }
+.split-values { display: flex; gap: 20px; }
+.split-val-meta   { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--meta); }
+.split-val-google { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--google); }
 
-  input[type="range"] {
-    width: 100%; height: 2px; -webkit-appearance: none; appearance: none;
-    background: rgba(168,137,90,0.2); border-radius: 0; outline: none; cursor: pointer;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
-    background: var(--ouro); cursor: pointer;
-    border: 2px solid var(--surface);
-    box-shadow: 0 0 0 3px rgba(168,137,90,0.2);
-    transition: transform 0.12s, box-shadow 0.12s;
-  }
-  input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 0 5px rgba(168,137,90,0.15);
-  }
+/* ── Resultado ── */
+.results-section { margin-top: 6px; }
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
 
-  /* Perfil */
-  .perfil-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .perfil-btn {
-    padding: 20px 16px; border-radius: 8px; cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    color: var(--text2); text-align: center; transition: all 0.2s;
-  }
-  .perfil-btn:hover { border-color: rgba(168,137,90,0.4); color: var(--text); }
-  .perfil-btn.active { background: rgba(168,137,90,0.12); border-color: rgba(168,137,90,0.5); color: var(--ouro); }
-  .perfil-btn .perfil-nome { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 6px; display: block; letter-spacing: -0.01em; }
-  .perfil-btn .perfil-desc { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.65; line-height: 1.6; font-weight: 500; }
+.result-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 32px;
+}
+.result-card.highlight {
+  border-color: rgba(200,169,110,0.25);
+  background: rgba(200,169,110,0.04);
+}
+.result-card-label {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 16px; font-weight: 500;
+}
+.result-big {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 42px; line-height: 1; letter-spacing: -0.03em;
+  color: var(--accent); margin-bottom: 4px;
+}
+.result-per { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; font-weight: 400; }
+.result-rule { height: 1px; background: var(--border); margin: 16px 0; }
+.result-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.result-row:last-child { margin-bottom: 0; }
+.result-row-label { font-size: 12px; color: var(--text-dim); font-weight: 400; }
+.result-row-val { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; }
+.c-meta   { color: var(--meta); }
+.c-google { color: var(--google); }
+.c-accent { color: var(--accent); }
 
-  /* Plataforma */
-  .plat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-  .plat-btn {
-    padding: 14px; border-radius: 8px; cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    color: var(--text2); text-align: center; transition: all 0.2s;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .plat-btn:hover { border-color: rgba(168,137,90,0.3); color: var(--text); }
-  .plat-btn.active-meta   { background: rgba(58,123,213,0.12);  border-color: rgba(58,123,213,0.4);  color: var(--meta); }
-  .plat-btn.active-google { background: rgba(200,75,42,0.12);   border-color: rgba(200,75,42,0.4);   color: var(--google); }
-  .plat-btn.active-ambos  { background: rgba(168,137,90,0.12);  border-color: rgba(168,137,90,0.5);  color: var(--ouro); }
+/* Tax box inside result card */
+.tax-box {
+  margin-top: 16px; padding: 10px 14px;
+  background: rgba(200,169,110,0.06); border: 1px solid rgba(200,169,110,0.15);
+  border-radius: 8px;
+}
+.tax-box-big { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+.tax-box-label { font-size: 10px; color: var(--text-dim); margin-top: 2px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
 
-  /* Benchmark */
-  .benchmark-info {
-    padding: 14px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 2px;
-    justify-content: center; text-align: center;
-  }
-  .bm-item { font-size: 11px; color: var(--text2); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-  .bm-item span { color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; margin-right: 4px; }
+/* Métricas */
+.metrics-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px;
+}
+.metric-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 28px;
+}
+.metric-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; font-weight: 500; }
+.metric-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.03em; color: var(--text); line-height: 1; }
+.metric-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; font-weight: 400; }
 
-  /* Resultados */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .result-main {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px; padding: 32px;
-  }
-  .result-number { font-family: 'Inter', sans-serif; font-weight: 800; line-height: 1; color: var(--text); letter-spacing: -0.03em; }
-  .result-number.xl { font-size: 44px; }
-  .result-number.lg { font-size: 28px; }
-  .result-number.md { font-size: 22px; }
-  .result-label { font-size: 10px; color: var(--text2); margin-top: 6px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-  .result-meta   { color: var(--meta)   !important; }
-  .result-google { color: var(--google) !important; }
-  .result-green  { color: var(--green)  !important; }
-  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+/* ROI Bar */
+.roi-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 32px; margin-bottom: 6px;
+}
+.roi-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.roi-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
+.roi-value { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+.roi-track { height: 6px; background: var(--surface2); border-radius: 6px; overflow: hidden; position: relative; }
+.roi-fill { height: 100%; border-radius: 6px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.4s; }
+.roi-marks { display: flex; justify-content: space-between; margin-top: 8px; }
+.roi-mark { font-size: 10px; color: var(--text-dim); font-weight: 400; }
 
-  .roi-bar-wrap { margin-top: 20px; }
-  .roi-bar-header { display: flex; justify-content: space-between; font-size: 10px; color: var(--text2); margin-bottom: 8px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-  .roi-bar-track { height: 2px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
-  .roi-bar-fill { height: 100%; background: var(--ouro); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); border-radius: 2px; }
+/* Veredicto */
+.verdict {
+  border-radius: 12px; padding: 22px 28px; margin-bottom: 6px;
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 14px; line-height: 1.75; font-weight: 400;
+  border: 1px solid;
+}
+.verdict.good { background: rgba(74,222,128,0.06); border-color: rgba(74,222,128,0.2); color: var(--green); }
+.verdict.warn { background: rgba(200,169,110,0.06); border-color: rgba(200,169,110,0.2); color: var(--accent); }
+.verdict.bad  { background: rgba(255,69,58,0.06);  border-color: rgba(255,69,58,0.18); color: var(--red); }
+.verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.good .verdict-dot { background: var(--green); }
+.warn .verdict-dot { background: var(--accent); }
+.bad  .verdict-dot { background: var(--red); }
 
-  .breakdown { margin-top: 24px; }
-  .breakdown-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .breakdown-row:last-child { border-bottom: none; }
-  .breakdown-label { color: var(--text2); font-weight: 400; }
-  .breakdown-value { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -0.01em; }
+/* Nota tributária */
+.tax-note {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 32px; margin-bottom: 6px;
+}
+.tax-note-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
+.tax-note p { font-size: 13px; color: var(--text-dim); line-height: 1.75; font-weight: 400; }
+.tax-note p + p { margin-top: 8px; }
 
-  /* Verdict */
-  .verdict { border-radius: 10px; padding: 20px 24px; margin-top: 6px; font-size: 14px; line-height: 1.75; display: flex; align-items: flex-start; gap: 12px; font-weight: 400; }
-  .verdict.good { background: rgba(52,199,89,0.08); border: 1px solid rgba(52,199,89,0.2); color: var(--green); }
-  .verdict.warn { background: rgba(168,137,90,0.08); border: 1px solid rgba(168,137,90,0.25); color: var(--ouro); }
-  .verdict.bad  { background: rgba(255,69,58,0.08); border: 1px solid rgba(255,69,58,0.2); color: #FF453A; }
-  .verdict-icon { flex-shrink: 0; }
+/* CTA */
+.cta-wrap { margin-top: 48px; text-align: center; padding-top: 40px; border-top: 1px solid var(--border); }
+.cta-sup { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; font-weight: 400; }
+.cta-sup strong { color: var(--accent); font-weight: 500; }
+.cta-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  background: #25D366; color: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700;
+  text-decoration: none; border-radius: 100px; padding: 18px 44px;
+  transition: opacity 0.15s; letter-spacing: 0.01em;
+}
+.cta-btn:hover { opacity: 0.88; }
+.cta-sub { margin-top: 12px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
 
-  /* Footer note */
-  .footer-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
-  .footer-note p { font-size: 14px; color: var(--text2); line-height: 1.8; font-weight: 400; margin-bottom: 6px; text-align: justify; }
-  .footer-note p.destaque { color: var(--ouro); font-weight: 500; }
+/* Rodapé */
+.footer {
+  margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;
+}
+.footer-disclaimer { font-size: 12px; color: var(--text-dim); line-height: 1.7; font-weight: 400; max-width: 520px; }
+.footer-criadora { text-align: right; }
+.footer-nome { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.footer-cargo { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; font-weight: 400; }
 
-  /* CTA centralizado */
-  .cta-wrap { margin-top: 32px; text-align: center; }
-  .cta-btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-    background: #25D366; color: #fff;
-    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
-    text-decoration: none; border-radius: 100px; padding: 18px 40px;
-    transition: opacity 0.15s; letter-spacing: -0.01em;
-  }
-  .cta-btn:hover { opacity: 0.88; }
-  .cta-sub { margin-top: 12px; font-size: 10px; color: var(--text2); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+/* Sem resultado (aviso) */
+.no-plat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 32px; text-align: center;
+  color: var(--text-dim); font-size: 14px; font-weight: 400;
+}
 
-  /* Rodapé criadora */
-  .rodape-criadora {
-    margin-top: 56px; padding-top: 24px;
-    border-top: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  }
-  .criadora-nome { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
-  .criadora-cargo { font-size: 10px; color: var(--text2); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-top: 3px; }
-  .footer-dir { font-size: 10px; color: var(--text2); opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
-
-  @media (max-width: 640px) {
-    .grid-2 { grid-template-columns: 1fr; }
-    .perfil-row { grid-template-columns: 1fr; }
-    .header h1 { font-size: 26px; }
-    .rodape-criadora { flex-direction: column; }
-  }
+/* ── Responsivo ── */
+@media (max-width: 720px) {
+  .header h1 { font-size: 32px; }
+  .seg-grid { grid-template-columns: repeat(3, 1fr); }
+  .results-grid { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr; }
+  .plat-grid { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; }
+  .footer-criadora { text-align: left; }
+  .section-card { padding: 24px 20px; }
+  .result-big { font-size: 32px; }
+}
+@media (max-width: 480px) {
+  body { padding: 32px 16px 64px; }
+  .seg-grid { grid-template-columns: repeat(2, 1fr); }
+  .header h1 { font-size: 26px; }
+}
 </style>
 </head>
 <body>
@@ -353,297 +359,380 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- Luzes ultra-realistas -->
 <div class="scene">
   <div class="light light-1"></div>
   <div class="light light-2"></div>
   <div class="light light-3"></div>
-  <div class="light light-4"></div>
-  <div class="light light-5"></div>
 </div>
 
 <div class="wrap">
 
   <div class="assinatura">
-    <div class="assinatura-linha"></div>
+    <div class="assinatura-line"></div>
     <span class="assinatura-texto">Mariana Manfredinny | Marketing Digital</span>
   </div>
 
   <div class="header">
-    <div class="header-eyebrow">Empresas &amp; Prestadores de Serviço · Tráfego Pago</div>
-    <h1>Calculadora inteligente de<br>investimento em <em>tráfego pago</em></h1>
-    <div class="header-divider"></div>
-    <p>A calculadora usa benchmarks do mercado digital para estimar o investimento mínimo nas plataformas de anúncios, sem contar impostos. Os valores são uma referência, não uma promessa.</p>
+    <div class="eyebrow">Profissionais Liberais · Tráfego Pago</div>
+    <h1>Calculadora de investimento<br>em <em>mídia paga</em></h1>
+    <div class="header-rule"></div>
+    <p>Descubra o investimento mínimo em anúncios para atingir sua meta de clientes. Baseado em benchmarks reais do mercado brasileiro para profissionais liberais.</p>
   </div>
 
-  <!-- Parâmetros -->
-  <div class="card">
-    <div class="win-bar">
-      <div class="win-dot win-dot-r"></div>
-      <div class="win-dot win-dot-y"></div>
-      <div class="win-dot win-dot-g"></div>
-      <div class="win-title">Sobre o seu negócio</div>
-    </div>
-    <div class="field">
-      <div class="field-header">
-        <span class="field-name">Ticket médio de venda</span>
-        <span class="field-value" id="val-ticket">R$ 5.000</span>
+  <!-- 01 — Segmento -->
+  <div class="section">
+    <div class="section-card">
+      <div class="step-header">
+        <span class="step-num">01</span>
+        <span class="step-title">Qual é a sua área?</span>
       </div>
-      <input type="range" id="ticket" min="500" max="50000" step="500" value="5000" oninput="update()">
-    </div>
-    <div class="field">
-      <div class="field-header">
-        <span class="field-name">Margem de lucro</span>
-        <span class="field-value" id="val-comissao">30%</span>
+      <div class="seg-grid">
+        <div class="seg-btn active" id="seg-saude" onclick="setSegmento('saude')">
+          <div class="seg-icon">🩺</div>
+          <div class="seg-nome">Saúde</div>
+          <div class="seg-desc">Médico, psicólogo, nutricionista, dentista</div>
+        </div>
+        <div class="seg-btn" id="seg-juridico" onclick="setSegmento('juridico')">
+          <div class="seg-icon">⚖️</div>
+          <div class="seg-nome">Jurídico</div>
+          <div class="seg-desc">Advogado, contador</div>
+        </div>
+        <div class="seg-btn" id="seg-projetos" onclick="setSegmento('projetos')">
+          <div class="seg-icon">📐</div>
+          <div class="seg-nome">Projetos</div>
+          <div class="seg-desc">Arquiteto, engenheiro, designer</div>
+        </div>
+        <div class="seg-btn" id="seg-consultoria" onclick="setSegmento('consultoria')">
+          <div class="seg-icon">💼</div>
+          <div class="seg-nome">Consultoria</div>
+          <div class="seg-desc">Coach, consultor, mentor</div>
+        </div>
+        <div class="seg-btn" id="seg-outro" onclick="setSegmento('outro')">
+          <div class="seg-icon">✦</div>
+          <div class="seg-nome">Outro</div>
+          <div class="seg-desc">Outra área de atuação</div>
+        </div>
       </div>
-      <input type="range" id="comissao" min="10" max="70" step="5" value="30" oninput="update()">
-    </div>
-    <div class="field">
-      <div class="field-header">
-        <span class="field-name">Meta de fechamentos por mês</span>
-        <span class="field-value" id="val-vendas">3 fechamentos</span>
-      </div>
-      <input type="range" id="vendas" min="1" max="20" step="1" value="3" oninput="update()">
-    </div>
-  </div>
-
-  <!-- Perfil -->
-  <div class="card">
-    <div class="win-bar">
-      <div class="win-dot win-dot-r"></div>
-      <div class="win-dot win-dot-y"></div>
-      <div class="win-dot win-dot-g"></div>
-      <div class="win-title">Perfil de investimento</div>
-    </div>
-    <div class="perfil-row">
-      <div class="perfil-btn active" id="perfil-crescimento" onclick="setPerfil('crescimento')">
-        <span class="perfil-nome">Benchmark do mercado</span>
-        <span class="perfil-desc">Referência atual<br>do mercado digital</span>
-      </div>
-      <div class="perfil-btn" id="perfil-otimizado" onclick="setPerfil('otimizado')">
-        <span class="perfil-nome">Otimizado</span>
-        <span class="perfil-desc">Gestão experiente<br>CPL reduzido</span>
+      <div class="outro-input-wrap" id="outro-input-wrap">
+        <input class="outro-input" type="text" placeholder="Descreva sua área de atuação..." id="outro-texto">
       </div>
     </div>
   </div>
 
-  <!-- Plataforma -->
-  <div class="card">
-    <div class="win-bar">
-      <div class="win-dot win-dot-r"></div>
-      <div class="win-dot win-dot-y"></div>
-      <div class="win-dot win-dot-g"></div>
-      <div class="win-title">Onde investir</div>
-    </div>
-    <div class="plat-row">
-      <div class="plat-btn" id="plat-meta" onclick="setPlat('meta')">Meta Ads</div>
-      <div class="plat-btn active-ambos" id="plat-ambos" onclick="setPlat('ambos')">Ambos</div>
-      <div class="plat-btn" id="plat-google" onclick="setPlat('google')">Google Ads</div>
+  <!-- 02 — Parâmetros -->
+  <div class="section">
+    <div class="section-card">
+      <div class="step-header">
+        <span class="step-num">02</span>
+        <span class="step-title">Parâmetros do negócio</span>
+      </div>
+      <div class="field">
+        <div class="field-header">
+          <span class="field-name">Ticket médio do serviço</span>
+          <span class="field-value" id="val-ticket">R$ 2.000</span>
+        </div>
+        <input type="range" class="accent-thumb" id="ticket" min="300" max="10000" step="100" value="2000" oninput="update()">
+      </div>
+      <div class="field">
+        <div class="field-header">
+          <span class="field-name">Meta de novos clientes por mês</span>
+          <span class="field-value" id="val-clientes">5 clientes</span>
+        </div>
+        <input type="range" class="accent-thumb" id="clientes" min="1" max="20" step="1" value="5" oninput="update()">
+      </div>
+      <div class="field">
+        <div class="field-header">
+          <span class="field-name">Taxa de conversão (lead → cliente)</span>
+          <span class="field-value" id="val-conv">8%</span>
+        </div>
+        <input type="range" class="accent-thumb" id="conv" min="1" max="20" step="1" value="8" oninput="update()">
+        <div class="field-ref" id="conv-ref">↗ Média do mercado para Saúde: 8%</div>
+      </div>
     </div>
   </div>
 
-  <!-- Benchmarks -->
-  <div class="benchmark-info">
-    <div class="bm-item"><span id="bm-cpl-meta">R$ 45</span> CPL Meta Ads</div>
-    <div class="bm-item"><span id="bm-cpl-google">R$ 70</span> CPL Google Ads</div>
-    <div class="bm-item"><span id="bm-conv">3%</span> Taxa de conversão</div>
-    <div class="bm-item"><span id="bm-split">60% Meta / 40% Google</span></div>
+  <!-- 03 — Plataformas -->
+  <div class="section">
+    <div class="section-card">
+      <div class="step-header">
+        <span class="step-num">03</span>
+        <span class="step-title">Onde investir</span>
+      </div>
+      <div class="plat-grid">
+        <div class="plat-btn" id="plat-meta" onclick="setPlat('meta')">
+          <div class="plat-name">Meta Ads</div>
+          <div class="plat-desc">Instagram + Facebook</div>
+        </div>
+        <div class="plat-btn active-ambos" id="plat-ambos" onclick="setPlat('ambos')">
+          <div class="plat-name">Ambas</div>
+          <div class="plat-desc">Distribuição entre as duas</div>
+        </div>
+        <div class="plat-btn" id="plat-google" onclick="setPlat('google')">
+          <div class="plat-name">Google Ads</div>
+          <div class="plat-desc">Search + Display</div>
+        </div>
+      </div>
+      <div class="split-wrap visible" id="split-wrap">
+        <div class="split-header">
+          <span class="split-label">Distribuição entre plataformas</span>
+          <div class="split-values">
+            <span class="split-val-meta" id="split-meta-val">60% Meta</span>
+            <span class="split-val-google" id="split-google-val">40% Google</span>
+          </div>
+        </div>
+        <input type="range" class="meta-thumb" id="split" min="10" max="90" step="5" value="60" oninput="updateSplit()">
+      </div>
+    </div>
   </div>
 
   <!-- Resultados -->
-  <div class="grid-2">
-    <div class="result-main">
-      <div class="card-label">Investimento mínimo recomendado</div>
-      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-        <span class="result-number xl" id="res-total">R$ 0</span>
-        <span style="font-size:11px;color:var(--taupe);letter-spacing:0.1em;text-transform:uppercase">/mês</span>
-      </div>
-      <div class="result-label" style="margin-bottom:10px">nas plataformas de anúncios</div>
-      <div style="background:rgba(168,137,90,0.08);border:1px solid rgba(168,137,90,0.2);border-radius:8px;padding:10px 12px;margin-bottom:4px">
-        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
-          <span class="result-number md" id="res-total-imposto" style="color:var(--text)">R$ 0</span>
-          <span style="font-size:11px;color:var(--taupe);letter-spacing:0.1em;text-transform:uppercase">/mês</span>
+  <div id="results-area">
+
+    <div class="results-grid">
+      <!-- Mínimo -->
+      <div class="result-card">
+        <div class="result-card-label">Investimento mínimo</div>
+        <div class="result-big" id="res-min-total">R$ 0</div>
+        <div class="result-per">/mês nas plataformas</div>
+        <div class="result-rule"></div>
+        <div class="result-row">
+          <span class="result-row-label">Meta Ads</span>
+          <span class="result-row-val c-meta" id="res-min-meta">R$ 0</span>
         </div>
-        <div class="result-label">total saindo do seu caixa <span style="color:var(--ouro);font-weight:400">(+30% de impostos)</span></div>
-      </div>
-      <div style="font-size:10px;color:var(--taupe);line-height:1.6;margin-bottom:12px;opacity:0.8">Pagamentos a Meta e Google são considerados câmbio internacional e têm incidência de 30% de IOF sobre o valor investido nas plataformas.</div>
-      <div class="divider"></div>
-      <div class="grid-2" style="gap:16px">
-        <div>
-          <div class="result-number md result-meta" id="res-meta">R$ 0</div>
-          <div class="result-label">Meta Ads</div>
+        <div class="result-row">
+          <span class="result-row-label">Google Ads</span>
+          <span class="result-row-val c-google" id="res-min-google">R$ 0</span>
         </div>
-        <div>
-          <div class="result-number md result-google" id="res-google">R$ 0</div>
-          <div class="result-label">Google Ads</div>
+        <div class="tax-box">
+          <div class="tax-box-big" id="res-min-iof">R$ 0</div>
+          <div class="tax-box-label">total com IOF 30% (câmbio)</div>
+        </div>
+      </div>
+
+      <!-- Médio -->
+      <div class="result-card highlight">
+        <div class="result-card-label">Investimento médio de mercado</div>
+        <div class="result-big" id="res-med-total">R$ 0</div>
+        <div class="result-per">/mês nas plataformas</div>
+        <div class="result-rule"></div>
+        <div class="result-row">
+          <span class="result-row-label">Meta Ads</span>
+          <span class="result-row-val c-meta" id="res-med-meta">R$ 0</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row-label">Google Ads</span>
+          <span class="result-row-val c-google" id="res-med-google">R$ 0</span>
+        </div>
+        <div class="tax-box">
+          <div class="tax-box-big" id="res-med-iof">R$ 0</div>
+          <div class="tax-box-label">total com IOF 30% (câmbio)</div>
         </div>
       </div>
     </div>
 
-    <div class="card" style="margin-bottom:0">
-      <div class="card-label">Projeção de retorno</div>
-      <div style="margin-bottom:20px">
-        <div class="result-number lg result-green" id="res-receita">R$ 0</div>
-        <div class="result-label">receita esperada (margem)</div>
+    <!-- Métricas -->
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-label">Leads necessários/mês</div>
+        <div class="metric-value" id="res-leads">0</div>
+        <div class="metric-sub">para atingir a meta</div>
       </div>
-      <div class="breakdown">
-        <div class="breakdown-row">
-          <span class="breakdown-label">Leads necessários/mês</span>
-          <span class="breakdown-value" id="res-leads">0</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="breakdown-label">Leads Meta</span>
-          <span class="breakdown-value result-meta" id="res-leads-meta">0</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="breakdown-label">Leads Google</span>
-          <span class="breakdown-value result-google" id="res-leads-google">0</span>
-        </div>
-        <div class="breakdown-row">
-          <span class="breakdown-label">ROI sobre investimento</span>
-          <span class="breakdown-value result-green" id="res-roi">0x</span>
-        </div>
+      <div class="metric-card">
+        <div class="metric-label">Receita projetada</div>
+        <div class="metric-value c-accent" id="res-receita">R$ 0</div>
+        <div class="metric-sub">com <span id="res-clientes-label">0 clientes</span>/mês</div>
       </div>
-      <div class="roi-bar-wrap">
-        <div class="roi-bar-header"><span>Investimento</span><span>Retorno</span></div>
-        <div class="roi-bar-track">
-          <div class="roi-bar-fill" id="roi-bar" style="width:0%"></div>
-        </div>
+      <div class="metric-card">
+        <div class="metric-label">ROI estimado (médio)</div>
+        <div class="metric-value" id="res-roi">0x</div>
+        <div class="metric-sub">retorno sobre o investimento</div>
       </div>
     </div>
-  </div>
 
-  <!-- Veredicto -->
-  <div id="verdict-box" class="verdict good">
-    <span class="verdict-icon">·</span>
-    <span id="verdict-text"></span>
-  </div>
-
-  <!-- Footer note + CTA centralizado -->
-  <div class="footer-note">
-    <p>Esses valores são estimativas baseadas em benchmarks do mercado digital. Cada negócio tem suas particularidades — os números reais dependem do segmento, do funil e da qualidade da gestão.</p>
-    <p class="destaque">A reunião é gratuita. Se quiser entender como funciona especificamente para o seu negócio, é só clicar abaixo.</p>
-    <div class="cta-wrap">
-      <a id="btn-whatsapp"
-         href="https://wa.me/5532999644209?text=Ol%C3%A1%2C+vim+pela+Calculadora+de+Investimento+em+Tr%C3%A1fego+Pago+e+quero+agendar+a+reuni%C3%A3o+gratuita."
-         target="_blank" rel="noopener"
-         onclick="trackLead(event)"
-         class="cta-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Marcar reunião
-      </a>
-      <div class="cta-sub">Resposta em até 1 hora útil</div>
+    <!-- ROI Bar -->
+    <div class="roi-card">
+      <div class="roi-header">
+        <span class="roi-label">Barra de retorno (baseado no investimento médio)</span>
+        <span class="roi-value" id="roi-bar-val">0x</span>
+      </div>
+      <div class="roi-track">
+        <div class="roi-fill" id="roi-fill" style="width:0%;background:var(--accent)"></div>
+      </div>
+      <div class="roi-marks">
+        <span class="roi-mark">0x</span>
+        <span class="roi-mark">5x</span>
+        <span class="roi-mark">10x</span>
+        <span class="roi-mark">15x</span>
+        <span class="roi-mark">20x</span>
+      </div>
     </div>
-  </div>
 
-  <div class="rodape-criadora">
-    <div>
-      <div class="criadora-nome">Mariana Manfredinny</div>
-      <div class="criadora-cargo">Marketing Digital · Diretora de Marketing Fracionada</div>
+    <!-- Veredicto -->
+    <div id="verdict-box" class="verdict good">
+      <div class="verdict-dot"></div>
+      <span id="verdict-text"></span>
     </div>
-    <div class="footer-dir">Calculadora de Tráfego Pago · Empresas e Prestadores de Serviço</div>
+
+    <!-- Nota tributária -->
+    <div class="tax-note">
+      <div class="tax-note-title">Nota tributária</div>
+      <p>Os investimentos em Meta Ads (Facebook e Instagram) e Google Ads possuem regras tributárias distintas. Enquanto a Meta repassa integralmente uma carga tributária de 12,15% (PIS/COFINS e ISS) sobre o valor total do anúncio aos anunciantes, o Google manteve a absorção desses custos no Brasil.</p>
+      <p>Sobre o valor total investido nas plataformas, incide ainda 30% de IOF por se tratar de câmbio internacional — esse custo está refletido nos valores "total com IOF" acima.</p>
+    </div>
+
   </div>
 
-  <div style="margin-top:32px;padding:20px 24px;border:1px solid rgba(168,137,90,0.12);border-radius:2px;background:rgba(40,34,28,0.4)">
-    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:10px;font-weight:300">Nota tributária</div>
-    <p style="font-size:12px;color:var(--taupe);line-height:1.8;font-weight:300">Os investimentos em Meta Ads (Facebook e Instagram) e Google Ads possuem regras tributárias distintas. Enquanto a Meta repassa integralmente uma carga tributária de 12,15% (PIS/COFINS e ISS) sobre o valor total do anúncio aos anunciantes, o Google manteve a absorção desses custos no Brasil.</p>
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <p class="cta-sup">
+      Esses números são uma referência. Para entender <strong>o que funciona especificamente para o seu negócio</strong>, agende uma conversa gratuita.
+    </p>
+    <a id="btn-whatsapp"
+       href="https://wa.me/5532999644209?text=Ol%C3%A1%2C+vim+pela+Calculadora+de+Investimento+em+M%C3%ADdia+Paga+e+quero+agendar+a+reuni%C3%A3o+gratuita."
+       target="_blank" rel="noopener"
+       onclick="trackLead(event)"
+       class="cta-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Marcar reunião gratuita
+    </a>
+    <div class="cta-sub">Resposta em até 1 hora útil</div>
+  </div>
+
+  <!-- Rodapé -->
+  <div class="footer">
+    <p class="footer-disclaimer">
+      Valores estimados com base em benchmarks do mercado brasileiro. Os resultados reais variam conforme segmentação, criativo e maturidade da conta.
+    </p>
+    <div class="footer-criadora">
+      <div class="footer-nome">Mariana Manfredinny</div>
+      <div class="footer-cargo">Diretora de Marketing Fracionada</div>
+    </div>
   </div>
 
 </div>
 
 <script>
-  const PERFIS = {
-    crescimento: { cplMeta: 30, cplGoogle: 50, conv: 0.03, pctMeta: 60 },
-    otimizado:   { cplMeta: 15, cplGoogle: 30, conv: 0.06, pctMeta: 65 },
+  const BENCHMARKS = {
+    saude:       { meta: {min:25,  med:55,  alto:120}, google: {min:40,  med:90,  alto:180}, conv: 8,  label: 'Saúde' },
+    juridico:    { meta: {min:35,  med:75,  alto:150}, google: {min:60,  med:130, alto:250}, conv: 5,  label: 'Jurídico' },
+    projetos:    { meta: {min:30,  med:65,  alto:130}, google: {min:50,  med:110, alto:200}, conv: 6,  label: 'Projetos' },
+    consultoria: { meta: {min:40,  med:85,  alto:160}, google: {min:70,  med:150, alto:280}, conv: 4,  label: 'Consultoria' },
+    outro:       { meta: {min:40,  med:85,  alto:160}, google: {min:70,  med:150, alto:280}, conv: 5,  label: 'Sua área' },
   };
 
-  let perfilAtual = 'crescimento';
-  let platAtual   = 'ambos';
+  let segmento = 'saude';
+  let platAtual = 'ambos';
+  let splitMeta = 60;
 
-  function setPerfil(p) {
-    perfilAtual = p;
-    ['crescimento','otimizado'].forEach(id => {
-      document.getElementById('perfil-' + id).classList.toggle('active', id === p);
-    });
+  function setSegmento(s) {
+    segmento = s;
+    document.querySelectorAll('.seg-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('seg-' + s).classList.add('active');
+    const outroWrap = document.getElementById('outro-input-wrap');
+    if (s === 'outro') outroWrap.classList.add('visible');
+    else outroWrap.classList.remove('visible');
+    const bm = BENCHMARKS[s];
+    document.getElementById('conv-ref').textContent =
+      '↗ Média do mercado para ' + bm.label + ': ' + bm.conv + '%';
     update();
   }
 
   function setPlat(p) {
     platAtual = p;
-    document.getElementById('plat-meta').className   = 'plat-btn' + (p === 'meta'   ? ' active-meta'   : '');
-    document.getElementById('plat-ambos').className  = 'plat-btn' + (p === 'ambos'  ? ' active-ambos'  : '');
-    document.getElementById('plat-google').className = 'plat-btn' + (p === 'google' ? ' active-google' : '');
+    ['meta','ambos','google'].forEach(id => {
+      document.getElementById('plat-' + id).className = 'plat-btn';
+    });
+    document.getElementById('plat-' + p).classList.add('active-' + p);
+    const splitWrap = document.getElementById('split-wrap');
+    if (p === 'ambos') splitWrap.classList.add('visible');
+    else splitWrap.classList.remove('visible');
     update();
   }
 
-  function fmtFull(v) {
+  function updateSplit() {
+    splitMeta = parseInt(document.getElementById('split').value);
+    document.getElementById('split-meta-val').textContent   = splitMeta + '% Meta';
+    document.getElementById('split-google-val').textContent = (100 - splitMeta) + '% Google';
+    update();
+  }
+
+  function fmt(v) {
     return 'R$ ' + Math.round(v).toLocaleString('pt-BR');
   }
 
   function update() {
     const ticket   = parseInt(document.getElementById('ticket').value);
-    const comissao = parseFloat(document.getElementById('comissao').value) / 100;
-    const vendas   = parseInt(document.getElementById('vendas').value);
-    const p        = PERFIS[perfilAtual];
+    const clientes = parseInt(document.getElementById('clientes').value);
+    const conv     = parseInt(document.getElementById('conv').value);
+    const bm       = BENCHMARKS[segmento];
 
-    let pctMeta, pctGoogle;
-    if      (platAtual === 'meta')   { pctMeta = 100; pctGoogle = 0; }
-    else if (platAtual === 'google') { pctMeta = 0;   pctGoogle = 100; }
-    else { pctMeta = p.pctMeta; pctGoogle = 100 - p.pctMeta; }
+    document.getElementById('val-ticket').textContent  = fmt(ticket);
+    document.getElementById('val-clientes').textContent = clientes + (clientes === 1 ? ' cliente' : ' clientes');
+    document.getElementById('val-conv').textContent    = conv + '%';
 
-    document.getElementById('val-ticket').textContent   = fmtFull(ticket);
-    document.getElementById('val-comissao').textContent = (comissao * 100) + '%';
-    document.getElementById('val-vendas').textContent   = vendas + (vendas === 1 ? ' fechamento' : ' fechamentos');
+    const leadsTotal = Math.ceil(clientes / (conv / 100));
 
-    document.getElementById('bm-cpl-meta').textContent   = platAtual === 'google' ? '—' : 'R$ ' + p.cplMeta;
-    document.getElementById('bm-cpl-google').textContent = platAtual === 'meta'   ? '—' : 'R$ ' + p.cplGoogle;
-    document.getElementById('bm-conv').textContent       = (p.conv * 100) + '%';
-    if      (platAtual === 'ambos')  document.getElementById('bm-split').textContent = pctMeta + '% Meta / ' + pctGoogle + '% Google';
-    else if (platAtual === 'meta')   document.getElementById('bm-split').textContent = '100% Meta Ads';
-    else                             document.getElementById('bm-split').textContent = '100% Google Ads';
+    let pMeta = 0, pGoogle = 0;
+    if      (platAtual === 'meta')   { pMeta = 1; pGoogle = 0; }
+    else if (platAtual === 'google') { pMeta = 0; pGoogle = 1; }
+    else                             { pMeta = splitMeta / 100; pGoogle = 1 - pMeta; }
 
-    const leadsTotal  = Math.ceil(vendas / p.conv);
-    const leadsMeta   = platAtual === 'google' ? 0 : Math.ceil(leadsTotal * pctMeta / 100);
+    const leadsMeta   = platAtual === 'google' ? 0 : Math.ceil(leadsTotal * pMeta);
     const leadsGoogle = platAtual === 'meta'   ? 0 : leadsTotal - leadsMeta;
-    const investMeta   = leadsMeta   * p.cplMeta;
-    const investGoogle = leadsGoogle * p.cplGoogle;
-    const investTotal  = investMeta + investGoogle;
-    const investComImposto = Math.round(investTotal * 1.30);
-    const receita      = ticket * comissao * vendas;
-    const roi          = investTotal > 0 ? receita / investTotal : 0;
 
-    document.getElementById('res-total').textContent        = fmtFull(investTotal);
-    document.getElementById('res-total-imposto').textContent = fmtFull(investComImposto);
-    document.getElementById('res-meta').textContent         = fmtFull(investMeta);
-    document.getElementById('res-google').textContent       = fmtFull(investGoogle);
-    document.getElementById('res-receita').textContent      = fmtFull(receita);
-    document.getElementById('res-leads').textContent        = leadsTotal;
-    document.getElementById('res-leads-meta').textContent   = leadsMeta;
-    document.getElementById('res-leads-google').textContent = leadsGoogle;
-    document.getElementById('res-roi').textContent          = roi.toFixed(1) + 'x';
-    document.getElementById('roi-bar').style.width          = Math.min(100, (roi / 20) * 100) + '%';
+    // Min
+    const minMeta   = leadsMeta   * bm.meta.min;
+    const minGoogle = leadsGoogle * bm.google.min;
+    const minTotal  = minMeta + minGoogle;
+    const minIof    = Math.round(minTotal * 1.30);
 
+    // Médio
+    const medMeta   = leadsMeta   * bm.meta.med;
+    const medGoogle = leadsGoogle * bm.google.med;
+    const medTotal  = medMeta + medGoogle;
+    const medIof    = Math.round(medTotal * 1.30);
+
+    const receita = ticket * clientes;
+    const roiMed  = medTotal > 0 ? receita / medTotal : 0;
+
+    // Update DOM
+    document.getElementById('res-min-total').textContent  = fmt(minTotal);
+    document.getElementById('res-min-meta').textContent   = platAtual === 'google' ? '—' : fmt(minMeta);
+    document.getElementById('res-min-google').textContent = platAtual === 'meta'   ? '—' : fmt(minGoogle);
+    document.getElementById('res-min-iof').textContent    = fmt(minIof);
+
+    document.getElementById('res-med-total').textContent  = fmt(medTotal);
+    document.getElementById('res-med-meta').textContent   = platAtual === 'google' ? '—' : fmt(medMeta);
+    document.getElementById('res-med-google').textContent = platAtual === 'meta'   ? '—' : fmt(medGoogle);
+    document.getElementById('res-med-iof').textContent    = fmt(medIof);
+
+    document.getElementById('res-leads').textContent          = leadsTotal;
+    document.getElementById('res-receita').textContent        = fmt(receita);
+    document.getElementById('res-clientes-label').textContent = clientes + (clientes === 1 ? ' cliente' : ' clientes');
+    document.getElementById('res-roi').textContent            = roiMed.toFixed(1) + 'x';
+    document.getElementById('roi-bar-val').textContent        = roiMed.toFixed(1) + 'x';
+
+    // ROI bar
+    const roiPct = Math.min(100, (roiMed / 20) * 100);
+    const roiFill = document.getElementById('roi-fill');
+    roiFill.style.width = roiPct + '%';
+    roiFill.style.background = roiMed >= 10 ? 'var(--green)' : roiMed >= 3 ? 'var(--accent)' : 'var(--red)';
+
+    // Verdict
     const verdictBox  = document.getElementById('verdict-box');
     const verdictText = document.getElementById('verdict-text');
-    const pct = (investTotal / receita) * 100;
-
     verdictBox.className = 'verdict';
-    if (pct <= 5) {
+    if (roiMed >= 8) {
       verdictBox.classList.add('good');
-      verdictText.textContent = `Excelente. O investimento de ${fmtFull(investTotal)}/mês representa apenas ${pct.toFixed(1)}% da receita esperada de ${fmtFull(receita)}. ROI de ${roi.toFixed(1)}x — qualquer fechamento cobre o mês com folga.`;
-    } else if (pct <= 15) {
-      verdictBox.classList.add('good');
-      verdictText.textContent = `Boa relação. ${fmtFull(investTotal)}/mês de investimento para ${fmtFull(receita)} de retorno esperado. ROI de ${roi.toFixed(1)}x — números saudáveis para a maioria dos negócios.`;
-    } else if (pct <= 30) {
+      verdictText.textContent = `Ótima relação custo-retorno. Com ${fmt(medTotal)}/mês de investimento médio, a receita esperada é de ${fmt(receita)} — um ROI de ${roiMed.toFixed(1)}x. Cada real investido pode retornar ${roiMed.toFixed(1)} em receita.`;
+    } else if (roiMed >= 3) {
       verdictBox.classList.add('warn');
-      verdictText.textContent = `Atenção. O investimento representa ${pct.toFixed(0)}% da receita esperada. Considere revisar a meta de fechamentos ou conversar com um especialista antes de escalar o orçamento.`;
+      verdictText.textContent = `ROI moderado de ${roiMed.toFixed(1)}x. Os números funcionam, mas há espaço para melhorar — tente aumentar o ticket médio ou a taxa de conversão para elevar o retorno sobre o investimento.`;
     } else {
       verdictBox.classList.add('bad');
-      verdictText.textContent = `Risco alto. Com esses parâmetros, o custo de aquisição compromete ${pct.toFixed(0)}% da receita. Recomendamos agendar uma conversa para entender o cenário mais adequado para o seu negócio.`;
+      verdictText.textContent = `Atenção: ROI de ${roiMed.toFixed(1)}x está abaixo do ideal. Recomendamos revisar o ticket médio ou a meta de clientes antes de escalar o investimento em mídia.`;
     }
   }
-
-  update();
 
   function trackLead(e) {
     const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
@@ -655,6 +744,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       keepalive: true,
     }).catch(() => {});
   }
+
+  // Init
+  setSegmento('saude');
+  setPlat('ambos');
+  update();
 </script>
 </body>
 </html>
