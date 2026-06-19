@@ -656,14 +656,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
 
 <script>
+  // Benchmarks de CPL (custo por lead, R$) baseados em:
+  // WordStream 2025 (global), fontes brasileiras (Leadster, Juridigital, SistemaPacto)
+  // e paridade de mercado BR: CPCs ~70% menores que EUA, CPL ≈ USD em R$.
+  // conv = taxa de conversão lead→cliente média do segmento no Brasil (%).
   const BENCHMARKS = {
-    saude:       { meta: {min:25, med:55,  alto:120}, google: {min:40, med:90,  alto:180}, conv: 8,  label: 'Saúde' },
-    fitness:     { meta: {min:15, med:35,  alto:80},  google: {min:20, med:45,  alto:100}, conv: 10, label: 'Fitness' },
-    juridico:    { meta: {min:35, med:75,  alto:150}, google: {min:60, med:130, alto:250}, conv: 5,  label: 'Jurídico' },
-    projetos:    { meta: {min:30, med:65,  alto:130}, google: {min:50, med:110, alto:200}, conv: 6,  label: 'Projetos' },
-    criativo:    { meta: {min:20, med:45,  alto:90},  google: {min:30, med:65,  alto:130}, conv: 7,  label: 'Criativo' },
-    consultoria: { meta: {min:40, med:85,  alto:160}, google: {min:70, med:150, alto:280}, conv: 4,  label: 'Consultoria' },
-    outro:       { meta: {min:40, med:85,  alto:160}, google: {min:70, med:150, alto:280}, conv: 5,  label: 'Sua área' },
+    saude:       { meta: {min:25, med:60,  alto:130}, google: {min:45, med:100, alto:200}, conv: 10, label: 'Saúde' },
+    fitness:     { meta: {min:10, med:30,  alto:70},  google: {min:18, med:42,  alto:90},  conv: 15, label: 'Fitness' },
+    juridico:    { meta: {min:40, med:85,  alto:170}, google: {min:80, med:160, alto:300}, conv: 7,  label: 'Jurídico' },
+    projetos:    { meta: {min:28, med:62,  alto:125}, google: {min:48, med:105, alto:195}, conv: 8,  label: 'Projetos' },
+    criativo:    { meta: {min:15, med:35,  alto:75},  google: {min:22, med:52,  alto:105}, conv: 9,  label: 'Criativo' },
+    consultoria: { meta: {min:42, med:90,  alto:175}, google: {min:75, med:160, alto:300}, conv: 6,  label: 'Consultoria' },
+    outro:       { meta: {min:35, med:80,  alto:160}, google: {min:60, med:130, alto:250}, conv: 7,  label: 'Sua área' },
   };
 
   let segmento = 'saude';
