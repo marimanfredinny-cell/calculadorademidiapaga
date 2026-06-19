@@ -16,20 +16,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:       #1B1B1D;
-  --surface:  #242426;
-  --surface2: #2D2D2F;
-  --border:   rgba(241,236,230,0.07);
-  --text:     #F1ECE6;
-  --text-dim: rgba(241,236,230,0.45);
+  --bg:       #F5F0EB;
+  --surface:  #FFFFFF;
+  --surface2: #EDE8E2;
+  --border:   rgba(74,102,111,0.13);
+  --text:     #1A2A30;
+  --text-dim: rgba(26,42,48,0.50);
   --accent:   #4A666F;
-  --accent-l: #6A858F;
-  --cream:    #E7DDD0;
-  --meta:     #4A8FD4;
-  --google:   #E05A3A;
-  --green:    #28C740;
-  --red:      #FF5E57;
-  --yellow:   #FFBD2E;
+  --accent-l: #3D5A63;
+  --gold:     #B5892A;
+  --meta:     #2B72C8;
+  --google:   #C94427;
+  --green:    #1A8F34;
+  --red:      #C03030;
+  --yellow:   #C98A00;
 }
 
 body {
@@ -46,22 +46,22 @@ body {
 
 /* ── Luzes de fundo ── */
 .scene { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.light { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
+.light { position: absolute; border-radius: 50%; }
 .light-1 {
   width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(74,102,111,0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(74,102,111,0.10) 0%, transparent 70%);
   top: -200px; left: -100px; filter: blur(80px);
   animation: drift1 25s ease-in-out infinite;
 }
 .light-2 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(29,52,64,0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(29,52,64,0.07) 0%, transparent 70%);
   top: 30%; right: -100px; filter: blur(90px);
   animation: drift2 30s ease-in-out infinite;
 }
 .light-3 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(231,221,208,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(181,137,42,0.06) 0%, transparent 70%);
   bottom: 10%; left: 20%; filter: blur(70px);
   animation: drift3 20s ease-in-out infinite;
 }
@@ -76,10 +76,10 @@ body {
 .assinatura {
   display: flex; align-items: center; gap: 12px; margin-bottom: 52px;
 }
-.assinatura-line { width: 28px; height: 1px; background: var(--accent-l); opacity: 0.5; }
+.assinatura-line { width: 28px; height: 1px; background: var(--accent); opacity: 0.4; }
 .assinatura-texto {
   font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 500;
-  color: var(--accent-l); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
 }
 
 /* ── Header ── */
@@ -93,8 +93,8 @@ body {
   font-size: 48px; line-height: 1.1; letter-spacing: -0.01em;
   color: var(--text); margin-bottom: 20px;
 }
-.header h1 em { color: var(--cream); font-style: italic; }
-.header-rule { width: 48px; height: 1px; background: var(--accent); opacity: 0.5; margin-bottom: 18px; }
+.header h1 em { color: var(--accent); font-style: italic; }
+.header-rule { width: 48px; height: 2px; background: var(--accent); opacity: 0.4; margin-bottom: 18px; border-radius: 2px; }
 .header p { font-size: 15px; color: var(--text-dim); max-width: 560px; line-height: 1.8; font-weight: 300; }
 
 /* ── Seções ── */
@@ -104,12 +104,13 @@ body {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 32px 36px;
+  box-shadow: 0 1px 6px rgba(74,102,111,0.07);
 }
 .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
 .step-num {
   font-family: 'Lora', serif; font-size: 11px; font-weight: 700;
-  color: var(--accent-l); letter-spacing: 0.16em;
-  background: rgba(74,102,111,0.1); border: 1px solid rgba(74,102,111,0.25);
+  color: var(--accent); letter-spacing: 0.16em;
+  background: rgba(74,102,111,0.08); border: 1px solid rgba(74,102,111,0.2);
   padding: 4px 10px; border-radius: 100px;
 }
 .step-title {
@@ -130,10 +131,10 @@ body {
   text-align: center; transition: all 0.2s;
   display: flex; flex-direction: column; align-items: center; gap: 10px;
 }
-.seg-btn:hover { border-color: rgba(74,102,111,0.35); background: rgba(74,102,111,0.06); }
+.seg-btn:hover { border-color: rgba(74,102,111,0.3); background: rgba(74,102,111,0.06); }
 .seg-btn.active {
-  border-color: rgba(74,102,111,0.55);
-  background: rgba(74,102,111,0.1);
+  border-color: rgba(74,102,111,0.45);
+  background: rgba(74,102,111,0.08);
 }
 .seg-icon { font-size: 22px; line-height: 1; }
 .seg-nome {
@@ -141,7 +142,7 @@ body {
   color: var(--text); letter-spacing: 0.01em;
 }
 .seg-desc { font-size: 10px; color: var(--text-dim); line-height: 1.5; font-weight: 300; }
-.seg-btn.active .seg-nome { color: var(--accent-l); }
+.seg-btn.active .seg-nome { color: var(--accent); }
 
 /* ── Sliders ── */
 .field { padding: 20px 0; border-bottom: 1px solid var(--border); }
@@ -153,25 +154,41 @@ body {
   font-family: 'Lora', serif; font-size: 18px; font-weight: 700;
   color: var(--text); letter-spacing: -0.01em;
 }
-.field-ref { font-size: 11px; color: var(--accent-l); margin-top: 8px; font-weight: 400; opacity: 0.8; }
+.field-ref { font-size: 11px; color: var(--accent); margin-top: 8px; font-weight: 400; opacity: 0.75; }
 
 input[type="range"] {
   width: 100%; height: 2px; -webkit-appearance: none; appearance: none;
-  background: rgba(241,236,230,0.1); border-radius: 2px; outline: none; cursor: pointer;
+  background: rgba(74,102,111,0.18); border-radius: 2px; outline: none; cursor: pointer;
 }
 input[type="range"].accent-thumb::-webkit-slider-thumb {
   -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
-  background: var(--accent-l); cursor: pointer;
-  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(106,133,143,0.25);
+  background: var(--accent); cursor: pointer;
+  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(74,102,111,0.2);
   transition: transform 0.12s;
 }
 input[type="range"].meta-thumb::-webkit-slider-thumb {
   -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
   background: var(--meta); cursor: pointer;
-  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(74,143,212,0.2);
+  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(43,114,200,0.2);
   transition: transform 0.12s;
 }
 input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+/* ── LTV display ── */
+.ltv-display {
+  margin-top: 18px; padding: 12px 16px;
+  background: rgba(181,137,42,0.06);
+  border: 1px solid rgba(181,137,42,0.2);
+  border-radius: 8px;
+  font-size: 13px; color: var(--text-dim); font-weight: 400;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ltv-display strong {
+  color: var(--gold);
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 16px;
+}
 
 /* ── Plataformas ── */
 .plat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 20px; }
@@ -181,10 +198,10 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   text-align: center; transition: all 0.2s;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
-.plat-btn:hover { border-color: rgba(241,236,230,0.15); }
-.plat-btn.active-meta   { border-color: rgba(74,143,212,0.5);  background: rgba(74,143,212,0.08); }
-.plat-btn.active-google { border-color: rgba(224,90,58,0.5);   background: rgba(224,90,58,0.08); }
-.plat-btn.active-ambos  { border-color: rgba(74,102,111,0.5);  background: rgba(74,102,111,0.1); }
+.plat-btn:hover { border-color: rgba(74,102,111,0.25); }
+.plat-btn.active-meta   { border-color: rgba(43,114,200,0.45);  background: rgba(43,114,200,0.06); }
+.plat-btn.active-google { border-color: rgba(201,68,39,0.45);   background: rgba(201,68,39,0.06); }
+.plat-btn.active-ambos  { border-color: rgba(74,102,111,0.45);  background: rgba(74,102,111,0.08); }
 .plat-name {
   font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600;
   color: var(--text); letter-spacing: 0.01em;
@@ -192,7 +209,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .plat-desc { font-size: 10px; color: var(--text-dim); font-weight: 300; }
 .active-meta  .plat-name { color: var(--meta); }
 .active-google .plat-name { color: var(--google); }
-.active-ambos .plat-name { color: var(--accent-l); }
+.active-ambos .plat-name { color: var(--accent); }
 
 .split-wrap { display: none; }
 .split-wrap.visible { display: block; }
@@ -208,10 +225,11 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .result-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; padding: 28px 32px;
+  box-shadow: 0 1px 6px rgba(74,102,111,0.07);
 }
 .result-card.highlight {
-  border-color: rgba(74,102,111,0.35);
-  background: rgba(74,102,111,0.07);
+  border-color: rgba(74,102,111,0.3);
+  background: rgba(74,102,111,0.04);
 }
 .result-card-label {
   font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
@@ -220,7 +238,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .result-big {
   font-family: 'Lora', serif; font-weight: 700;
   font-size: 40px; line-height: 1; letter-spacing: -0.01em;
-  color: var(--cream); margin-bottom: 4px;
+  color: var(--accent); margin-bottom: 4px;
 }
 .result-per { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; font-weight: 300; }
 .result-rule { height: 1px; background: var(--border); margin: 16px 0; }
@@ -230,12 +248,12 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .result-row-val { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; }
 .c-meta   { color: var(--meta); }
 .c-google { color: var(--google); }
-.c-accent { color: var(--accent-l); }
-.c-cream  { color: var(--cream); }
+.c-accent { color: var(--accent); }
+.c-gold   { color: var(--gold); }
 
 .tax-box {
   margin-top: 16px; padding: 10px 14px;
-  background: rgba(74,102,111,0.08); border: 1px solid rgba(74,102,111,0.2);
+  background: rgba(74,102,111,0.06); border: 1px solid rgba(74,102,111,0.15);
   border-radius: 8px;
 }
 .tax-box-big { font-family: 'Lora', serif; font-size: 17px; font-weight: 700; color: var(--text); }
@@ -248,15 +266,18 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .metric-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; padding: 22px 24px;
+  box-shadow: 0 1px 6px rgba(74,102,111,0.07);
 }
 .metric-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; font-weight: 500; }
 .metric-value { font-family: 'Lora', serif; font-weight: 700; font-size: 28px; letter-spacing: -0.01em; color: var(--text); line-height: 1; }
 .metric-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; font-weight: 300; }
+.metric-sub-highlight { font-size: 12px; color: var(--gold); margin-top: 5px; font-weight: 600; font-family: 'Poppins', sans-serif; }
 
-/* ROI Bar */
+/* ROAS Bar */
 .roi-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; padding: 28px 32px; margin-bottom: 6px;
+  box-shadow: 0 1px 6px rgba(74,102,111,0.07);
 }
 .roi-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .roi-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
@@ -273,22 +294,28 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   font-size: 14px; line-height: 1.8; font-weight: 300;
   border: 1px solid;
 }
-.verdict.good   { background: rgba(40,199,64,0.06);   border-color: rgba(40,199,64,0.2);   color: #6de889; }
-.verdict.teal   { background: rgba(74,102,111,0.08);  border-color: rgba(74,102,111,0.3);  color: var(--accent-l); }
-.verdict.warn   { background: rgba(255,189,46,0.06);  border-color: rgba(255,189,46,0.2);  color: var(--yellow); }
-.verdict.bad    { background: rgba(255,94,87,0.06);   border-color: rgba(255,94,87,0.18);  color: var(--red); }
+.verdict.good { background: rgba(26,143,52,0.05);  border-color: rgba(26,143,52,0.2);  color: #145C24; }
+.verdict.teal { background: rgba(74,102,111,0.06); border-color: rgba(74,102,111,0.25); color: var(--accent-l); }
+.verdict.bad  { background: rgba(192,48,48,0.05);  border-color: rgba(192,48,48,0.18); color: #8B1A1A; }
 .verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
-.good .verdict-dot  { background: var(--green); }
-.teal .verdict-dot  { background: var(--accent-l); }
-.warn .verdict-dot  { background: var(--yellow); }
-.bad  .verdict-dot  { background: var(--red); }
+.good .verdict-dot { background: var(--green); }
+.teal .verdict-dot { background: var(--accent); }
+.bad  .verdict-dot { background: var(--red); }
+
+/* Nota LTV */
+.ltv-note {
+  background: rgba(74,102,111,0.04); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 24px; margin-bottom: 6px;
+}
+.ltv-note p { font-size: 12px; color: var(--text-dim); line-height: 1.8; font-weight: 300; }
 
 /* Nota tributária */
 .tax-note {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; padding: 24px 32px; margin-bottom: 6px;
+  box-shadow: 0 1px 6px rgba(74,102,111,0.07);
 }
-.tax-note-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-l); margin-bottom: 12px; font-weight: 500; }
+.tax-note-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
 .tax-note p { font-size: 13px; color: var(--text-dim); line-height: 1.8; font-weight: 300; }
 .tax-note p + p { margin-top: 8px; }
 
@@ -299,10 +326,10 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   background: #25D366; color: #fff;
   font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
   text-decoration: none; border-radius: 100px; padding: 14px 22px;
-  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+  box-shadow: 0 4px 24px rgba(37,211,102,0.35);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.whatsapp-float:hover { transform: scale(1.05); box-shadow: 0 6px 32px rgba(37,211,102,0.55); }
+.whatsapp-float:hover { transform: scale(1.05); box-shadow: 0 6px 32px rgba(37,211,102,0.5); }
 .whatsapp-float span { white-space: nowrap; }
 
 /* Card autora */
@@ -311,10 +338,11 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   border-radius: 14px; padding: 24px 28px;
   display: flex; align-items: center; gap: 20px;
   margin-bottom: 6px;
+  box-shadow: 0 1px 6px rgba(74,102,111,0.07);
 }
 .autora-avatar {
   width: 64px; height: 64px; border-radius: 50%;
-  border: 2px solid rgba(74,102,111,0.5);
+  border: 2px solid rgba(74,102,111,0.35);
   object-fit: cover; flex-shrink: 0;
 }
 .autora-info { flex: 1; }
@@ -323,7 +351,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .autora-cargo { font-size: 12px; color: var(--text-dim); font-weight: 300; margin-top: 3px; }
 .autora-ig {
   display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
-  font-size: 12px; color: var(--accent-l); font-weight: 500;
+  font-size: 12px; color: var(--accent); font-weight: 500;
   text-decoration: none; transition: opacity 0.15s;
 }
 .autora-ig:hover { opacity: 0.7; }
@@ -340,13 +368,13 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .outro-input::placeholder { color: var(--text-dim); }
 .outro-input:focus { border-color: rgba(74,102,111,0.4); }
 .outro-confirm {
-  padding: 14px 20px; background: rgba(74,102,111,0.12);
-  border: 1px solid rgba(74,102,111,0.3); border-radius: 8px;
-  color: var(--accent-l); font-size: 13px; font-weight: 600;
+  padding: 14px 20px; background: rgba(74,102,111,0.08);
+  border: 1px solid rgba(74,102,111,0.25); border-radius: 8px;
+  color: var(--accent); font-size: 13px; font-weight: 600;
   cursor: pointer; white-space: nowrap; transition: all 0.2s;
   font-family: 'Poppins', sans-serif;
 }
-.outro-confirm:hover { background: rgba(74,102,111,0.2); }
+.outro-confirm:hover { background: rgba(74,102,111,0.15); }
 
 /* Rodapé */
 .footer {
@@ -390,7 +418,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 
   <div class="assinatura">
-    <img src="DSC08746%20-%20Copia.JPG" alt="Mariana Manfredinny" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(74,102,111,0.5);flex-shrink:0;">
+    <img src="DSC08746%20-%20Copia.JPG" alt="Mariana Manfredinny" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(74,102,111,0.4);flex-shrink:0;">
     <div class="assinatura-line"></div>
     <span class="assinatura-texto">Ferramenta criada por Mariana Manfredinny | Gestora de Marketing Digital</span>
   </div>
@@ -460,6 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="step-num">02</span>
         <span class="step-title">Parâmetros do negócio</span>
       </div>
+
       <div class="field">
         <div class="field-header">
           <span class="field-name">Ticket médio do serviço</span>
@@ -467,17 +496,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <input type="range" class="accent-thumb" id="ticket" min="500" max="15000" step="100" value="2000" oninput="update()">
       </div>
+
       <div class="field">
+        <div class="field-header">
+          <span class="field-name">Frequência de atendimento por mês</span>
+          <span class="field-value" id="val-freq">4 sessões/mês</span>
+        </div>
+        <input type="range" class="accent-thumb" id="freq" min="1" max="12" step="1" value="4" oninput="update()">
+      </div>
+
+      <div class="field">
+        <div class="field-header">
+          <span class="field-name">Tempo médio de retenção do cliente</span>
+          <span class="field-value" id="val-retencao">6 meses</span>
+        </div>
+        <input type="range" class="accent-thumb" id="retencao" min="1" max="24" step="1" value="6" oninput="update()">
+      </div>
+
+      <div class="ltv-display">
+        <span>LTV estimado por cliente</span>
+        <strong id="res-ltv-param">R$ 0</strong>
+      </div>
+
+      <div class="field" style="margin-top:20px;">
         <div class="field-header">
           <span class="field-name">Meta de novos clientes por mês</span>
           <span class="field-value" id="val-clientes">5 clientes</span>
         </div>
         <input type="range" class="accent-thumb" id="clientes" min="1" max="20" step="1" value="5" oninput="update()">
       </div>
+
       <div class="field">
         <div class="field-header">
           <span class="field-name">Conversão: lead qualificado → cliente</span>
-          <span class="field-value" id="val-conv">8%</span>
+          <span class="field-value" id="val-conv">22%</span>
         </div>
         <input type="range" class="accent-thumb" id="conv" min="5" max="60" step="1" value="22" oninput="update()">
         <div class="field-ref" id="conv-ref">↗ Média do mercado para Saúde: 22% (de quem pede contato)</div>
@@ -567,12 +619,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="metric-card">
         <div class="metric-label">Leads necessários</div>
         <div class="metric-value" id="res-leads">0</div>
-        <div class="metric-sub">por mês</div>
+        <div class="metric-sub" id="res-clientes-label">com 0 clientes/mês</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Receita projetada</div>
-        <div class="metric-value c-cream" id="res-receita">R$ 0</div>
-        <div class="metric-sub" id="res-clientes-label">com 0 clientes/mês</div>
+        <div class="metric-label">Receita projetada (com LTV)</div>
+        <div class="metric-value c-accent" id="res-receita">R$ 0</div>
+        <div class="metric-sub-highlight" id="res-ltv-card">LTV: R$ 0 por cliente</div>
       </div>
       <div class="metric-card">
         <div class="metric-label">CAC médio</div>
@@ -586,7 +638,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- ROI Bar -->
+    <!-- ROAS Bar -->
     <div class="roi-card">
       <div class="roi-header">
         <span class="roi-label">Retorno sobre investimento em anúncios (ROAS)</span>
@@ -597,10 +649,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="roi-marks">
         <span class="roi-mark">0x</span>
-        <span class="roi-mark">3x</span>
-        <span class="roi-mark">6x</span>
-        <span class="roi-mark">9x</span>
-        <span class="roi-mark">12x</span>
+        <span class="roi-mark">2x</span>
+        <span class="roi-mark">5x</span>
+        <span class="roi-mark">10x</span>
+        <span class="roi-mark">20x+</span>
       </div>
     </div>
 
@@ -608,6 +660,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="verdict-box" class="verdict teal">
       <div class="verdict-dot"></div>
       <span id="verdict-text"></span>
+    </div>
+
+    <!-- Nota LTV -->
+    <div class="ltv-note">
+      <p>O cálculo considera o LTV (valor do cliente ao longo do tempo), não apenas a primeira transação. Isso reflete com mais precisão o retorno real do investimento em mídia para profissionais que atendem clientes de forma recorrente.</p>
     </div>
 
     <!-- Nota tributária -->
@@ -633,7 +690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div style="font-size:13px;color:var(--text-dim);text-align:right;line-height:1.7;font-weight:300">
       Quer entender o que funciona<br>para o seu negócio?<br>
-      <strong style="color:var(--cream);font-weight:600">Reunião gratuita ↓</strong>
+      <strong style="color:var(--accent);font-weight:600">Reunião gratuita ↓</strong>
     </div>
   </div>
 
@@ -658,8 +715,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   // CPL (R$): WordStream 2025 + fontes BR (Leadster, Juridigital, SistemaPacto).
   // conv = % de leads qualificados (quem preencheu formulário) que viram clientes.
-  // Fontes: SistemaPacto BR (fitness 30-50%), ChiliPiper (form→reunião 30-66%),
-  // First Page Sage (legal CAC $915, consulting CAC $656), US gym avg CAC $118.
   const BENCHMARKS = {
     saude:       { meta: {min:25, med:60,  alto:130}, google: {min:45, med:100, alto:200}, conv: 22, label: 'Saúde' },
     fitness:     { meta: {min:10, med:30,  alto:70},  google: {min:18, med:42,  alto:90},  conv: 35, label: 'Fitness' },
@@ -722,13 +777,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function update() {
     const ticket   = parseInt(document.getElementById('ticket').value);
+    const freq     = parseInt(document.getElementById('freq').value);
+    const retencao = parseInt(document.getElementById('retencao').value);
     const clientes = parseInt(document.getElementById('clientes').value);
     const conv     = parseInt(document.getElementById('conv').value);
     const bm       = BENCHMARKS[segmento];
 
     document.getElementById('val-ticket').textContent   = fmt(ticket);
+    document.getElementById('val-freq').textContent     = freq + (freq === 1 ? ' sessão/mês' : ' sessões/mês');
+    document.getElementById('val-retencao').textContent = retencao + (retencao === 1 ? ' mês em média' : ' meses em média');
     document.getElementById('val-clientes').textContent = clientes + (clientes === 1 ? ' cliente' : ' clientes');
     document.getElementById('val-conv').textContent     = conv + '%';
+
+    const ltv     = ticket * freq * retencao;
+    const receita = ltv * clientes;
+
+    document.getElementById('res-ltv-param').textContent = fmt(ltv);
 
     const leadsTotal = Math.ceil(clientes / (conv / 100));
 
@@ -740,7 +804,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const leadsMeta   = platAtual === 'google' ? 0 : Math.ceil(leadsTotal * pMeta);
     const leadsGoogle = platAtual === 'meta'   ? 0 : leadsTotal - leadsMeta;
 
-    const minMeta  = leadsMeta * bm.meta.min;
+    const minMeta   = leadsMeta * bm.meta.min;
     const minGoogle = leadsGoogle * bm.google.min;
     const minTotal  = minMeta + minGoogle;
     const minIof    = Math.round(minTotal * 1.30);
@@ -750,9 +814,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const medTotal  = medMeta + medGoogle;
     const medIof    = Math.round(medTotal * 1.30);
 
-    const receita = ticket * clientes;
-    const roas    = medTotal > 0 ? receita / medTotal : 0;
-    const cac     = clientes > 0 ? medTotal / clientes : 0;
+    const roas = medTotal > 0 ? receita / medTotal : 0;
+    const cac  = clientes > 0 ? medTotal / clientes : 0;
 
     document.getElementById('res-min-total').textContent  = fmt(minTotal);
     document.getElementById('res-min-meta').textContent   = platAtual === 'google' ? '—' : fmt(minMeta);
@@ -764,44 +827,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('res-med-google').textContent = platAtual === 'meta'   ? '—' : fmt(medGoogle);
     document.getElementById('res-med-iof').textContent    = fmt(medIof);
 
-    document.getElementById('res-leads').textContent         = leadsTotal;
-    document.getElementById('res-receita').textContent       = fmt(receita);
+    document.getElementById('res-leads').textContent       = leadsTotal;
     document.getElementById('res-clientes-label').textContent = 'com ' + clientes + (clientes === 1 ? ' cliente/mês' : ' clientes/mês');
-    document.getElementById('res-cac').textContent           = fmt(cac);
-    document.getElementById('res-roi').textContent           = roas.toFixed(1) + 'x';
-    document.getElementById('roi-bar-val').textContent       = roas.toFixed(1) + 'x';
+    document.getElementById('res-receita').textContent     = fmt(receita);
+    document.getElementById('res-ltv-card').textContent    = 'LTV: ' + fmt(ltv) + ' por cliente';
+    document.getElementById('res-cac').textContent         = fmt(cac);
+    document.getElementById('res-roi').textContent         = roas.toFixed(1) + 'x';
+    document.getElementById('roi-bar-val').textContent     = roas.toFixed(1) + 'x';
 
     const roiFill = document.getElementById('roi-fill');
-    roiFill.style.width = Math.min(100, (roas / 12) * 100) + '%';
+    roiFill.style.width = Math.min(100, (roas / 20) * 100) + '%';
     roiFill.style.background =
-      roas >= 6 ? 'var(--green)' :
-      roas >= 3 ? 'var(--accent-l)' :
-      roas >= 1 ? 'var(--yellow)' : 'var(--red)';
+      roas >= 5 ? '#1A8F34' :
+      roas >= 2 ? '#4A666F' : '#C03030';
 
-    const roiEl   = document.getElementById('res-roi');
+    const roiEl = document.getElementById('res-roi');
     roiEl.style.color =
-      roas >= 6 ? 'var(--green)' :
-      roas >= 3 ? 'var(--accent-l)' :
-      roas >= 1 ? 'var(--yellow)' : 'var(--red)';
+      roas >= 5 ? 'var(--green)' :
+      roas >= 2 ? 'var(--accent)' : 'var(--red)';
 
     const verdictBox  = document.getElementById('verdict-box');
     const verdictText = document.getElementById('verdict-text');
     verdictBox.className = 'verdict';
 
-    const cacPct = ticket > 0 ? Math.round((cac / ticket) * 100) : 0;
-
-    if (roas >= 6) {
+    if (roas >= 5) {
       verdictBox.classList.add('good');
-      verdictText.textContent = `Excelente ROAS de ${roas.toFixed(1)}x. Para cada R$1 investido em anúncios, você gera R$${roas.toFixed(1)} em receita. O CAC de ${fmt(cac)} representa ${cacPct}% do ticket — margem saudável para escalar.`;
-    } else if (roas >= 3) {
+      verdictText.textContent = `Com LTV de ${fmt(ltv)} por cliente e ROAS de ${roas.toFixed(1)}x, cada real investido em mídia retorna R$${roas.toFixed(1)} em receita ao longo do relacionamento com o cliente.`;
+    } else if (roas >= 2) {
       verdictBox.classList.add('teal');
-      verdictText.textContent = `ROAS de ${roas.toFixed(1)}x — bom para serviços. Seu custo de aquisição de ${fmt(cac)} representa ${cacPct}% do ticket. Para profissionais liberais com alta margem, esse retorno é viável e escalável.`;
-    } else if (roas >= 1) {
-      verdictBox.classList.add('warn');
-      verdictText.textContent = `ROAS de ${roas.toFixed(1)}x: o investimento se paga, mas a margem é apertada. O CAC de ${fmt(cac)} consome ${cacPct}% do ticket. Aumentar a conversão de leads ou o ticket médio vai melhorar bastante esse cenário.`;
+      verdictText.textContent = `O ROAS de ${roas.toFixed(1)}x é viável, mas depende de manter o cliente ativo por pelo menos ${retencao} ${retencao === 1 ? 'mês' : 'meses'}. Revise sua estratégia de retenção antes de escalar o investimento.`;
     } else {
       verdictBox.classList.add('bad');
-      verdictText.textContent = `Com ticket de ${fmt(ticket)}, o CAC de ${fmt(cac)} supera a receita por cliente. Para esse segmento valer a pena, o ticket precisa estar acima de ${fmt(cac * 1.5)}. Considere aumentar o preço do serviço ou melhorar a taxa de conversão.`;
+      verdictText.textContent = `Com esses parâmetros, o investimento em mídia não se paga dentro do ciclo de retenção atual. Aumente o ticket, a frequência de atendimento ou o tempo de retenção antes de investir em tráfego pago.`;
     }
   }
 
