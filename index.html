@@ -11,26 +11,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de Investimento em Mídia Paga — Mariana Manfredinny</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:       #0A0A0A;
-  --surface:  #111111;
-  --surface2: #1A1A1A;
-  --border:   rgba(255,255,255,0.07);
-  --text:     #F0EDE8;
-  --text-dim: rgba(240,237,232,0.45);
-  --accent:   #C8A96E;
-  --meta:     #4A90D9;
+  --bg:       #1B1B1D;
+  --surface:  #242426;
+  --surface2: #2D2D2F;
+  --border:   rgba(241,236,230,0.07);
+  --text:     #F1ECE6;
+  --text-dim: rgba(241,236,230,0.45);
+  --accent:   #4A666F;
+  --accent-l: #6A858F;
+  --cream:    #E7DDD0;
+  --meta:     #4A8FD4;
   --google:   #E05A3A;
-  --green:    #4ADE80;
-  --red:      #FF453A;
+  --green:    #28C740;
+  --red:      #FF5E57;
+  --yellow:   #FFBD2E;
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   background: var(--bg);
   color: var(--text);
@@ -46,19 +49,19 @@ body {
 .light { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
 .light-1 {
   width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(74,102,111,0.18) 0%, transparent 70%);
   top: -200px; left: -100px; filter: blur(80px);
   animation: drift1 25s ease-in-out infinite;
 }
 .light-2 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(74,144,217,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(29,52,64,0.25) 0%, transparent 70%);
   top: 30%; right: -100px; filter: blur(90px);
   animation: drift2 30s ease-in-out infinite;
 }
 .light-3 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(200,169,110,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(231,221,208,0.06) 0%, transparent 70%);
   bottom: 10%; left: 20%; filter: blur(70px);
   animation: drift3 20s ease-in-out infinite;
 }
@@ -71,12 +74,12 @@ body {
 
 /* ── Assinatura ── */
 .assinatura {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 48px;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 52px;
 }
-.assinatura-line { width: 28px; height: 1px; background: var(--accent); opacity: 0.6; }
+.assinatura-line { width: 28px; height: 1px; background: var(--accent-l); opacity: 0.5; }
 .assinatura-texto {
-  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
-  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 500;
+  color: var(--accent-l); letter-spacing: 0.1em; text-transform: uppercase;
 }
 
 /* ── Header ── */
@@ -86,32 +89,32 @@ body {
   color: var(--text-dim); margin-bottom: 16px; font-weight: 500;
 }
 .header h1 {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 48px; line-height: 1.05; letter-spacing: -0.03em;
+  font-family: 'Lora', serif; font-weight: 700;
+  font-size: 48px; line-height: 1.1; letter-spacing: -0.01em;
   color: var(--text); margin-bottom: 20px;
 }
-.header h1 em { color: var(--accent); font-style: normal; }
-.header-rule { width: 48px; height: 1px; background: var(--accent); opacity: 0.4; margin-bottom: 18px; }
-.header p { font-size: 15px; color: var(--text-dim); max-width: 560px; line-height: 1.75; font-weight: 400; }
+.header h1 em { color: var(--cream); font-style: italic; }
+.header-rule { width: 48px; height: 1px; background: var(--accent); opacity: 0.5; margin-bottom: 18px; }
+.header p { font-size: 15px; color: var(--text-dim); max-width: 560px; line-height: 1.8; font-weight: 300; }
 
 /* ── Seções ── */
 .section { margin-bottom: 6px; }
 .section-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 32px 36px;
 }
 .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
 .step-num {
-  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
-  color: var(--accent); letter-spacing: 0.16em;
-  background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.18);
+  font-family: 'Lora', serif; font-size: 11px; font-weight: 700;
+  color: var(--accent-l); letter-spacing: 0.16em;
+  background: rgba(74,102,111,0.1); border: 1px solid rgba(74,102,111,0.25);
   padding: 4px 10px; border-radius: 100px;
 }
 .step-title {
-  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
-  color: var(--text); letter-spacing: 0.04em; text-transform: uppercase;
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--text); letter-spacing: 0.08em; text-transform: uppercase;
 }
 
 /* ── Segmentos ── */
@@ -127,60 +130,45 @@ body {
   text-align: center; transition: all 0.2s;
   display: flex; flex-direction: column; align-items: center; gap: 10px;
 }
-.seg-btn:hover { border-color: rgba(200,169,110,0.3); background: rgba(200,169,110,0.05); }
+.seg-btn:hover { border-color: rgba(74,102,111,0.35); background: rgba(74,102,111,0.06); }
 .seg-btn.active {
-  border-color: rgba(200,169,110,0.5);
-  background: rgba(200,169,110,0.08);
+  border-color: rgba(74,102,111,0.55);
+  background: rgba(74,102,111,0.1);
 }
-.seg-icon {
-  font-size: 22px; line-height: 1;
-}
+.seg-icon { font-size: 22px; line-height: 1; }
 .seg-nome {
-  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
-  color: var(--text); letter-spacing: 0.02em;
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--text); letter-spacing: 0.01em;
 }
-.seg-desc {
-  font-size: 10px; color: var(--text-dim); line-height: 1.5; font-weight: 400;
-}
-.seg-btn.active .seg-nome { color: var(--accent); }
-
-.outro-input-wrap { margin-top: 12px; display: none; }
-.outro-input-wrap.visible { display: block; }
-.outro-input {
-  width: 100%; padding: 14px 18px;
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 400; outline: none; transition: border-color 0.2s;
-}
-.outro-input::placeholder { color: var(--text-dim); }
-.outro-input:focus { border-color: rgba(200,169,110,0.4); }
+.seg-desc { font-size: 10px; color: var(--text-dim); line-height: 1.5; font-weight: 300; }
+.seg-btn.active .seg-nome { color: var(--accent-l); }
 
 /* ── Sliders ── */
-.field { padding: 18px 0; border-bottom: 1px solid var(--border); }
+.field { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .field:last-child { border-bottom: none; padding-bottom: 0; }
 .field:first-child { padding-top: 0; }
 .field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
-.field-name { font-size: 14px; color: var(--text-dim); font-weight: 400; }
+.field-name { font-size: 13px; color: var(--text-dim); font-weight: 400; }
 .field-value {
-  font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700;
-  color: var(--text); letter-spacing: -0.02em;
+  font-family: 'Lora', serif; font-size: 18px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.01em;
 }
-.field-ref { font-size: 11px; color: var(--accent); margin-top: 8px; font-weight: 400; opacity: 0.8; }
+.field-ref { font-size: 11px; color: var(--accent-l); margin-top: 8px; font-weight: 400; opacity: 0.8; }
 
 input[type="range"] {
   width: 100%; height: 2px; -webkit-appearance: none; appearance: none;
-  background: rgba(255,255,255,0.1); border-radius: 2px; outline: none; cursor: pointer;
+  background: rgba(241,236,230,0.1); border-radius: 2px; outline: none; cursor: pointer;
 }
 input[type="range"].accent-thumb::-webkit-slider-thumb {
   -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
-  background: var(--accent); cursor: pointer;
-  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(200,169,110,0.2);
+  background: var(--accent-l); cursor: pointer;
+  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(106,133,143,0.25);
   transition: transform 0.12s;
 }
 input[type="range"].meta-thumb::-webkit-slider-thumb {
   -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
   background: var(--meta); cursor: pointer;
-  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(74,144,217,0.2);
+  border: 2px solid var(--surface); box-shadow: 0 0 0 3px rgba(74,143,212,0.2);
   transition: transform 0.12s;
 }
 input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
@@ -193,126 +181,123 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   text-align: center; transition: all 0.2s;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
-.plat-btn:hover { border-color: rgba(255,255,255,0.15); }
-.plat-btn.active-meta   { border-color: rgba(74,144,217,0.5);  background: rgba(74,144,217,0.08); }
+.plat-btn:hover { border-color: rgba(241,236,230,0.15); }
+.plat-btn.active-meta   { border-color: rgba(74,143,212,0.5);  background: rgba(74,143,212,0.08); }
 .plat-btn.active-google { border-color: rgba(224,90,58,0.5);   background: rgba(224,90,58,0.08); }
-.plat-btn.active-ambos  { border-color: rgba(200,169,110,0.5); background: rgba(200,169,110,0.08); }
+.plat-btn.active-ambos  { border-color: rgba(74,102,111,0.5);  background: rgba(74,102,111,0.1); }
 .plat-name {
-  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
-  color: var(--text); letter-spacing: 0.02em;
+  font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text); letter-spacing: 0.01em;
 }
-.plat-desc { font-size: 10px; color: var(--text-dim); font-weight: 400; }
+.plat-desc { font-size: 10px; color: var(--text-dim); font-weight: 300; }
 .active-meta  .plat-name { color: var(--meta); }
 .active-google .plat-name { color: var(--google); }
-.active-ambos .plat-name { color: var(--accent); }
+.active-ambos .plat-name { color: var(--accent-l); }
 
 .split-wrap { display: none; }
 .split-wrap.visible { display: block; }
 .split-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .split-label { font-size: 12px; color: var(--text-dim); font-weight: 400; }
 .split-values { display: flex; gap: 20px; }
-.split-val-meta   { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--meta); }
-.split-val-google { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--google); }
+.split-val-meta   { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; color: var(--meta); }
+.split-val-google { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; color: var(--google); }
 
 /* ── Resultado ── */
-.results-section { margin-top: 6px; }
 .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
 
 .result-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 28px 32px;
+  border-radius: 14px; padding: 28px 32px;
 }
 .result-card.highlight {
-  border-color: rgba(200,169,110,0.25);
-  background: rgba(200,169,110,0.04);
+  border-color: rgba(74,102,111,0.35);
+  background: rgba(74,102,111,0.07);
 }
 .result-card-label {
   font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--text-dim); margin-bottom: 16px; font-weight: 500;
 }
 .result-big {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 42px; line-height: 1; letter-spacing: -0.03em;
-  color: var(--accent); margin-bottom: 4px;
+  font-family: 'Lora', serif; font-weight: 700;
+  font-size: 40px; line-height: 1; letter-spacing: -0.01em;
+  color: var(--cream); margin-bottom: 4px;
 }
-.result-per { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; font-weight: 400; }
+.result-per { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; font-weight: 300; }
 .result-rule { height: 1px; background: var(--border); margin: 16px 0; }
 .result-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .result-row:last-child { margin-bottom: 0; }
-.result-row-label { font-size: 12px; color: var(--text-dim); font-weight: 400; }
-.result-row-val { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; }
+.result-row-label { font-size: 12px; color: var(--text-dim); font-weight: 300; }
+.result-row-val { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; }
 .c-meta   { color: var(--meta); }
 .c-google { color: var(--google); }
-.c-accent { color: var(--accent); }
+.c-accent { color: var(--accent-l); }
+.c-cream  { color: var(--cream); }
 
-/* Tax box inside result card */
 .tax-box {
   margin-top: 16px; padding: 10px 14px;
-  background: rgba(200,169,110,0.06); border: 1px solid rgba(200,169,110,0.15);
+  background: rgba(74,102,111,0.08); border: 1px solid rgba(74,102,111,0.2);
   border-radius: 8px;
 }
-.tax-box-big { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
-.tax-box-label { font-size: 10px; color: var(--text-dim); margin-top: 2px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+.tax-box-big { font-family: 'Lora', serif; font-size: 17px; font-weight: 700; color: var(--text); }
+.tax-box-label { font-size: 10px; color: var(--text-dim); margin-top: 2px; font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* Métricas */
 .metrics-row {
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px;
 }
 .metric-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 24px 28px;
+  border-radius: 14px; padding: 22px 24px;
 }
-.metric-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; font-weight: 500; }
-.metric-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.03em; color: var(--text); line-height: 1; }
-.metric-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; font-weight: 400; }
+.metric-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; font-weight: 500; }
+.metric-value { font-family: 'Lora', serif; font-weight: 700; font-size: 28px; letter-spacing: -0.01em; color: var(--text); line-height: 1; }
+.metric-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; font-weight: 300; }
 
 /* ROI Bar */
 .roi-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 28px 32px; margin-bottom: 6px;
+  border-radius: 14px; padding: 28px 32px; margin-bottom: 6px;
 }
 .roi-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .roi-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
-.roi-value { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
-.roi-track { height: 6px; background: var(--surface2); border-radius: 6px; overflow: hidden; position: relative; }
+.roi-value { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.roi-track { height: 6px; background: var(--surface2); border-radius: 6px; overflow: hidden; }
 .roi-fill { height: 100%; border-radius: 6px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.4s; }
 .roi-marks { display: flex; justify-content: space-between; margin-top: 8px; }
-.roi-mark { font-size: 10px; color: var(--text-dim); font-weight: 400; }
+.roi-mark { font-size: 10px; color: var(--text-dim); font-weight: 300; }
 
 /* Veredicto */
 .verdict {
-  border-radius: 12px; padding: 22px 28px; margin-bottom: 6px;
+  border-radius: 14px; padding: 22px 28px; margin-bottom: 6px;
   display: flex; align-items: flex-start; gap: 14px;
-  font-size: 14px; line-height: 1.75; font-weight: 400;
+  font-size: 14px; line-height: 1.8; font-weight: 300;
   border: 1px solid;
 }
-.verdict.good { background: rgba(74,222,128,0.06); border-color: rgba(74,222,128,0.2); color: var(--green); }
-.verdict.warn { background: rgba(200,169,110,0.06); border-color: rgba(200,169,110,0.2); color: var(--accent); }
-.verdict.bad  { background: rgba(255,69,58,0.06);  border-color: rgba(255,69,58,0.18); color: var(--red); }
-.verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
-.good .verdict-dot { background: var(--green); }
-.warn .verdict-dot { background: var(--accent); }
-.bad  .verdict-dot { background: var(--red); }
+.verdict.good   { background: rgba(40,199,64,0.06);   border-color: rgba(40,199,64,0.2);   color: #6de889; }
+.verdict.teal   { background: rgba(74,102,111,0.08);  border-color: rgba(74,102,111,0.3);  color: var(--accent-l); }
+.verdict.warn   { background: rgba(255,189,46,0.06);  border-color: rgba(255,189,46,0.2);  color: var(--yellow); }
+.verdict.bad    { background: rgba(255,94,87,0.06);   border-color: rgba(255,94,87,0.18);  color: var(--red); }
+.verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+.good .verdict-dot  { background: var(--green); }
+.teal .verdict-dot  { background: var(--accent-l); }
+.warn .verdict-dot  { background: var(--yellow); }
+.bad  .verdict-dot  { background: var(--red); }
 
 /* Nota tributária */
 .tax-note {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 24px 32px; margin-bottom: 6px;
+  border-radius: 14px; padding: 24px 32px; margin-bottom: 6px;
 }
-.tax-note-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
-.tax-note p { font-size: 13px; color: var(--text-dim); line-height: 1.75; font-weight: 400; }
+.tax-note-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-l); margin-bottom: 12px; font-weight: 500; }
+.tax-note p { font-size: 13px; color: var(--text-dim); line-height: 1.8; font-weight: 300; }
 .tax-note p + p { margin-top: 8px; }
-
-/* CTA inline (removido — agora é floating) */
-.cta-sup { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; font-weight: 400; text-align: center; }
-.cta-sup strong { color: var(--accent); font-weight: 500; }
 
 /* WhatsApp flutuante */
 .whatsapp-float {
   position: fixed; bottom: 28px; right: 28px; z-index: 1000;
   display: flex; align-items: center; gap: 10px;
   background: #25D366; color: #fff;
-  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700;
+  font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
   text-decoration: none; border-radius: 100px; padding: 14px 22px;
   box-shadow: 0 4px 24px rgba(37,211,102,0.4);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -323,23 +308,22 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 /* Card autora */
 .autora-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 24px 28px;
+  border-radius: 14px; padding: 24px 28px;
   display: flex; align-items: center; gap: 20px;
   margin-bottom: 6px;
 }
 .autora-avatar {
   width: 64px; height: 64px; border-radius: 50%;
-  border: 2px solid rgba(200,169,110,0.4);
+  border: 2px solid rgba(74,102,111,0.5);
   object-fit: cover; flex-shrink: 0;
-  background: linear-gradient(135deg, #C8A96E 0%, #8A6840 100%);
 }
 .autora-info { flex: 1; }
 .autora-criada { font-size: 10px; color: var(--text-dim); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
-.autora-nome { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
-.autora-cargo { font-size: 12px; color: var(--text-dim); font-weight: 400; margin-top: 2px; }
+.autora-nome { font-family: 'Lora', serif; font-size: 17px; font-weight: 700; color: var(--text); }
+.autora-cargo { font-size: 12px; color: var(--text-dim); font-weight: 300; margin-top: 3px; }
 .autora-ig {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
-  font-size: 12px; color: var(--accent); font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+  font-size: 12px; color: var(--accent-l); font-weight: 500;
   text-decoration: none; transition: opacity 0.15s;
 }
 .autora-ig:hover { opacity: 0.7; }
@@ -350,40 +334,33 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .outro-input {
   flex: 1; padding: 14px 18px;
   background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif;
+  border-radius: 8px; color: var(--text); font-family: 'Poppins', sans-serif;
   font-size: 14px; font-weight: 400; outline: none; transition: border-color 0.2s;
 }
 .outro-input::placeholder { color: var(--text-dim); }
-.outro-input:focus { border-color: rgba(200,169,110,0.4); }
+.outro-input:focus { border-color: rgba(74,102,111,0.4); }
 .outro-confirm {
-  padding: 14px 20px; background: rgba(200,169,110,0.12);
-  border: 1px solid rgba(200,169,110,0.3); border-radius: 8px;
-  color: var(--accent); font-size: 13px; font-weight: 700;
+  padding: 14px 20px; background: rgba(74,102,111,0.12);
+  border: 1px solid rgba(74,102,111,0.3); border-radius: 8px;
+  color: var(--accent-l); font-size: 13px; font-weight: 600;
   cursor: pointer; white-space: nowrap; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
-.outro-confirm:hover { background: rgba(200,169,110,0.2); }
+.outro-confirm:hover { background: rgba(74,102,111,0.2); }
 
 /* Rodapé */
 .footer {
   margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
   text-align: center; padding-bottom: 80px;
 }
-.footer-disclaimer { font-size: 12px; color: var(--text-dim); line-height: 1.7; font-weight: 400; }
-
-/* Sem resultado (aviso) */
-.no-plat {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 32px; text-align: center;
-  color: var(--text-dim); font-size: 14px; font-weight: 400;
-}
+.footer-disclaimer { font-size: 12px; color: var(--text-dim); line-height: 1.7; font-weight: 300; }
 
 /* ── Responsivo ── */
-@media (max-width: 720px) {
-  .header h1 { font-size: 32px; }
+@media (max-width: 760px) {
+  .header h1 { font-size: 34px; }
   .seg-grid { grid-template-columns: repeat(2, 1fr); }
   .results-grid { grid-template-columns: 1fr; }
-  .metrics-row { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
   .plat-grid { grid-template-columns: 1fr; }
   .autora-card { flex-direction: column; }
   .section-card { padding: 24px 20px; }
@@ -393,8 +370,8 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 }
 @media (max-width: 480px) {
   body { padding: 32px 16px 64px; }
-  .seg-grid { grid-template-columns: repeat(2, 1fr); }
-  .header h1 { font-size: 26px; }
+  .header h1 { font-size: 28px; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -413,7 +390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 
   <div class="assinatura">
-    <img src="DSC08746%20-%20Copia.JPG" alt="Mariana Manfredinny" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(200,169,110,0.5);flex-shrink:0;">
+    <img src="DSC08746%20-%20Copia.JPG" alt="Mariana Manfredinny" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(74,102,111,0.5);flex-shrink:0;">
     <div class="assinatura-line"></div>
     <span class="assinatura-texto">Ferramenta criada por Mariana Manfredinny | Gestora de Marketing Digital</span>
   </div>
@@ -422,7 +399,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="eyebrow">Profissionais Liberais · Tráfego Pago</div>
     <h1>Calculadora de investimento<br>em <em>mídia paga</em></h1>
     <div class="header-rule"></div>
-    <p>Descubra o investimento mínimo em anúncios para atingir sua meta de clientes. Baseado em benchmarks reais do mercado brasileiro para profissionais liberais.</p>
+    <p>Descubra o investimento necessário em anúncios para atingir sua meta de clientes. Baseado em benchmarks reais do mercado brasileiro para profissionais liberais e prestadores de serviço.</p>
   </div>
 
   <!-- 01 — Segmento -->
@@ -502,7 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="field-name">Taxa de conversão (lead → cliente)</span>
           <span class="field-value" id="val-conv">8%</span>
         </div>
-        <input type="range" class="accent-thumb" id="conv" min="1" max="20" step="1" value="8" oninput="update()">
+        <input type="range" class="accent-thumb" id="conv" min="1" max="30" step="1" value="8" oninput="update()">
         <div class="field-ref" id="conv-ref">↗ Média do mercado para Saúde: 8%</div>
       </div>
     </div>
@@ -546,7 +523,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div id="results-area">
 
     <div class="results-grid">
-      <!-- Mínimo -->
       <div class="result-card">
         <div class="result-card-label">Investimento mínimo</div>
         <div class="result-big" id="res-min-total">R$ 0</div>
@@ -566,7 +542,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- Médio -->
       <div class="result-card highlight">
         <div class="result-card-label">Investimento médio de mercado</div>
         <div class="result-big" id="res-med-total">R$ 0</div>
@@ -587,45 +562,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- Métricas -->
+    <!-- Métricas: 4 cards -->
     <div class="metrics-row">
       <div class="metric-card">
-        <div class="metric-label">Leads necessários/mês</div>
+        <div class="metric-label">Leads necessários</div>
         <div class="metric-value" id="res-leads">0</div>
-        <div class="metric-sub">para atingir a meta</div>
+        <div class="metric-sub">por mês</div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Receita projetada</div>
-        <div class="metric-value c-accent" id="res-receita">R$ 0</div>
-        <div class="metric-sub">com <span id="res-clientes-label">0 clientes</span>/mês</div>
+        <div class="metric-value c-cream" id="res-receita">R$ 0</div>
+        <div class="metric-sub" id="res-clientes-label">com 0 clientes/mês</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">ROI estimado (médio)</div>
+        <div class="metric-label">CAC médio</div>
+        <div class="metric-value" id="res-cac">R$ 0</div>
+        <div class="metric-sub">custo por cliente adquirido</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">ROAS estimado</div>
         <div class="metric-value" id="res-roi">0x</div>
-        <div class="metric-sub">retorno sobre o investimento</div>
+        <div class="metric-sub">retorno sobre anúncio</div>
       </div>
     </div>
 
     <!-- ROI Bar -->
     <div class="roi-card">
       <div class="roi-header">
-        <span class="roi-label">Barra de retorno (baseado no investimento médio)</span>
+        <span class="roi-label">Retorno sobre investimento em anúncios (ROAS)</span>
         <span class="roi-value" id="roi-bar-val">0x</span>
       </div>
       <div class="roi-track">
-        <div class="roi-fill" id="roi-fill" style="width:0%;background:var(--accent)"></div>
+        <div class="roi-fill" id="roi-fill" style="width:0%"></div>
       </div>
       <div class="roi-marks">
         <span class="roi-mark">0x</span>
-        <span class="roi-mark">5x</span>
-        <span class="roi-mark">10x</span>
-        <span class="roi-mark">15x</span>
-        <span class="roi-mark">20x</span>
+        <span class="roi-mark">3x</span>
+        <span class="roi-mark">6x</span>
+        <span class="roi-mark">9x</span>
+        <span class="roi-mark">12x</span>
       </div>
     </div>
 
     <!-- Veredicto -->
-    <div id="verdict-box" class="verdict good">
+    <div id="verdict-box" class="verdict teal">
       <div class="verdict-dot"></div>
       <span id="verdict-text"></span>
     </div>
@@ -645,25 +625,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="autora-info">
       <div class="autora-criada">Ferramenta criada por</div>
       <div class="autora-nome">Mariana Manfredinny</div>
-      <div class="autora-cargo">Diretora de Marketing Fracionada · Especialista em Tráfego Pago</div>
+      <div class="autora-cargo">Gestora de Marketing Digital · Especialista em Tráfego Pago</div>
       <a class="autora-ig" href="https://instagram.com/marimanfredinny" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         @marimanfredinny
       </a>
     </div>
-    <div style="font-size:13px;color:var(--text-dim);text-align:right;line-height:1.6">
+    <div style="font-size:13px;color:var(--text-dim);text-align:right;line-height:1.7;font-weight:300">
       Quer entender o que funciona<br>para o seu negócio?<br>
-      <strong style="color:var(--accent)">Reunião gratuita ↓</strong>
+      <strong style="color:var(--cream);font-weight:600">Reunião gratuita ↓</strong>
     </div>
   </div>
 
-  <!-- Rodapé -->
   <div class="footer">
     <p class="footer-disclaimer">
       Valores estimados com base em benchmarks do mercado brasileiro. Os resultados reais variam conforme segmentação, criativo e maturidade da conta.
     </p>
   </div>
-
 
 </div>
 
@@ -710,10 +688,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!texto) return;
     document.querySelectorAll('.seg-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('seg-outro').classList.add('active');
-    const bm = BENCHMARKS['outro'];
-    document.getElementById('conv-ref').textContent =
-      '↗ Média do mercado para ' + (texto || 'Sua área') + ': ' + bm.conv + '%';
     segmento = 'outro';
+    document.getElementById('conv-ref').textContent =
+      '↗ Média do mercado para ' + texto + ': ' + BENCHMARKS['outro'].conv + '%';
     update();
   }
 
@@ -723,9 +700,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('plat-' + id).className = 'plat-btn';
     });
     document.getElementById('plat-' + p).classList.add('active-' + p);
-    const splitWrap = document.getElementById('split-wrap');
-    if (p === 'ambos') splitWrap.classList.add('visible');
-    else splitWrap.classList.remove('visible');
+    document.getElementById('split-wrap').classList.toggle('visible', p === 'ambos');
     update();
   }
 
@@ -746,9 +721,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const conv     = parseInt(document.getElementById('conv').value);
     const bm       = BENCHMARKS[segmento];
 
-    document.getElementById('val-ticket').textContent  = fmt(ticket);
+    document.getElementById('val-ticket').textContent   = fmt(ticket);
     document.getElementById('val-clientes').textContent = clientes + (clientes === 1 ? ' cliente' : ' clientes');
-    document.getElementById('val-conv').textContent    = conv + '%';
+    document.getElementById('val-conv').textContent     = conv + '%';
 
     const leadsTotal = Math.ceil(clientes / (conv / 100));
 
@@ -760,22 +735,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const leadsMeta   = platAtual === 'google' ? 0 : Math.ceil(leadsTotal * pMeta);
     const leadsGoogle = platAtual === 'meta'   ? 0 : leadsTotal - leadsMeta;
 
-    // Min
-    const minMeta   = leadsMeta   * bm.meta.min;
+    const minMeta  = leadsMeta * bm.meta.min;
     const minGoogle = leadsGoogle * bm.google.min;
     const minTotal  = minMeta + minGoogle;
     const minIof    = Math.round(minTotal * 1.30);
 
-    // Médio
-    const medMeta   = leadsMeta   * bm.meta.med;
+    const medMeta   = leadsMeta * bm.meta.med;
     const medGoogle = leadsGoogle * bm.google.med;
     const medTotal  = medMeta + medGoogle;
     const medIof    = Math.round(medTotal * 1.30);
 
     const receita = ticket * clientes;
-    const roiMed  = medTotal > 0 ? receita / medTotal : 0;
+    const roas    = medTotal > 0 ? receita / medTotal : 0;
+    const cac     = clientes > 0 ? medTotal / clientes : 0;
 
-    // Update DOM
     document.getElementById('res-min-total').textContent  = fmt(minTotal);
     document.getElementById('res-min-meta').textContent   = platAtual === 'google' ? '—' : fmt(minMeta);
     document.getElementById('res-min-google').textContent = platAtual === 'meta'   ? '—' : fmt(minGoogle);
@@ -786,34 +759,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('res-med-google').textContent = platAtual === 'meta'   ? '—' : fmt(medGoogle);
     document.getElementById('res-med-iof').textContent    = fmt(medIof);
 
-    document.getElementById('res-leads').textContent          = leadsTotal;
-    document.getElementById('res-receita').textContent        = fmt(receita);
-    document.getElementById('res-clientes-label').textContent = clientes + (clientes === 1 ? ' cliente' : ' clientes');
-    document.getElementById('res-roi').textContent            = roiMed.toFixed(1) + 'x';
-    document.getElementById('roi-bar-val').textContent        = roiMed.toFixed(1) + 'x';
+    document.getElementById('res-leads').textContent         = leadsTotal;
+    document.getElementById('res-receita').textContent       = fmt(receita);
+    document.getElementById('res-clientes-label').textContent = 'com ' + clientes + (clientes === 1 ? ' cliente/mês' : ' clientes/mês');
+    document.getElementById('res-cac').textContent           = fmt(cac);
+    document.getElementById('res-roi').textContent           = roas.toFixed(1) + 'x';
+    document.getElementById('roi-bar-val').textContent       = roas.toFixed(1) + 'x';
 
-    // ROI bar
-    const roiPct = Math.min(100, (roiMed / 20) * 100);
     const roiFill = document.getElementById('roi-fill');
-    roiFill.style.width = roiPct + '%';
-    roiFill.style.background = roiMed >= 10 ? 'var(--green)' : roiMed >= 3 ? 'var(--accent)' : 'var(--red)';
+    roiFill.style.width = Math.min(100, (roas / 12) * 100) + '%';
+    roiFill.style.background =
+      roas >= 6 ? 'var(--green)' :
+      roas >= 3 ? 'var(--accent-l)' :
+      roas >= 1 ? 'var(--yellow)' : 'var(--red)';
 
-    // Verdict
+    const roiEl   = document.getElementById('res-roi');
+    roiEl.style.color =
+      roas >= 6 ? 'var(--green)' :
+      roas >= 3 ? 'var(--accent-l)' :
+      roas >= 1 ? 'var(--yellow)' : 'var(--red)';
+
     const verdictBox  = document.getElementById('verdict-box');
     const verdictText = document.getElementById('verdict-text');
     verdictBox.className = 'verdict';
-    if (roiMed >= 8) {
+
+    const cacPct = ticket > 0 ? Math.round((cac / ticket) * 100) : 0;
+
+    if (roas >= 6) {
       verdictBox.classList.add('good');
-      verdictText.textContent = `Ótima relação custo-retorno. Com ${fmt(medTotal)}/mês de investimento médio, a receita esperada é de ${fmt(receita)} — um ROI de ${roiMed.toFixed(1)}x. Cada real investido pode retornar ${roiMed.toFixed(1)} em receita.`;
-    } else if (roiMed >= 3) {
+      verdictText.textContent = `Excelente ROAS de ${roas.toFixed(1)}x. Para cada R$1 investido em anúncios, você gera R$${roas.toFixed(1)} em receita. O CAC de ${fmt(cac)} representa ${cacPct}% do ticket — margem saudável para escalar.`;
+    } else if (roas >= 3) {
+      verdictBox.classList.add('teal');
+      verdictText.textContent = `ROAS de ${roas.toFixed(1)}x — bom para serviços. Seu custo de aquisição de ${fmt(cac)} representa ${cacPct}% do ticket. Para profissionais liberais com alta margem, esse retorno é viável e escalável.`;
+    } else if (roas >= 1) {
       verdictBox.classList.add('warn');
-      verdictText.textContent = `ROI moderado de ${roiMed.toFixed(1)}x. Os números funcionam, mas há espaço para melhorar — tente aumentar o ticket médio ou a taxa de conversão para elevar o retorno.`;
-    } else if (roiMed >= 1) {
-      verdictBox.classList.add('bad');
-      verdictText.textContent = `ROI de ${roiMed.toFixed(1)}x ainda positivo, mas apertado. Com ticket de ${fmt(ticket)} e CPL médio do seu segmento, a margem é baixa. Aumentar o ticket médio ou melhorar a conversão é o caminho antes de escalar o investimento.`;
+      verdictText.textContent = `ROAS de ${roas.toFixed(1)}x: o investimento se paga, mas a margem é apertada. O CAC de ${fmt(cac)} consome ${cacPct}% do ticket. Aumentar a conversão de leads ou o ticket médio vai melhorar bastante esse cenário.`;
     } else {
       verdictBox.classList.add('bad');
-      verdictText.textContent = `O ticket médio de ${fmt(ticket)} é baixo em relação ao custo de aquisição de leads neste segmento. Para que o ROI faça sentido, o ticket precisaria estar acima de ${fmt(medTotal / clientes)}. Aumente o ticket ou reveja o segmento.`;
+      verdictText.textContent = `Com ticket de ${fmt(ticket)}, o CAC de ${fmt(cac)} supera a receita por cliente. Para esse segmento valer a pena, o ticket precisa estar acima de ${fmt(cac * 1.5)}. Considere aumentar o preço do serviço ou melhorar a taxa de conversão.`;
     }
   }
 
@@ -829,10 +812,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   // Init
-  document.getElementById('val-ticket').textContent = fmt(2000);
   setSegmento('saude');
   setPlat('ambos');
-  update();
 </script>
 </body>
 </html>
