@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Parceria — Mariana Manfredinny</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F5F0EB;
+  --surface:  #FFFFFF;
+  --surface2: #EDE8E2;
+  --border:   rgba(74,102,111,0.18);
+  --text:     #1A2A30;
+  --text-dim: rgba(26,42,48,0.50);
+  --accent:   #4A666F;
+  --accent-l: #3D5A63;
+  --gold:     #B5892A;
+  --red:      #C03030;
+  --green:    #1A8F34;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 48px 24px 100px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.scene { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.light { position: absolute; border-radius: 50%; }
+.light-1 {
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(74,102,111,0.10) 0%, transparent 70%);
+  top: -200px; left: -100px; filter: blur(80px);
+  animation: drift1 25s ease-in-out infinite;
+}
+.light-2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(29,52,64,0.07) 0%, transparent 70%);
+  top: 30%; right: -100px; filter: blur(90px);
+  animation: drift2 30s ease-in-out infinite;
+}
+.light-3 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(181,137,42,0.06) 0%, transparent 70%);
+  bottom: 10%; left: 20%; filter: blur(70px);
+  animation: drift3 20s ease-in-out infinite;
+}
+@keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,80px)} }
+@keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-80px,60px)} }
+@keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-60px)} }
+
+.wrap { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* ── Assinatura ── */
+.assinatura {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 52px;
+}
+.assinatura-line { width: 28px; height: 1px; background: var(--accent); opacity: 0.4; }
+.assinatura-texto {
+  font-size: 11px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ── Header ── */
+.header { margin-bottom: 56px; }
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 16px; font-weight: 500;
+}
+.header h1 {
+  font-family: 'Lora', serif; font-weight: 700;
+  font-size: 42px; line-height: 1.12; letter-spacing: -0.01em;
+  color: var(--text); margin-bottom: 20px;
+}
+.header h1 em { font-style: italic; color: var(--accent); }
+.header p {
+  font-size: 15px; line-height: 1.7; color: var(--text-dim);
+  max-width: 560px;
+}
+
+/* ── Barra de progresso ── */
+.progress-bar-wrap {
+  background: var(--border); border-radius: 4px; height: 4px;
+  margin-bottom: 12px; overflow: hidden;
+}
+.progress-bar {
+  height: 100%; background: var(--accent); border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.progress-label {
+  font-size: 11px; color: var(--text-dim); letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 36px;
+}
+
+/* ── Steps ── */
+.step { display: none; animation: fadeIn 0.35s ease; }
+.step.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+.step-tag {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid rgba(74,102,111,0.3);
+  border-radius: 20px; padding: 4px 12px; margin-bottom: 20px;
+}
+
+.step h2 {
+  font-family: 'Lora', serif; font-size: 26px; font-weight: 700;
+  line-height: 1.25; margin-bottom: 8px;
+}
+
+.step-desc {
+  font-size: 13px; color: var(--text-dim); margin-bottom: 32px; line-height: 1.6;
+}
+
+/* ── Perguntas ── */
+.question { margin-bottom: 28px; }
+
+.question label {
+  display: block; font-size: 14px; font-weight: 500;
+  margin-bottom: 10px; line-height: 1.4;
+}
+.question label .req { color: var(--accent); margin-left: 2px; }
+
+/* Opções de escolha */
+.options { display: flex; flex-direction: column; gap: 8px; }
+
+.option-btn {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; cursor: pointer;
+  font-size: 14px; font-family: 'Poppins', sans-serif; color: var(--text);
+  text-align: left; transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+.option-btn:hover { border-color: var(--accent); }
+.option-btn.selected {
+  border-color: var(--accent);
+  background: rgba(74,102,111,0.06);
+}
+.option-btn .dot {
+  width: 18px; height: 18px; flex-shrink: 0;
+  border: 2px solid var(--border); border-radius: 50%;
+  transition: border-color 0.2s, background 0.2s;
+}
+.option-btn.selected .dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: inset 0 0 0 3px white;
+}
+
+/* Inputs texto */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px; font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  border-color: var(--accent);
+}
+input::placeholder, textarea::placeholder { color: var(--text-dim); }
+textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+/* Sub-campo condicional */
+.sub-field {
+  margin-top: 12px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(74,102,111,0.25);
+  display: none;
+}
+.sub-field.visible { display: block; }
+.sub-field label {
+  font-size: 13px; color: var(--text-dim); margin-bottom: 8px;
+}
+
+/* Chips multi-select */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 8px 16px;
+  font-size: 13px; font-family: 'Poppins', sans-serif; cursor: pointer;
+  color: var(--text); transition: border-color 0.2s, background 0.2s;
+}
+.chip:hover { border-color: var(--accent); }
+.chip.selected {
+  border-color: var(--accent);
+  background: rgba(74,102,111,0.08);
+  color: var(--accent); font-weight: 500;
+}
+
+/* ── Botões de navegação ── */
+.nav-buttons {
+  display: flex; gap: 12px; margin-top: 40px;
+  align-items: center;
+}
+.btn-back {
+  background: none; border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px 24px;
+  font-size: 14px; font-family: 'Poppins', sans-serif;
+  color: var(--text-dim); cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-back:hover { border-color: var(--accent); color: var(--accent); }
+.btn-next {
+  flex: 1; background: var(--accent); border: none;
+  border-radius: 10px; padding: 15px 28px;
+  font-size: 15px; font-weight: 600; font-family: 'Poppins', sans-serif;
+  color: white; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-next:hover { background: var(--accent-l); transform: translateY(-1px); }
+.btn-next:active { transform: translateY(0); }
+
+/* Erro */
+.error-msg {
+  color: var(--red); font-size: 12px; margin-top: 6px;
+  display: none;
+}
+.error-msg.visible { display: block; }
+
+/* ── Tela de resultado ── */
+#result { display: none; }
+#result.active { display: block; animation: fadeIn 0.4s ease; }
+
+.result-card {
+  background: var(--surface); border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 48px 40px; text-align: center;
+}
+.result-icon { font-size: 48px; margin-bottom: 24px; }
+.result-card h2 {
+  font-family: 'Lora', serif; font-size: 28px; font-weight: 700;
+  margin-bottom: 16px; line-height: 1.25;
+}
+.result-card p {
+  font-size: 15px; color: var(--text-dim);
+  line-height: 1.7; max-width: 480px; margin: 0 auto;
+}
+.result-card.approved h2 { color: var(--accent); }
+.result-card.waitlist h2 { color: var(--gold); }
+
+.result-divider {
+  border: none; border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 600px) {
+  .header h1 { font-size: 30px; }
+  .step h2 { font-size: 22px; }
+  .result-card { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="scene">
+  <div class="light light-1"></div>
+  <div class="light light-2"></div>
+  <div class="light light-3"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="assinatura">
+    <div class="assinatura-line"></div>
+    <span class="assinatura-texto">Mariana Manfredinny</span>
+    <div class="assinatura-line"></div>
+  </div>
+
+  <div class="header">
+    <p class="eyebrow">Parceria Estratégica · Comissão</p>
+    <h1>Quero crescer<br>o seu negócio <em>sem cobrar<br>valor fixo.</em></h1>
+    <p>Você não paga mensalidade. Eu assumi o marketing da sua empresa e ganho comissão sobre os resultados. Mas para isso funcionar, preciso que você preencha este formulário com atenção — ele vai me mostrar se somos a combinação certa.</p>
+  </div>
+
+  <!-- Barra de progresso -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 14%"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">Etapa 1 de 7</div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 1 — Dados de Contato
+  ══════════════════════════════════════ -->
+  <div class="step active" id="step-1">
+    <span class="step-tag">Contato</span>
+    <h2>Antes de tudo, quero te conhecer.</h2>
+    <p class="step-desc">Vou usar esses dados para entrar em contato depois de analisar o seu formulário.</p>
+
+    <div class="question">
+      <label>Seu nome completo <span class="req">*</span></label>
+      <input type="text" id="nome" placeholder="Ex: João Silva" />
+      <div class="error-msg" id="err-nome">Por favor, informe seu nome.</div>
+    </div>
+
+    <div class="question">
+      <label>WhatsApp / Telefone <span class="req">*</span></label>
+      <input type="tel" id="whatsapp" placeholder="(11) 99999-9999" />
+      <div class="error-msg" id="err-whatsapp">Por favor, informe seu WhatsApp.</div>
+    </div>
+
+    <div class="question">
+      <label>E-mail <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="seu@email.com" />
+      <div class="error-msg" id="err-email">Por favor, informe um e-mail válido.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-next" onclick="nextStep(1)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 2 — Perfil Online
+  ══════════════════════════════════════ -->
+  <div class="step" id="step-2">
+    <span class="step-tag">Presença Digital</span>
+    <h2>Como você aparece no digital hoje?</h2>
+    <p class="step-desc">Preciso entender onde você está antes de traçar qualquer estratégia.</p>
+
+    <!-- Perfil principal -->
+    <div class="question">
+      <label>Qual perfil você vai usar para atrair clientes? <span class="req">*</span></label>
+      <div class="options" id="opts-perfil">
+        <button class="option-btn" onclick="selectOption('perfil','pessoal',this)">
+          <div class="dot"></div> Perfil pessoal (meu próprio @)
+        </button>
+        <button class="option-btn" onclick="selectOption('perfil','empresa',this)">
+          <div class="dot"></div> Perfil da empresa / negócio
+        </button>
+        <button class="option-btn" onclick="selectOption('perfil','ambos',this)">
+          <div class="dot"></div> Uso os dois
+        </button>
+        <button class="option-btn" onclick="selectOption('perfil','nenhum',this)">
+          <div class="dot"></div> Ainda não tenho perfil criado
+        </button>
+      </div>
+      <div class="error-msg" id="err-perfil">Selecione uma opção.</div>
+    </div>
+
+    <!-- @ do perfil -->
+    <div class="question">
+      <label>Qual é o @ do seu perfil principal? <span class="req">*</span></label>
+      <input type="text" id="arroba" placeholder="@seuperfil" />
+      <div class="error-msg" id="err-arroba">Informe o @ do seu perfil.</div>
+    </div>
+
+    <!-- Site -->
+    <div class="question">
+      <label>Você tem site? <span class="req">*</span></label>
+      <div class="options" id="opts-site">
+        <button class="option-btn" onclick="selectOption('site','sim',this); toggleSub('sub-site', true)">
+          <div class="dot"></div> Sim, tenho site
+        </button>
+        <button class="option-btn" onclick="selectOption('site','nao',this); toggleSub('sub-site', false)">
+          <div class="dot"></div> Não tenho site
+        </button>
+      </div>
+      <div class="error-msg" id="err-site">Selecione uma opção.</div>
+      <div class="sub-field" id="sub-site">
+        <label>Qual é o endereço do seu site?</label>
+        <input type="url" id="url-site" placeholder="https://seusite.com.br" />
+      </div>
+    </div>
+
+    <!-- Google Meu Negócio -->
+    <div class="question">
+      <label>Você tem Google Meu Negócio configurado? <span class="req">*</span></label>
+      <div class="options" id="opts-gmn">
+        <button class="option-btn" onclick="selectOption('gmn','sim',this)">
+          <div class="dot"></div> Sim, já está ativo
+        </button>
+        <button class="option-btn" onclick="selectOption('gmn','nao-sei',this)">
+          <div class="dot"></div> Não sei dizer
+        </button>
+        <button class="option-btn" onclick="selectOption('gmn','nao',this)">
+          <div class="dot"></div> Não tenho
+        </button>
+      </div>
+      <div class="error-msg" id="err-gmn">Selecione uma opção.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" onclick="prevStep(2)">← Voltar</button>
+      <button class="btn-next" onclick="nextStep(2)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 3 — Perfil do Negócio
+  ══════════════════════════════════════ -->
+  <div class="step" id="step-3">
+    <span class="step-tag">Seu Negócio</span>
+    <h2>Me conta sobre o que você faz.</h2>
+    <p class="step-desc">Só trabalho com nichos que eu consigo escalar — preciso entender o seu mercado.</p>
+
+    <div class="question">
+      <label>Qual é o seu nicho ou área de atuação? <span class="req">*</span></label>
+      <input type="text" id="nicho" placeholder="Ex: Psicóloga clínica, Nutricionista, Advogado trabalhista…" />
+      <div class="error-msg" id="err-nicho">Informe seu nicho de atuação.</div>
+    </div>
+
+    <div class="question">
+      <label>Há quantos anos você atua nessa área? <span class="req">*</span></label>
+      <div class="options" id="opts-tempo">
+        <button class="option-btn" onclick="selectOption('tempo','menos2',this)">
+          <div class="dot"></div> Menos de 2 anos
+        </button>
+        <button class="option-btn" onclick="selectOption('tempo','2a4',this)">
+          <div class="dot"></div> Entre 2 e 4 anos
+        </button>
+        <button class="option-btn" onclick="selectOption('tempo','mais4',this)">
+          <div class="dot"></div> Mais de 4 anos
+        </button>
+      </div>
+      <div class="error-msg" id="err-tempo">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Qual é o seu faturamento mensal médio hoje? <span class="req">*</span></label>
+      <div class="options" id="opts-fat">
+        <button class="option-btn" onclick="selectOption('fat','menos5k',this)">
+          <div class="dot"></div> Menos de R$5.000
+        </button>
+        <button class="option-btn" onclick="selectOption('fat','5k10k',this)">
+          <div class="dot"></div> Entre R$5.000 e R$10.000
+        </button>
+        <button class="option-btn" onclick="selectOption('fat','10k30k',this)">
+          <div class="dot"></div> Entre R$10.000 e R$30.000
+        </button>
+        <button class="option-btn" onclick="selectOption('fat','mais30k',this)">
+          <div class="dot"></div> Acima de R$30.000
+        </button>
+      </div>
+      <div class="error-msg" id="err-fat">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Você atende clientes pagantes hoje? <span class="req">*</span></label>
+      <div class="options" id="opts-clientes">
+        <button class="option-btn" onclick="selectOption('clientes','sim',this)">
+          <div class="dot"></div> Sim, tenho clientes ativos
+        </button>
+        <button class="option-btn" onclick="selectOption('clientes','raramente',this)">
+          <div class="dot"></div> Atendo ocasionalmente
+        </button>
+        <button class="option-btn" onclick="selectOption('clientes','nao',this)">
+          <div class="dot"></div> Ainda não tenho clientes
+        </button>
+      </div>
+      <div class="error-msg" id="err-clientes">Selecione uma opção.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" onclick="prevStep(3)">← Voltar</button>
+      <button class="btn-next" onclick="nextStep(3)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 4 — Histórico com Marketing
+  ══════════════════════════════════════ -->
+  <div class="step" id="step-4">
+    <span class="step-tag">Histórico com Marketing</span>
+    <h2>O que você já tentou no digital?</h2>
+    <p class="step-desc">Quero entender o que funcionou, o que não funcionou e por quê.</p>
+
+    <div class="question">
+      <label>Você já contratou alguma agência ou profissional de marketing? <span class="req">*</span></label>
+      <div class="options" id="opts-agencia">
+        <button class="option-btn" onclick="selectOption('agencia','sim-sem-result',this); toggleSub('sub-agencia', true)">
+          <div class="dot"></div> Sim, e não tive resultado
+        </button>
+        <button class="option-btn" onclick="selectOption('agencia','sim-algum-result',this); toggleSub('sub-agencia', true)">
+          <div class="dot"></div> Sim, tive algum resultado mas não o que esperava
+        </button>
+        <button class="option-btn" onclick="selectOption('agencia','nao',this); toggleSub('sub-agencia', false)">
+          <div class="dot"></div> Nunca contratei
+        </button>
+      </div>
+      <div class="error-msg" id="err-agencia">Selecione uma opção.</div>
+      <div class="sub-field" id="sub-agencia">
+        <label>O que você acha que deu errado nessa experiência?</label>
+        <textarea id="motivo-agencia" placeholder="Conta com suas palavras o que aconteceu…"></textarea>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>Você já criou conteúdo para redes sociais? <span class="req">*</span></label>
+      <div class="options" id="opts-conteudo">
+        <button class="option-btn" onclick="selectOption('conteudo','sim-frequente',this)">
+          <div class="dot"></div> Sim, crio com frequência
+        </button>
+        <button class="option-btn" onclick="selectOption('conteudo','sim-parei',this)">
+          <div class="dot"></div> Já tentei, mas parei
+        </button>
+        <button class="option-btn" onclick="selectOption('conteudo','nao',this)">
+          <div class="dot"></div> Nunca criei
+        </button>
+      </div>
+      <div class="error-msg" id="err-conteudo">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Em quais plataformas você já tentou divulgar seu negócio? <span class="req">*</span><br>
+        <span style="font-size:12px;font-weight:400;color:var(--text-dim)">(pode marcar mais de uma)</span>
+      </label>
+      <div class="chips" id="chips-plataformas">
+        <div class="chip" onclick="toggleChip(this,'Instagram')">Instagram</div>
+        <div class="chip" onclick="toggleChip(this,'TikTok')">TikTok</div>
+        <div class="chip" onclick="toggleChip(this,'YouTube')">YouTube</div>
+        <div class="chip" onclick="toggleChip(this,'Facebook')">Facebook</div>
+        <div class="chip" onclick="toggleChip(this,'Google Ads')">Google Ads</div>
+        <div class="chip" onclick="toggleChip(this,'WhatsApp')">WhatsApp</div>
+        <div class="chip" onclick="toggleChip(this,'LinkedIn')">LinkedIn</div>
+        <div class="chip" onclick="toggleChip(this,'Nenhuma')">Nenhuma ainda</div>
+      </div>
+      <div class="error-msg" id="err-plataformas">Marque ao menos uma opção.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" onclick="prevStep(4)">← Voltar</button>
+      <button class="btn-next" onclick="nextStep(4)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 5 — Conhecimento de Marketing
+  ══════════════════════════════════════ -->
+  <div class="step" id="step-5">
+    <span class="step-tag">Maturidade Digital</span>
+    <h2>O que você sabe sobre marketing digital?</h2>
+    <p class="step-desc">Não existe resposta certa ou errada aqui — quero calibrar a nossa conversa.</p>
+
+    <div class="question">
+      <label>Como você avalia seu conhecimento sobre marketing digital? <span class="req">*</span></label>
+      <div class="options" id="opts-conhecimento">
+        <button class="option-btn" onclick="selectOption('conhecimento','zero',this)">
+          <div class="dot"></div> Zero — nunca estudei o assunto
+        </button>
+        <button class="option-btn" onclick="selectOption('conhecimento','basico',this)">
+          <div class="dot"></div> Básico — entendo alguns conceitos
+        </button>
+        <button class="option-btn" onclick="selectOption('conhecimento','intermediario',this)">
+          <div class="dot"></div> Intermediário — já testei algumas estratégias
+        </button>
+        <button class="option-btn" onclick="selectOption('conhecimento','avancado',this)">
+          <div class="dot"></div> Avançado — acompanho o mercado de perto
+        </button>
+      </div>
+      <div class="error-msg" id="err-conhecimento">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Você sabe o que é CAC, LTV ou taxa de conversão? <span class="req">*</span></label>
+      <div class="options" id="opts-metricas">
+        <button class="option-btn" onclick="selectOption('metricas','sim',this)">
+          <div class="dot"></div> Sim, conheço esses indicadores
+        </button>
+        <button class="option-btn" onclick="selectOption('metricas','mais-ou-menos',this)">
+          <div class="dot"></div> Mais ou menos, já ouvi falar
+        </button>
+        <button class="option-btn" onclick="selectOption('metricas','nao',this)">
+          <div class="dot"></div> Não, não conheço
+        </button>
+      </div>
+      <div class="error-msg" id="err-metricas">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>O que você acredita ser o principal motivo de ainda não ter crescido no digital? <span class="req">*</span></label>
+      <textarea id="motivo-digital" placeholder="Seja honesto — isso me ajuda muito a entender se consigo te ajudar…"></textarea>
+      <div class="error-msg" id="err-motivo-digital">Por favor, responda esta pergunta.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" onclick="prevStep(5)">← Voltar</button>
+      <button class="btn-next" onclick="nextStep(5)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 6 — Fit com a Parceria
+  ══════════════════════════════════════ -->
+  <div class="step" id="step-6">
+    <span class="step-tag">A Parceria</span>
+    <h2>Vamos falar sobre como a parceria funciona.</h2>
+    <p class="step-desc">Trabalho sem valor fixo — mas isso exige alinhamento real.</p>
+
+    <div class="question">
+      <label>Qual é a sua margem de lucro aproximada por venda ou contrato? <span class="req">*</span></label>
+      <div class="options" id="opts-margem">
+        <button class="option-btn" onclick="selectOption('margem','menos20',this)">
+          <div class="dot"></div> Menos de 20%
+        </button>
+        <button class="option-btn" onclick="selectOption('margem','20a40',this)">
+          <div class="dot"></div> Entre 20% e 40%
+        </button>
+        <button class="option-btn" onclick="selectOption('margem','mais40',this)">
+          <div class="dot"></div> Acima de 40%
+        </button>
+        <button class="option-btn" onclick="selectOption('margem','nao-sei',this)">
+          <div class="dot"></div> Não calculei ainda
+        </button>
+      </div>
+      <div class="error-msg" id="err-margem">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Você estaria disposto a pagar comissão por cada venda gerada, sem valor fixo mensal? <span class="req">*</span></label>
+      <div class="options" id="opts-modelo">
+        <button class="option-btn" onclick="selectOption('modelo','sim',this)">
+          <div class="dot"></div> Sim, faz total sentido pra mim
+        </button>
+        <button class="option-btn" onclick="selectOption('modelo','duvidas',this)">
+          <div class="dot"></div> Tenho dúvidas, quero entender melhor
+        </button>
+        <button class="option-btn" onclick="selectOption('modelo','prefiro-fixo',this)">
+          <div class="dot"></div> Prefiro pagar valor fixo
+        </button>
+      </div>
+      <div class="error-msg" id="err-modelo">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Você tem disponibilidade para gravar vídeos e participar da criação de conteúdo? <span class="req">*</span></label>
+      <div class="options" id="opts-disponibilidade">
+        <button class="option-btn" onclick="selectOption('disponibilidade','sim',this)">
+          <div class="dot"></div> Sim, tenho disponibilidade
+        </button>
+        <button class="option-btn" onclick="selectOption('disponibilidade','pouco',this)">
+          <div class="dot"></div> Posso dedicar pouco tempo
+        </button>
+        <button class="option-btn" onclick="selectOption('disponibilidade','nao',this)">
+          <div class="dot"></div> Prefiro que seja tudo terceirizado
+        </button>
+      </div>
+      <div class="error-msg" id="err-disponibilidade">Selecione uma opção.</div>
+    </div>
+
+    <div class="question">
+      <label>Você é o tomador de decisão no seu negócio? <span class="req">*</span></label>
+      <div class="options" id="opts-decisor">
+        <button class="option-btn" onclick="selectOption('decisor','sim',this)">
+          <div class="dot"></div> Sim, eu decido tudo
+        </button>
+        <button class="option-btn" onclick="selectOption('decisor','nao',this)">
+          <div class="dot"></div> Não, preciso consultar outra pessoa
+        </button>
+      </div>
+      <div class="error-msg" id="err-decisor">Selecione uma opção.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" onclick="prevStep(6)">← Voltar</button>
+      <button class="btn-next" onclick="nextStep(6)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ETAPA 7 — Comprometimento
+  ══════════════════════════════════════ -->
+  <div class="step" id="step-7">
+    <span class="step-tag">Comprometimento</span>
+    <h2>Última etapa — e a mais importante.</h2>
+    <p class="step-desc">Quero saber se você está realmente pronto para isso agora.</p>
+
+    <div class="question">
+      <label>O que você espera alcançar nos próximos 6 meses com o marketing? <span class="req">*</span></label>
+      <textarea id="expectativa" placeholder="Seja específico: número de clientes, faturamento, reconhecimento…"></textarea>
+      <div class="error-msg" id="err-expectativa">Por favor, responda esta pergunta.</div>
+    </div>
+
+    <div class="question">
+      <label>Por que você quer fechar uma parceria agora e não daqui a alguns meses? <span class="req">*</span></label>
+      <textarea id="urgencia" placeholder="Me convença de que você está pronto para agir agora…"></textarea>
+      <div class="error-msg" id="err-urgencia">Por favor, responda esta pergunta.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" onclick="prevStep(7)">← Voltar</button>
+      <button class="btn-next" onclick="submitForm()">Enviar candidatura →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       RESULTADO
+  ══════════════════════════════════════ -->
+  <div id="result"></div>
+
+</div><!-- /wrap -->
+
+<script>
+// ── Estado global ──
+const answers = {};
+const chipSelections = { plataformas: [] };
+let currentStep = 1;
+const TOTAL_STEPS = 7;
+
+// ── Navegação ──
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+
+  const pct = Math.round((n / TOTAL_STEPS) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Etapa ' + n + ' de ' + TOTAL_STEPS;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  currentStep = n;
+}
+
+function prevStep(from) { showStep(from - 1); }
+
+function nextStep(from) {
+  if (!validateStep(from)) return;
+  showStep(from + 1);
+}
+
+// ── Seleção de opção única ──
+function selectOption(key, value, btn) {
+  answers[key] = value;
+  const container = btn.closest('.options');
+  container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  hideError('err-' + key);
+}
+
+// ── Toggle sub-campo ──
+function toggleSub(id, show) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('visible', show);
+}
+
+// ── Chips multi-select ──
+function toggleChip(chip, value) {
+  chip.classList.toggle('selected');
+  const idx = chipSelections.plataformas.indexOf(value);
+  if (idx > -1) {
+    chipSelections.plataformas.splice(idx, 1);
+  } else {
+    chipSelections.plataformas.push(value);
+  }
+  if (chipSelections.plataformas.length > 0) hideError('err-plataformas');
+}
+
+// ── Erros ──
+function showError(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('visible');
+}
+function hideError(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('visible');
+}
+
+// ── Validação por etapa ──
+function validateStep(n) {
+  let ok = true;
+
+  if (n === 1) {
+    const nome = document.getElementById('nome').value.trim();
+    const wpp  = document.getElementById('whatsapp').value.trim();
+    const mail = document.getElementById('email').value.trim();
+    if (!nome)                     { showError('err-nome');     ok = false; }
+    if (!wpp)                      { showError('err-whatsapp'); ok = false; }
+    if (!mail || !mail.includes('@')) { showError('err-email');  ok = false; }
+  }
+
+  if (n === 2) {
+    if (!answers.perfil)  { showError('err-perfil'); ok = false; }
+    const arroba = document.getElementById('arroba').value.trim();
+    if (!arroba && answers.perfil !== 'nenhum') { showError('err-arroba'); ok = false; }
+    if (!answers.site)    { showError('err-site');   ok = false; }
+    if (!answers.gmn)     { showError('err-gmn');    ok = false; }
+  }
+
+  if (n === 3) {
+    const nicho = document.getElementById('nicho').value.trim();
+    if (!nicho)             { showError('err-nicho');    ok = false; }
+    if (!answers.tempo)     { showError('err-tempo');    ok = false; }
+    if (!answers.fat)       { showError('err-fat');      ok = false; }
+    if (!answers.clientes)  { showError('err-clientes'); ok = false; }
+  }
+
+  if (n === 4) {
+    if (!answers.agencia)  { showError('err-agencia');     ok = false; }
+    if (!answers.conteudo) { showError('err-conteudo');    ok = false; }
+    if (chipSelections.plataformas.length === 0) { showError('err-plataformas'); ok = false; }
+  }
+
+  if (n === 5) {
+    if (!answers.conhecimento) { showError('err-conhecimento'); ok = false; }
+    if (!answers.metricas)     { showError('err-metricas');     ok = false; }
+    const motivo = document.getElementById('motivo-digital').value.trim();
+    if (!motivo) { showError('err-motivo-digital'); ok = false; }
+  }
+
+  if (n === 6) {
+    if (!answers.margem)          { showError('err-margem');          ok = false; }
+    if (!answers.modelo)          { showError('err-modelo');          ok = false; }
+    if (!answers.disponibilidade) { showError('err-disponibilidade'); ok = false; }
+    if (!answers.decisor)         { showError('err-decisor');         ok = false; }
+  }
+
+  if (n === 7) {
+    const exp = document.getElementById('expectativa').value.trim();
+    const urg = document.getElementById('urgencia').value.trim();
+    if (!exp) { showError('err-expectativa'); ok = false; }
+    if (!urg) { showError('err-urgencia');    ok = false; }
+  }
+
+  return ok;
+}
+
+// ── Pontuação de qualificação ──
+function calcScore() {
+  let score = 0;
+  let disqualified = false;
+
+  // Disqualifiers absolutos
+  if (answers.tempo === 'menos2' || answers.tempo === '2a4') disqualified = true;
+  if (answers.fat === 'menos5k') disqualified = true;
+  if (answers.clientes === 'nao') disqualified = true;
+  if (answers.modelo === 'prefiro-fixo') disqualified = true;
+  if (answers.decisor === 'nao') disqualified = true;
+
+  // Pontuação positiva
+  if (answers.fat === 'mais30k') score += 3;
+  else if (answers.fat === '10k30k') score += 2;
+  else if (answers.fat === '5k10k') score += 1;
+
+  if (answers.agencia === 'sim-sem-result' || answers.agencia === 'sim-algum-result') score += 2;
+  if (answers.conteudo === 'sim-frequente') score += 2;
+  else if (answers.conteudo === 'sim-parei') score += 1;
+
+  if (answers.margem === 'mais40') score += 2;
+  else if (answers.margem === '20a40') score += 1;
+
+  if (answers.disponibilidade === 'sim') score += 2;
+  if (answers.modelo === 'sim') score += 2;
+  if (answers.gmn === 'sim') score += 1;
+  if (answers.site === 'sim') score += 1;
+
+  return { score, disqualified };
+}
+
+// ── Envio ──
+function submitForm() {
+  if (!validateStep(7)) return;
+
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('progressLabel').textContent = 'Concluído!';
+
+  const { score, disqualified } = calcScore();
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+
+  const nome = document.getElementById('nome').value.trim().split(' ')[0];
+
+  if (disqualified) {
+    resultDiv.innerHTML = `
+      <div class="result-card waitlist">
+        <div class="result-icon">🙏</div>
+        <h2>Obrigada pela honestidade, ${nome}.</h2>
+        <hr class="result-divider">
+        <p>Com base nas suas respostas, ainda não chegamos ao momento ideal para uma parceria de comissão — mas isso não significa que você não consegue crescer no digital.<br><br>
+        Vou continuar produzindo conteúdo gratuito sobre marketing para profissionais liberais. Me siga no Instagram e no TikTok para acompanhar.</p>
+      </div>`;
+  } else if (score >= 8) {
+    resultDiv.innerHTML = `
+      <div class="result-card approved">
+        <div class="result-icon">✅</div>
+        <h2>${nome}, você tem perfil forte para a nossa parceria.</h2>
+        <hr class="result-divider">
+        <p>Suas respostas mostraram que você tem serviço validado, experiência de mercado e está aberto ao modelo de comissão. Isso é exatamente o que eu procuro.<br><br>
+        Vou analisar seu formulário e entrar em contato pelo WhatsApp em até <strong>48 horas</strong> para conversarmos.</p>
+      </div>`;
+  } else {
+    resultDiv.innerHTML = `
+      <div class="result-card waitlist">
+        <div class="result-icon">⏳</div>
+        <h2>${nome}, você está quase lá.</h2>
+        <hr class="result-divider">
+        <p>Você tem potencial, mas alguns pontos precisam de atenção antes de fecharmos uma parceria de comissão. Vou analisar seu perfil e, se fizer sentido, entro em contato em até <strong>5 dias úteis</strong>.<br><br>
+        Enquanto isso, me segue nas redes — tem muito conteúdo gratuito que pode te ajudar agora.</p>
+      </div>`;
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
